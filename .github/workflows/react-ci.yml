@@ -28,7 +28,7 @@ jobs:
         run: npm run format --if-present
 
       - name: Run tests
-        run: npm test --if-present -- --watchAll=false
+        run: npm test --if-present
 
       - name: Build app
         run: npm run build
