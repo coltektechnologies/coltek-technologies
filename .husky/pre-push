@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+. "$(dirname "$0")/_/husky.sh"
+
+set -e  # Stop script immediately if any command fails
+
+echo "🔍 Running type check..."
+npm run type-check || { 
+  echo "❌ Type check failed. Fix the issues and try again."; 
+  exit 1; 
+}
+
+echo "🎨 Running lint and format..."
+npx lint-staged || { 
+  echo "❌ Lint/format failed. Fix and try again."; 
+  exit 1; 
+}
+
+echo "🧪 Running tests..."
+npm test || { 
+  echo "❌ Tests failed. Fix the issues and try again."; 
+  exit 1; 
+}
+
+echo "✅ All checks passed! Proceeding with push..."

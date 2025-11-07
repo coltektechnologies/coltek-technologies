@@ -1,18 +1,19 @@
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
-  const notifySuccess = () => toast.success('Success! Welcome to Coltek Technologies');
-  
+  const notifySuccess = () =>
+    toast.success("Success! Welcome to Coltek Technologies");
+
   return (
     <div className="flex justify-center items-center min-h-screen">
-      <button 
+      <button
         onClick={notifySuccess}
         className="bg-blue-950 text-white px-10 py-2 rounded hover:bg-blue-700"
       >
         Hello09
       </button>
-      
+
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -21,7 +22,7 @@ const App = () => {
         pauseOnHover
       />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
