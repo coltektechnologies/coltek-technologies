@@ -4,10 +4,10 @@ import React from "react";
  * ABOUT PAGE — COLTEK TECHNOLOGIES
  * --------------------------------
  * Hi, this is Frederick. This is the full implementation of the About Us page
- * for the COLTEK website. I built this to match the UI design shared earlier.
+ * for the COLTEK website. I built this to match the UI design.
  *
  * I used Tailwind CSS for styling and added clear first-person comments
- * to explain each section for both my understanding and code reviewers.
+ * to explain each section .
  *
  * All images are placeholders (gray boxes) since the real UI assets
  * will be inserted later.
