@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-. "$(dirname "$0")/_/husky.sh"
+
 
 set -e  # Stop script immediately if any command fails
 
