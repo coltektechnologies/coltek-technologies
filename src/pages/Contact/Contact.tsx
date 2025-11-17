@@ -100,7 +100,7 @@ const Contact: React.FC = () => {
           message: json.message || "Please try again later.",
         });
       }
-    } catch (err) {
+    } catch {
       pushToast({
         type: "error",
         title: "Network error",
