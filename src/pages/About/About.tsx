@@ -73,67 +73,72 @@ const About: React.FC = () => {
                 About Us
               </h1>
               <p className="mt-4 text-sm sm:text-base md:text-lg text-white/90 max-w-2xl mx-auto">
-                Building a culture of growth, integrity, innovation, and purpose.
+                Building a culture of growth, integrity, innovation, and
+                purpose.
               </p>
             </div>
           </div>
         </section>
       </Reveal>
 
-{/* OUR STORY */}
-<Reveal delay={150}>
-  <section className="py-10 md:py-14">
-    <div className="w-full flex flex-col items-center text-center px-6">
+      {/* OUR STORY */}
+      <Reveal delay={150}>
+        <section className="py-10 md:py-14">
+          <div className="w-full flex flex-col items-center text-center px-6">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3 text-[#1C3D72]">
+              Our Story
+            </h2>
 
-      <h2 className="text-2xl md:text-3xl font-bold mb-3 text-[#1C3D72]">
-        Our Story
-      </h2>
+            <p className="text-sm md:text-base text-[#42566A] mb-8 max-w-3xl leading-relaxed">
+              COLTEK was founded just a few months ago by a group of young,
+              passionate minds who believed that potential is limitless when
+              guided by purpose, integrity, and innovation. Emerging from a
+              shared vision, we came together to build an organisation where
+              creativity thrives, growth is intentional, and people feel
+              empowered to become the best versions of themselves.
+              <br />
+              <br />
+              Though new, our commitment is strong: to inspire excellence,
+              foster meaningful collaboration, and create solutions that uplift
+              individuals and organisations alike.
+            </p>
 
-      <p className="text-sm md:text-base text-[#42566A] mb-8 max-w-3xl leading-relaxed">
-        COLTEK was founded just a few months ago by a group of young, passionate minds
-        who believed that potential is limitless when guided by purpose, integrity, and
-        innovation. Emerging from a shared vision, we came together to build an organisation
-        where creativity thrives, growth is intentional, and people feel empowered to become
-        the best versions of themselves.
-        <br />
-        <br />
-        Though new, our commitment is strong: to inspire excellence, foster meaningful
-        collaboration, and create solutions that uplift individuals and organisations alike.
-      </p>
+            {/* Optional timeline section stays centered because the wrapper will adjust automatically */}
+          </div>
 
-      {/* Optional timeline section stays centered because the wrapper will adjust automatically */}
-    </div>
-
-    <div className="max-w-6xl mx-auto px-6 mt-4">
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
-        {[
-          { year: "2024", icon: <Flag className="text-[#5EC9F5]" /> },
-          { year: "2025", icon: <Target className="text-[#FFB766]" /> },
-          { year: "2026", icon: <Bolt className="text-[#5EC9F5]" /> },
-          { year: "2027", icon: <Rocket className="text-[#FFB766]" /> },
-        ].map((item, idx) => (
-          <article
-            key={item.year}
-            className="bg-white rounded-xl p-4 md:p-5 shadow-sm hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-          >
-            <div className="flex flex-col items-center text-center">
-              <div
-                className={`w-14 h-14 rounded-full flex items-center justify-center mb-3 ${
-                  idx % 2 === 0 ? "bg-[#5EC9F5]/20" : "bg-[#FFB766]/20"
-                }`}
-              >
-                {item.icon}
-              </div>
-              <h3 className="text-lg font-semibold text-[#102A43]">{item.year}</h3>
-              <p className="text-xs text-[#607B8B] mt-2">A milestone in our journey.</p>
+          <div className="max-w-6xl mx-auto px-6 mt-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
+              {[
+                { year: "2024", icon: <Flag className="text-[#5EC9F5]" /> },
+                { year: "2025", icon: <Target className="text-[#FFB766]" /> },
+                { year: "2026", icon: <Bolt className="text-[#5EC9F5]" /> },
+                { year: "2027", icon: <Rocket className="text-[#FFB766]" /> },
+              ].map((item, idx) => (
+                <article
+                  key={item.year}
+                  className="bg-white rounded-xl p-4 md:p-5 shadow-sm hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                >
+                  <div className="flex flex-col items-center text-center">
+                    <div
+                      className={`w-14 h-14 rounded-full flex items-center justify-center mb-3 ${
+                        idx % 2 === 0 ? "bg-[#5EC9F5]/20" : "bg-[#FFB766]/20"
+                      }`}
+                    >
+                      {item.icon}
+                    </div>
+                    <h3 className="text-lg font-semibold text-[#102A43]">
+                      {item.year}
+                    </h3>
+                    <p className="text-xs text-[#607B8B] mt-2">
+                      A milestone in our journey.
+                    </p>
+                  </div>
+                </article>
+              ))}
             </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-</Reveal>
-
+          </div>
+        </section>
+      </Reveal>
 
       {/* MISSION & VISION */}
       <Reveal delay={250}>
@@ -143,11 +148,13 @@ const About: React.FC = () => {
             <article className="bg-white rounded-2xl p-5 md:p-6 shadow-sm hover:shadow-md transform hover:-translate-y-1 transition-all">
               <div className="flex items-center gap-2 mb-2">
                 <Compass className="text-[#1C3D72] w-5 h-5" />
-                <h3 className="text-xl md:text-2xl font-bold text-[#1C3D72]">Our Mission</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-[#1C3D72]">
+                  Our Mission
+                </h3>
               </div>
               <p className="text-sm md:text-base text-[#42566A] leading-relaxed">
-                Transforming potential into excellence by inspiring growth, fostering innovation,
-                and leading with integrity.
+                Transforming potential into excellence by inspiring growth,
+                fostering innovation, and leading with integrity.
               </p>
             </article>
 
@@ -155,11 +162,14 @@ const About: React.FC = () => {
             <article className="bg-white rounded-2xl p-5 md:p-6 shadow-sm hover:shadow-md transform hover:-translate-y-1 transition-all">
               <div className="flex items-center gap-2 mb-2">
                 <Eye className="text-[#1C3D72] w-5 h-5" />
-                <h3 className="text-xl md:text-2xl font-bold text-[#1C3D72]">Our Vision</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-[#1C3D72]">
+                  Our Vision
+                </h3>
               </div>
               <p className="text-sm md:text-base text-[#42566A] leading-relaxed">
-                To empower individuals and organizations to reach their highest potential, fostering
-                a culture of learning, integrity, and collaboration that drives sustainable progress.
+                To empower individuals and organizations to reach their highest
+                potential, fostering a culture of learning, integrity, and
+                collaboration that drives sustainable progress.
               </p>
             </article>
           </div>
@@ -170,9 +180,12 @@ const About: React.FC = () => {
       <Reveal delay={350}>
         <section className="py-10 md:py-14">
           <div className="max-w-6xl mx-auto px-6">
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1C3D72] mb-2">Core Values</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1C3D72] mb-2">
+              Core Values
+            </h2>
             <p className="text-sm text-[#42566A] max-w-xl mb-6">
-              Our values guide how we lead, collaborate, and create meaningful impact.
+              Our values guide how we lead, collaborate, and create meaningful
+              impact.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
@@ -218,7 +231,9 @@ const About: React.FC = () => {
                   >
                     <v.icon className="w-7 h-7" style={{ color: v.accent }} />
                   </div>
-                  <div className="font-semibold text-lg text-[#102A43]">{v.title}</div>
+                  <div className="font-semibold text-lg text-[#102A43]">
+                    {v.title}
+                  </div>
                   <p className="text-sm text-[#607B8B] mt-2">{v.desc}</p>
                 </div>
               ))}
@@ -237,11 +252,14 @@ const About: React.FC = () => {
               <h3 className="text-xl md:text-2xl font-bold text-[#1C3D72]">
                 Boansi Kyeremateng Collins
               </h3>
-              <p className="text-sm md:text-base text-[#607B8B] mb-3">Chief Executive Officer</p>
+              <p className="text-sm md:text-base text-[#607B8B] mb-3">
+                Chief Executive Officer
+              </p>
               <p className="text-sm text-[#42566A] leading-relaxed">
-                As CEO, Collins embodies the heart of COLTEK’s mission — leading with integrity,
-                supporting meaningful growth, and empowering the team to build with purpose. His
-                leadership sets the foundation for excellence, innovation, and impact.
+                As CEO, Collins embodies the heart of COLTEK’s mission — leading
+                with integrity, supporting meaningful growth, and empowering the
+                team to build with purpose. His leadership sets the foundation
+                for excellence, innovation, and impact.
               </p>
 
               <div className="flex gap-3 mt-4">
@@ -280,7 +298,8 @@ const About: React.FC = () => {
               Meet Our Team
             </h2>
             <p className="text-sm text-[#42566A] text-center max-w-3xl mx-auto mb-6">
-              A team driven by passion, collaboration, and a commitment to excellence.
+              A team driven by passion, collaboration, and a commitment to
+              excellence.
             </p>
 
             {/* Auto Grid (Responsive) */}
@@ -308,8 +327,12 @@ const About: React.FC = () => {
                   className="bg-white rounded-lg p-4 flex flex-col items-center text-center shadow-sm hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300"
                 >
                   <div className="w-24 h-24 rounded-full bg-gray-200 mb-3" />
-                  <div className="font-semibold text-[#102A43]">{member.name}</div>
-                  <div className="text-sm text-[#607B8B] mt-1">{member.role}</div>
+                  <div className="font-semibold text-[#102A43]">
+                    {member.name}
+                  </div>
+                  <div className="text-sm text-[#607B8B] mt-1">
+                    {member.role}
+                  </div>
                 </div>
               ))}
             </div>
@@ -328,7 +351,9 @@ const About: React.FC = () => {
               </div>
 
               <div className="text-center md:text-left">
-                <div className="text-3xl md:text-4xl font-extrabold">4.8/5.0</div>
+                <div className="text-3xl md:text-4xl font-extrabold">
+                  4.8/5.0
+                </div>
                 <div className="text-sm text-white/90">Client Satisfaction</div>
               </div>
             </div>
@@ -347,8 +372,8 @@ const About: React.FC = () => {
                     Let’s Help Make Your Idea a Reality
                   </h3>
                   <p className="text-sm md:text-base text-[#42566A] mt-2 max-w-2xl">
-                    We are ready to bring your vision to life with innovation, integrity, and
-                    excellence.
+                    We are ready to bring your vision to life with innovation,
+                    integrity, and excellence.
                   </p>
                 </div>
 
@@ -356,7 +381,8 @@ const About: React.FC = () => {
                   <button
                     className="px-5 py-3 flex items-center gap-2 rounded-lg font-semibold text-white shadow-md transform hover:-translate-y-1 hover:scale-105 transition-all duration-300"
                     style={{
-                      background: "linear-gradient(90deg, #1C3D72 0%, #2EC4B6 100%)",
+                      background:
+                        "linear-gradient(90deg, #1C3D72 0%, #2EC4B6 100%)",
                     }}
                   >
                     Get Started
@@ -376,8 +402,12 @@ const About: React.FC = () => {
       {/* FOOTER PLACEHOLDER */}
       <footer className="w-full bg-[#102A43] text-white py-4 px-6">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
-          <div className="text-sm">© {new Date().getFullYear()} COLTEK Technologies</div>
-          <div className="text-sm text-[#CDE9EF]">Built with care by the COLTEK team</div>
+          <div className="text-sm">
+            © {new Date().getFullYear()} COLTEK Technologies
+          </div>
+          <div className="text-sm text-[#CDE9EF]">
+            Built with care by the COLTEK team
+          </div>
         </div>
       </footer>
     </div>

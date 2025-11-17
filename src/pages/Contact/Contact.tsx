@@ -114,7 +114,10 @@ const Contact: React.FC = () => {
   return (
     <div className="min-h-screen w-full bg-[#F4F7FA] text-[#102A43] flex flex-col">
       {/* Toast container (top-right) */}
-      <div aria-live="polite" className="fixed top-5 right-5 z-50 flex flex-col gap-3">
+      <div
+        aria-live="polite"
+        className="fixed top-5 right-5 z-50 flex flex-col gap-3"
+      >
         {toasts.map((t) => (
           <div
             key={t.id}
@@ -135,7 +138,9 @@ const Contact: React.FC = () => {
 
             <div className="flex-1 text-sm">
               <div className="font-semibold">{t.title}</div>
-              {t.message && <div className="mt-1 text-sm opacity-90">{t.message}</div>}
+              {t.message && (
+                <div className="mt-1 text-sm opacity-90">{t.message}</div>
+              )}
             </div>
 
             <button
@@ -177,14 +182,21 @@ const Contact: React.FC = () => {
       <Reveal delay={50}>
         <section className="relative w-full">
           <div className="h-[220px] md:h-[260px] lg:h-[320px] bg-[url('/placeholder-hero.jpg')] bg-cover bg-center flex items-center">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#102A43]/70 to-transparent" aria-hidden />
+            <div
+              className="absolute inset-0 bg-gradient-to-r from-[#102A43]/70 to-transparent"
+              aria-hidden
+            />
 
             <div className="relative z-10 max-w-6xl mx-auto px-6 text-white">
-              <div className="text-sm text-white/80 mb-2">Home / Contact Us</div>
-              <h1 className="text-2xl md:text-4xl font-extrabold">Contact Us</h1>
+              <div className="text-sm text-white/80 mb-2">
+                Home / Contact Us
+              </div>
+              <h1 className="text-2xl md:text-4xl font-extrabold">
+                Contact Us
+              </h1>
               <p className="mt-2 max-w-2xl text-sm md:text-base text-white/90">
-                We specialise in innovative media solutions. Reach out and let’s bring your
-                vision to life.
+                We specialise in innovative media solutions. Reach out and let’s
+                bring your vision to life.
               </p>
             </div>
           </div>
@@ -199,7 +211,8 @@ const Contact: React.FC = () => {
             <div className="flex flex-col gap-4">
               <h2 className="text-2xl font-bold text-[#1C3D72]">CONTACT US</h2>
               <p className="text-sm text-[#42566A] mb-2">
-                Reach out to us by email, phone or drop a message using the form.
+                Reach out to us by email, phone or drop a message using the
+                form.
               </p>
 
               <div className="flex flex-col gap-3">
@@ -210,7 +223,9 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-sm font-semibold">Email</div>
-                    <div className="text-xs text-[#607B8B]">coltektechnologies@gmail.com</div>
+                    <div className="text-xs text-[#607B8B]">
+                      coltektechnologies@gmail.com
+                    </div>
                   </div>
                 </div>
 
@@ -221,7 +236,9 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-sm font-semibold">Phone</div>
-                    <div className="text-xs text-[#607B8B]">+233 (0) 55 123 4567</div>
+                    <div className="text-xs text-[#607B8B]">
+                      +233 (0) 55 123 4567
+                    </div>
                   </div>
                 </div>
 
@@ -232,7 +249,9 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-sm font-semibold">Location</div>
-                    <div className="text-xs text-[#607B8B]">Sunyani, Ghana (Remote-friendly)</div>
+                    <div className="text-xs text-[#607B8B]">
+                      Sunyani, Ghana (Remote-friendly)
+                    </div>
                   </div>
                 </div>
 
@@ -276,20 +295,40 @@ const Contact: React.FC = () => {
 
             {/* Right: Contact Form */}
             <div className="bg-white rounded-xl shadow-md p-6 md:p-8">
-              <h3 className="text-lg font-semibold text-[#102A43] mb-3">Send Us a Message</h3>
+              <h3 className="text-lg font-semibold text-[#102A43] mb-3">
+                Send Us a Message
+              </h3>
 
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4" aria-live="polite">
+              <form
+                onSubmit={handleSubmit}
+                className="flex flex-col gap-4"
+                aria-live="polite"
+              >
                 {/* Web3Forms Access Key (EMPTY) */}
                 <input type="hidden" name="access_key" value="" />
                 {/* TODO: Ask CEO for the Web3Forms access key and insert it above */}
 
                 {/* ensure messages get forwarded to the company email */}
-                <input type="hidden" name="to" value="coltektechnologies@gmail.com" />
-                <input type="hidden" name="from_name" value="COLTEK Technologies" />
-                <input type="hidden" name="subject" value="Website Contact Form Submission" />
+                <input
+                  type="hidden"
+                  name="to"
+                  value="coltektechnologies@gmail.com"
+                />
+                <input
+                  type="hidden"
+                  name="from_name"
+                  value="COLTEK Technologies"
+                />
+                <input
+                  type="hidden"
+                  name="subject"
+                  value="Website Contact Form Submission"
+                />
 
                 <div>
-                  <label className="text-sm font-medium text-[#102A43]">Name</label>
+                  <label className="text-sm font-medium text-[#102A43]">
+                    Name
+                  </label>
                   <input
                     name="name"
                     type="text"
@@ -300,7 +339,9 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-[#102A43]">Email</label>
+                  <label className="text-sm font-medium text-[#102A43]">
+                    Email
+                  </label>
                   <input
                     name="email"
                     type="email"
@@ -311,7 +352,9 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-[#102A43]">Subject</label>
+                  <label className="text-sm font-medium text-[#102A43]">
+                    Subject
+                  </label>
                   <input
                     name="subject"
                     type="text"
@@ -321,7 +364,9 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-[#102A43]">Message</label>
+                  <label className="text-sm font-medium text-[#102A43]">
+                    Message
+                  </label>
                   <textarea
                     name="message"
                     required
@@ -335,13 +380,18 @@ const Contact: React.FC = () => {
                     type="submit"
                     disabled={sending}
                     className="mt-2 px-5 py-3 flex items-center justify-center gap-2 rounded-lg font-semibold text-white shadow-md transform hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
-                    style={{ background: "linear-gradient(90deg, #1C3D72 0%, #2EC4B6 100%)" }}
+                    style={{
+                      background:
+                        "linear-gradient(90deg, #1C3D72 0%, #2EC4B6 100%)",
+                    }}
                   >
                     {sending ? "Sending..." : "Send Message"}
                     <Send className="w-4 h-4" />
                   </button>
 
-                  <div className="text-sm text-[#607B8B]">We reply within 48 hours</div>
+                  <div className="text-sm text-[#607B8B]">
+                    We reply within 48 hours
+                  </div>
                 </div>
               </form>
             </div>
@@ -357,26 +407,30 @@ const Contact: React.FC = () => {
             <div>
               <div className="rounded-lg overflow-hidden border border-[#E3E8EF] shadow-sm">
                 <iframe
-  title="COLTEK Location Map"
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.434045334237!2d-2.3277!3d7.3377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdbf9f5a9bb4abf%3A0x72d55c5a0adb5d71!2sSunyani!5e0!3m2!1sen!2sgh!4v00000000000"
-  width="100%"
-  height="100%"
-  loading="lazy"
-  allowFullScreen
-  referrerPolicy="no-referrer-when-downgrade"
-  className="rounded-t-lg"
-></iframe>
+                  title="COLTEK Location Map"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.434045334237!2d-2.3277!3d7.3377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdbf9f5a9bb4abf%3A0x72d55c5a0adb5d71!2sSunyani!5e0!3m2!1sen!2sgh!4v00000000000"
+                  width="100%"
+                  height="100%"
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="rounded-t-lg"
+                ></iframe>
 
                 <div className="p-4 bg-white">
                   <div className="text-sm font-semibold">Sunyani, Ghana</div>
-                  <div className="text-xs text-[#607B8B]">We operate remotely — no public office yet.</div>
+                  <div className="text-xs text-[#607B8B]">
+                    We operate remotely — no public office yet.
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* FAQ */}
             <div>
-              <h3 className="text-xl font-semibold text-[#1C3D72] mb-4">Frequently Asked Questions</h3>
+              <h3 className="text-xl font-semibold text-[#1C3D72] mb-4">
+                Frequently Asked Questions
+              </h3>
 
               <div className="space-y-3">
                 {[
@@ -395,14 +449,19 @@ const Contact: React.FC = () => {
                 ].map((item, i) => {
                   const isOpen = openFaq === i;
                   return (
-                    <div key={i} className="border border-[#E3E8EF] rounded-lg overflow-hidden">
+                    <div
+                      key={i}
+                      className="border border-[#E3E8EF] rounded-lg overflow-hidden"
+                    >
                       <button
                         aria-expanded={isOpen}
                         aria-controls={`faq-${i}`}
                         onClick={() => toggleFaq(i)}
                         className="w-full flex items-center justify-between px-4 py-3 bg-white hover:bg-[#fbfdff] transition"
                       >
-                        <span className="text-sm font-medium text-[#102A43]">{item.q}</span>
+                        <span className="text-sm font-medium text-[#102A43]">
+                          {item.q}
+                        </span>
                         <ChevronDown
                           className={`w-5 h-5 text-[#1C3D72] transform transition-transform ${isOpen ? "rotate-180" : "rotate-0"}`}
                         />
@@ -434,8 +493,12 @@ const Contact: React.FC = () => {
                     <Users className="w-6 h-6 text-[#1C3D72]" />
                   </div>
                   <div>
-                    <div className="font-semibold text-[#102A43]">Customer Support</div>
-                    <div className="text-sm text-[#607B8B]">Get in touch with our support team</div>
+                    <div className="font-semibold text-[#102A43]">
+                      Customer Support
+                    </div>
+                    <div className="text-sm text-[#607B8B]">
+                      Get in touch with our support team
+                    </div>
                   </div>
                 </div>
               </div>
@@ -447,7 +510,9 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <div className="font-semibold text-[#102A43]">Sales</div>
-                    <div className="text-sm text-[#607B8B]">Contact our sales professionals</div>
+                    <div className="text-sm text-[#607B8B]">
+                      Contact our sales professionals
+                    </div>
                   </div>
                 </div>
               </div>
@@ -458,8 +523,12 @@ const Contact: React.FC = () => {
                     <Star className="w-6 h-6 text-[#5EC9F5]" />
                   </div>
                   <div>
-                    <div className="font-semibold text-[#102A43]">Technical Support</div>
-                    <div className="text-sm text-[#607B8B]">Need technical help? Our engineers are ready</div>
+                    <div className="font-semibold text-[#102A43]">
+                      Technical Support
+                    </div>
+                    <div className="text-sm text-[#607B8B]">
+                      Need technical help? Our engineers are ready
+                    </div>
                   </div>
                 </div>
               </div>
@@ -510,7 +579,9 @@ const Contact: React.FC = () => {
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
           <div>
             <div className="font-semibold">COLTEK Technologies</div>
-            <div className="text-xs text-[#CDE9EF] mt-2">Innovative media & digital solutions.</div>
+            <div className="text-xs text-[#CDE9EF] mt-2">
+              Innovative media & digital solutions.
+            </div>
           </div>
 
           <div>
@@ -533,7 +604,8 @@ const Contact: React.FC = () => {
         </div>
 
         <div className="max-w-6xl mx-auto mt-6 text-center text-sm text-[#CDE9EF]">
-          © {new Date().getFullYear()} COLTEK Technologies — Built with care by the COLTEK team
+          © {new Date().getFullYear()} COLTEK Technologies — Built with care by
+          the COLTEK team
         </div>
       </footer>
     </div>
