@@ -12,6 +12,10 @@
     #00d9fd 2.91%,
     #0afe36 97.09%
   );
+
+  --nav-button-bg: #0D1B2A;
+  --nav-button-text-color: #B0BEC5;
+
   --button-bg2-color: #00d9fd;
   --button-bg3-color: #c8e4fe9e;
   --button-bg4-color: #034492;
@@ -31,6 +35,7 @@
 
   /* Text Colors */
   --text-color: #000000;
+  --nav-text-color: #3A3D3F;
 
   /* Card Colors */
   --card1-bg-color: #c8e4fe3d;
