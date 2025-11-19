@@ -1,15 +1,14 @@
-
 import AppRoutes from "./routes/AppRoutes";
+import { BrowserRouter } from "react-router-dom";
 
-/**
- * App Component
- * -------------
- * Hi, it's Frederick again.
- * This connects the main App to the routing system.
- */
 
 function App() {
-  return <AppRoutes />;
+  return (
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+  );
+
 }
 
 export default App;
