@@ -154,30 +154,6 @@ const Contact: React.FC = () => {
         ))}
       </div>
 
-      {/* NAV */}
-      <header className="w-full bg-[#102A43] text-white py-3 md:py-4 px-4 md:px-8 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-[#1C3D72] rounded flex items-center justify-center text-white font-bold shadow-sm">
-            CT
-          </div>
-          <span className="font-semibold text-lg">COLTEK</span>
-        </div>
-
-        <nav className="hidden md:flex items-center gap-6 text-sm text-[#E6EEF8]">
-          <a href="/" className="hover:text-white transition">
-            Home
-          </a>
-          <a href="/about" className="hover:text-white transition">
-            About
-          </a>
-          <a href="/contact" className="text-white font-semibold">
-            Contact
-          </a>
-        </nav>
-
-        <div className="md:hidden text-[#E6EEF8] text-xl">☰</div>
-      </header>
-
       {/* HERO */}
       <Reveal delay={50}>
         <section className="relative w-full">
