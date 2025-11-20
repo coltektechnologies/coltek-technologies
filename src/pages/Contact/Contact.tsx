@@ -281,8 +281,8 @@ const Contact: React.FC = () => {
                 aria-live="polite"
               >
                 {/* Web3Forms Access Key (EMPTY) */}
-                <input type="hidden" name="access_key" value="" />
-                {/* TODO: Ask CEO for the Web3Forms access key and insert it above */}
+                <input type="hidden" name="access_key" value="6434308c-6eff-4352-8d7e-513d733ee4a4" />
+                
 
                 {/* ensure messages get forwarded to the company email */}
                 <input
@@ -300,6 +300,7 @@ const Contact: React.FC = () => {
                   name="subject"
                   value="Website Contact Form Submission"
                 />
+                
 
                 <div>
                   <label className="text-sm font-medium text-[#102A43]">
