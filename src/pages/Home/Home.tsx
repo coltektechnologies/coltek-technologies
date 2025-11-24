@@ -113,7 +113,6 @@ const Home = () => {
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Text Content */}
             <div className="text-white space-y-6 sm:space-y-8 max-w-2xl mx-auto lg:mx-0">
               <h1 className="text-4xl sm:text-3xl md:text-4xl lg:text-4xl font-bold leading-tight uppercase">
                 Transforming Potentials into{' '}
