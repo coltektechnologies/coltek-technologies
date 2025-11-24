@@ -276,15 +276,36 @@ const Contact: React.FC = () => {
 
             {/* Right: Contact Form */}
             <div className="bg-white rounded-xl shadow-md p-6 md:p-8">
-              <h3 className="text-lg font-semibold text-[#102A43] mb-3">Send Us a Message</h3>
+              <h3 className="text-lg font-semibold text-[#102A43] mb-3">
+                Send Us a Message
+              </h3>
 
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4" aria-live="polite">
-                {/* Web3Forms access key (CEO-provided) */}
-                <input type="hidden" name="access_key" value="" />
+              <form
+                onSubmit={handleSubmit}
+                className="flex flex-col gap-4"
+                aria-live="polite"
+              >
+                {/* Web3Forms Access Key (EMPTY) */}
+                <input type="hidden" name="access_key" value="6434308c-6eff-4352-8d7e-513d733ee4a4" />
+                
 
-                <input type="hidden" name="to" value="coltektechnologies@gmail.com" />
-                <input type="hidden" name="from_name" value="COLTEK Technologies" />
-                <input type="hidden" name="subject" value="Website Contact Form Submission" />
+                {/* ensure messages get forwarded to the company email */}
+                <input
+                  type="hidden"
+                  name="to"
+                  value="coltektechnologies@gmail.com"
+                />
+                <input
+                  type="hidden"
+                  name="from_name"
+                  value="COLTEK Technologies"
+                />
+                <input
+                  type="hidden"
+                  name="subject"
+                  value="Website Contact Form Submission"
+                />
+                
 
                 <div>
                   <label className="text-sm font-medium text-[#102A43]">Name</label>
