@@ -49,7 +49,7 @@ const Services = () => {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative pt-24 pb-12 px-8">
-        <div className="relative h-[400px] flex items-center justify-center overflow-hidden rounded-[3rem] max-w-7xl mx-auto">
+        <div className="relative h-[500px] flex items-center justify-center overflow-hidden rounded-[3rem] max-w-7xl mx-auto">
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
@@ -69,18 +69,18 @@ const Services = () => {
             <Button
               className="bg-[#0EA5E9] hover:bg-[#0EA5E9]/90 text-white px-8 h-11 rounded-lg"
               style={{ fontFamily: 'Poppins-SemiBold' }}
+              onClick={() => document.getElementById('services-grid')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Get Started
             </Button>
           </div>
         </div>
       </section>
-
+      
       {/* Services Grid */}
       <section id="services-grid" className="py-20 bg-background scroll-mt-20">
         <div className="container mx-auto px-4">
-          {/* Services Grid - 2x2 layout on desktop, stacked on mobile */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto">
             {services.map((service, index) => (
               <div 
                 key={index} 
@@ -161,7 +161,7 @@ const Services = () => {
             </Link>
 
             {/* Divider Line */}
-            <div className="border-t border-border my-8" />
+            <div className="border-t-2 border-border my-8" />
 
             {/* AI & ML */}
             <Link
@@ -208,17 +208,21 @@ const Services = () => {
                   With predictive automation, we help streamline and labeling smarter, data-driven decisions.
                 </p>
                 <Button 
-                  className="bg-secondary hover:bg-secondary/90 text-white"
-                  style={{ fontFamily: 'Poppins-SemiBold' }}
+                  className="bg-transparent hover:bg-[#00D9FD]/10 border-2"
+                  style={{ 
+                    fontFamily: 'Poppins-SemiBold',
+                    borderColor: '#00D9FD',
+                    color: '#041979'
+                  }}
                   onClick={(e) => e.stopPropagation()}
                 >
-                  Learn More
+                  Read More
                 </Button>
               </div>
             </Link>
 
             {/* Divider Line */}
-            <div className="border-t border-border my-8" />
+            <div className="border-t-2 border-border my-8" />
 
             {/* Cloud Solutions */}
             <Link
@@ -258,11 +262,15 @@ const Services = () => {
                   With Coltek Technologies, you gain flexibility, security, and scalability for your digital infrastructure.
                 </p>
                 <Button 
-                  className="bg-secondary hover:bg-secondary/90 text-white"
-                  style={{ fontFamily: 'Poppins-SemiBold' }}
+                  className="bg-transparent hover:bg-[#00D9FD]/10 border-2"
+                  style={{ 
+                    fontFamily: 'Poppins-SemiBold',
+                    borderColor: '#00D9FD',
+                    color: '#041979'
+                  }}
                   onClick={(e) => e.stopPropagation()}
                 >
-                  Learn More
+                  Read More
                 </Button>
               </div>
               <div className="bg-card rounded-lg shadow-card overflow-hidden h-[400px]">
@@ -275,7 +283,7 @@ const Services = () => {
             </Link>
 
             {/* Divider Line */}
-            <div className="border-t border-border my-8" />
+            <div className="border-t-2 border-border my-8" />
 
             {/* IT Consultancy */}
             <Link
@@ -322,11 +330,15 @@ const Services = () => {
                   Turn your idea into a mobile experience.
                 </p>
                 <Button 
-                  className="bg-secondary hover:bg-secondary/90 text-white"
-                  style={{ fontFamily: 'Poppins-SemiBold' }}
+                  className="bg-transparent hover:bg-[#00D9FD]/10 border-2"
+                  style={{ 
+                    fontFamily: 'Poppins-SemiBold',
+                    borderColor: '#00D9FD',
+                    color: '#041979'
+                  }}
                   onClick={(e) => e.stopPropagation()}
                 >
-                  Learn More
+                  Read More
                 </Button>
               </div>
             </Link>
