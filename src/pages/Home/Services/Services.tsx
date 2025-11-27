@@ -1,8 +1,8 @@
 // -------------------------------------------------------------
 // IMPORTS
 // -------------------------------------------------------------
-// Added Navbar & Footer because her version had none (A)
-// These match the paths you provided
+// Added Navbar & Footer because you had none
+
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 // -------------------------------------------------------------
-// IMAGES (kept exactly as she had them)
+// IMAGES (kept exactly as they were)
 // -------------------------------------------------------------
 import SSServiceCard from "@/assets/ServicesPageImages/SS ServiceCard.png";
 import CSServiceCard from "@/assets/ServicesPageImages/CS ServiceCard.png";
@@ -122,7 +122,7 @@ const Services = () => {
 
       {/* -------------------------------------------------------------
            SERVICES GRID — Reduced gap + card size (C)
-           Reason: Her cards were too big on all screens.
+           Reason: Cards were too big on all screens.
          ------------------------------------------------------------- */}
       <section id="services-grid" className="py-16 bg-background scroll-mt-20">
         <div className="container mx-auto px-4">
@@ -509,7 +509,7 @@ const Services = () => {
       {/* CTA SECTION (unchanged) */}
       <CTASection />
 
-      {/* FOOTER ADDED (A) */}
+      {/* FOOTER ADDED  */}
       <Footer />
     </div>
   );
