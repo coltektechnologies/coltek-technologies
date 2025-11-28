@@ -13,28 +13,23 @@ const Navbar = () => {
     };
   }, [showMobileMenu]);
 
-  // Handle click outside menu
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      // Get references to the menu and button
       const menu = document.querySelector('.mobile-menu');
       const menuButton = document.querySelector('.mobile-menu-button');
       const target = event.target as Node | null;
-      
-      // If menu is open and click is outside both menu and button
       if (showMobileMenu && menu && target && !menu.contains(target) && 
           (!menuButton || !menuButton.contains(target))) {
         setShowMobileMenu(false);
-        return; // Prevent any other handlers from running
+        return; 
       }
-      
-      // Existing dropdown handling
       if (showDropdown && target && !(target as Element).closest('.about-dropdown')) {
         setShowDropdown(false);
       }
     };
 
-    // Always add the event listener, but check conditions inside
+    
     document.addEventListener('mousedown', handleClickOutside);
     
     return () => {
