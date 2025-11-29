@@ -29,8 +29,7 @@ const AppRoutes = () => {
       <Route path="/Services/AIML" element={<AIML />} />
       <Route path="/Services/CloudSolutions" element={<CloudSolutions/>} />
       <Route path="/Services/MobileAppDevelopment" element={<MobileAppDevelopment/>} />
-    </Routes>
-      <Routes>
+    
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
