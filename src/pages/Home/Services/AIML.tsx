@@ -1,7 +1,7 @@
-// ========== IMPORTS START ==========
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { Button } from "@/components/ui/button";
 import DevelopmentProcess from "@/components/DevelopmentProcess";
 import TechStack from "@/components/TechStack";
 import ServicesCTA from "@/components/ServicesCTA";
@@ -19,11 +19,8 @@ import {
   Database,
   Cloud
 } from "lucide-react";
-// ========== IMPORTS END ==========
-
 
 const AIML = () => {
-  // ========== DEVELOPMENT STEPS DATA ==========
   const developmentSteps = [
     {
       title: "Discovery & Research",
@@ -56,10 +53,7 @@ const AIML = () => {
       position: "right" as const,
     },
   ];
-  // ========== END DEVELOPMENT STEPS DATA ==========
 
-
-  // ========== TECH STACK DATA ==========
   const techCategories = [
     {
       name: "Frontend",
@@ -82,65 +76,73 @@ const AIML = () => {
       techs: ["AWS", "Azure", "Google Cloud", "Docker", "Kubernetes", "CI/CD"],
     },
   ];
-  // ========== END TECH STACK DATA ==========
-
 
   return (
     <div className="page-container min-h-screen">
-      
-      {/* ========== NAVBAR START ========== */}
       <Navbar />
-      {/* ========== NAVBAR END ========== */}
 
-
-      {/* ========== HERO SECTION START ========== */}
+      {/* HERO SECTION */}
       <section className="hero-section relative text-white py-24 px-4 overflow-hidden" style={{
         background: 'linear-gradient(135deg, #111C4C 0%, #33123F 100%)'
       }}>
-        
-        {/* Background decorative elements - RIGHT SIDE */}
-        <div className="hero-background-decorations absolute inset-0">
-          {/* Concentric circles on the right */}
-          <div className="decoration-circles-wrapper absolute top-1/2 right-48 transform -translate-y-1/2">
-            {/* Outermost circle */}
-            <div className="decoration-circle-1 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 border-2 rounded-full" 
-                 style={{ borderColor: '#8B5CF6' }} />
-            {/* Second circle */}
-            <div className="decoration-circle-2 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 border-2 rounded-full" 
-                 style={{ borderColor: '#A78BFA' }} />
-            {/* Third circle */}
-            <div className="decoration-circle-3 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 border-2 rounded-full" 
-                 style={{ borderColor: '#C4B5FD' }} />
-            {/* Center glow with brain icon representation */}
-            <div className="decoration-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full flex items-center justify-center"
-                 style={{ background: 'radial-gradient(circle, #A78BFA 0%, #8B5CF6 50%, #7C3AED 100%)' }}>
+        {/* Animated Background - Right Side */}
+        <div className="absolute inset-0">
+          {/* Concentric circles */}
+          <div className="absolute top-1/2 right-48 transform -translate-y-1/2">
+            {[
+              { size: 80, color: '#8B5CF6', delay: '0s' },
+              { size: 64, color: '#A78BFA', delay: '0.5s' },
+              { size: 48, color: '#C4B5FD', delay: '1s' }
+            ].map((circle, idx) => (
+              <div
+                key={idx}
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 rounded-full animate-pulse-ring"
+                style={{ 
+                  width: `${circle.size * 4}px`,
+                  height: `${circle.size * 4}px`,
+                  borderColor: circle.color,
+                  animationDelay: circle.delay
+                }}
+              />
+            ))}
+            
+            {/* Center glow with brain */}
+            <div 
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full flex items-center justify-center animate-glow"
+              style={{ background: 'radial-gradient(circle, #A78BFA 0%, #8B5CF6 50%, #7C3AED 100%)' }}
+            >
               <Brain className="w-12 h-12 text-white" />
             </div>
           </div>
           
-          {/* Floating orbs around the circles */}
-          <div className="floating-orb-1 absolute top-28 right-56 w-12 h-12 rounded-full" 
-               style={{ background: 'radial-gradient(circle, #A78BFA 0%, #8B5CF6 100%)', filter: 'blur(2px)' }} />
-          <div className="floating-orb-2 absolute top-48 right-32 w-16 h-16 rounded-full" 
-               style={{ background: 'radial-gradient(circle, #C4B5FD 0%, #A78BFA 100%)', filter: 'blur(3px)' }} />
-          <div className="floating-orb-3 absolute top-36 right-72 w-10 h-10 rounded-full" 
-               style={{ background: 'radial-gradient(circle, #DDD6FE 0%, #C4B5FD 100%)', filter: 'blur(2px)' }} />
-          <div className="floating-orb-4 absolute bottom-40 right-64 w-14 h-14 rounded-full" 
-               style={{ background: 'radial-gradient(circle, #A78BFA 0%, #8B5CF6 100%)', filter: 'blur(4px)' }} />
-          <div className="floating-orb-5 absolute top-56 right-44 w-8 h-8 rounded-full" 
-               style={{ background: 'radial-gradient(circle, #C4B5FD 0%, #A78BFA 100%)', filter: 'blur(2px)' }} />
-          <div className="floating-orb-6 absolute bottom-56 right-40 w-12 h-12 rounded-full" 
-               style={{ background: 'radial-gradient(circle, #DDD6FE 0%, #C4B5FD 100%)', filter: 'blur(3px)' }} />
+          {/* Floating orbs */}
+          {[
+            { pos: "top-28 right-56", size: 12, delay: "0s" },
+            { pos: "top-48 right-32", size: 16, delay: "0.5s" },
+            { pos: "top-36 right-72", size: 10, delay: "1s" },
+            { pos: "bottom-40 right-64", size: 14, delay: "1.5s" },
+            { pos: "top-56 right-44", size: 8, delay: "2s" },
+            { pos: "bottom-56 right-40", size: 12, delay: "2.5s" }
+          ].map((orb, idx) => (
+            <div 
+              key={idx}
+              className={`absolute ${orb.pos} rounded-full animate-float-orb`}
+              style={{ 
+                width: `${orb.size * 4}px`,
+                height: `${orb.size * 4}px`,
+                background: 'radial-gradient(circle, #A78BFA 0%, #8B5CF6 100%)', 
+                filter: 'blur(3px)',
+                animationDelay: orb.delay
+              }}
+            />
+          ))}
         </div>
         
-        <div className="hero-content-wrapper relative z-10 container mx-auto max-w-7xl">
-          <div className="hero-grid grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
-            {/* Left content */}
-            <div className="hero-text-content max-w-xl">
-              
+        <div className="relative z-10 container mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="max-w-xl animate-fade-in-left">
               {/* Badge */}
-              <div className="hero-badge inline-flex items-center gap-2 backdrop-blur-sm rounded-full px-4 py-2 mb-6"
+              <div className="inline-flex items-center gap-2 backdrop-blur-sm rounded-full px-4 py-2 mb-6"
                    style={{ 
                      background: 'rgba(139, 92, 246, 0.2)',
                      border: '1px solid rgba(196, 181, 253, 0.3)'
@@ -149,115 +151,84 @@ const AIML = () => {
                 <span className="text-sm font-medium">AI-Powered Solutions</span>
               </div>
               
-              <h1 className="hero-title text-5xl md:text-6xl font-bold mb-6 leading-tight">
+              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
                 AI & ML Automation Services
               </h1>
               
-              <p className="hero-description text-base text-white/90 leading-relaxed mb-8">
+              <p className="text-base text-white/90 leading-relaxed mb-8">
                 Transform your business with intelligent automation. Leverage cutting-edge 
                 artificial intelligence and machine learning to streamline operations, 
                 enhance decision-making, and unlock unprecedented efficiency.
               </p>
 
-              {/* Stats/Benefits Grid - 2x2 with icons beside text */}
-              <div className="hero-benefits-grid grid grid-cols-2 gap-4 mb-8">
-                <div className="benefit-card backdrop-blur-sm rounded-xl p-4 flex items-center gap-3"
-                     style={{ 
-                       background: 'rgba(139, 92, 246, 0.15)',
-                       border: '1px solid rgba(167, 139, 250, 0.2)'
-                     }}>
-                  <div className="benefit-icon w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
-                       style={{ background: 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%)' }}>
-                    <Zap className="w-5 h-5 text-white" />
+              {/* Stats/Benefits Grid */}
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                {[
+                  { Icon: Zap, title: "50% Faster Processing", gradient: "from-purple-500 to-purple-600" },
+                  { Icon: DollarSign, title: "40% Cost Reduction", gradient: "from-yellow-500 to-orange-600" },
+                  { Icon: Target, title: "99% Accuracy Rate", gradient: "from-purple-500 to-indigo-600" },
+                  { Icon: Clock, title: "24/7 Automation", gradient: "from-indigo-500 to-purple-600" }
+                ].map((benefit, idx) => (
+                  <div 
+                    key={idx}
+                    className="backdrop-blur-sm rounded-xl p-4 flex items-center gap-3 transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                    style={{ 
+                      background: 'rgba(139, 92, 246, 0.15)',
+                      border: '1px solid rgba(167, 139, 250, 0.2)'
+                    }}
+                  >
+                    <div 
+                      className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-gradient-to-br ${benefit.gradient}`}
+                    >
+                      <benefit.Icon className="w-5 h-5 text-white" />
+                    </div>
+                    <div className="text-sm font-semibold">{benefit.title}</div>
                   </div>
-                  <div className="benefit-content">
-                    <div className="benefit-title text-sm font-semibold">50% Faster Processing</div>
-                  </div>
-                </div>
-                
-                <div className="benefit-card backdrop-blur-sm rounded-xl p-4 flex items-center gap-3"
-                     style={{ 
-                       background: 'rgba(139, 92, 246, 0.15)',
-                       border: '1px solid rgba(167, 139, 250, 0.2)'
-                     }}>
-                  <div className="benefit-icon w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
-                       style={{ background: 'linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%)' }}>
-                    <DollarSign className="w-5 h-5 text-white" />
-                  </div>
-                  <div className="benefit-content">
-                    <div className="benefit-title text-sm font-semibold">40% Cost Reduction</div>
-                  </div>
-                </div>
-                
-                <div className="benefit-card backdrop-blur-sm rounded-xl p-4 flex items-center gap-3"
-                     style={{ 
-                       background: 'rgba(139, 92, 246, 0.15)',
-                       border: '1px solid rgba(167, 139, 250, 0.2)'
-                     }}>
-                  <div className="benefit-icon w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
-                       style={{ background: 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%)' }}>
-                    <Target className="w-5 h-5 text-white" />
-                  </div>
-                  <div className="benefit-content">
-                    <div className="benefit-title text-sm font-semibold">99% Accuracy Rate</div>
-                  </div>
-                </div>
-                
-                <div className="benefit-card backdrop-blur-sm rounded-xl p-4 flex items-center gap-3"
-                     style={{ 
-                       background: 'rgba(139, 92, 246, 0.15)',
-                       border: '1px solid rgba(167, 139, 250, 0.2)'
-                     }}>
-                  <div className="benefit-icon w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
-                       style={{ background: 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%)' }}>
-                    <Clock className="w-5 h-5 text-white" />
-                  </div>
-                  <div className="benefit-content">
-                    <div className="benefit-title text-sm font-semibold">24/7 Automation</div>
-                  </div>
-                </div>
+                ))}
               </div>
 
-              {/* CTA Button */}
-              <div className="hero-cta-button">
+              {/* CTA Buttons */}
+              <div className="flex flex-wrap gap-3">
                 <Button 
+                  asChild
                   size="lg" 
-                  className="cta-button-primary text-white font-semibold rounded-lg px-8 py-6 text-base border-0"
+                  className="text-white font-semibold rounded-lg px-8 py-6 text-base border-0 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
                   style={{
                     background: 'linear-gradient(135deg, #6B0FDF 0%, #281543 100%)',
                     boxShadow: '0 4px 14px 0 rgba(107, 15, 223, 0.4)'
                   }}
                 >
-                  Get Started
+                  <Link to="/contact">Get Started</Link>
+                </Button>
+                <Button 
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-white text-white hover:bg-white/10 rounded-lg px-8 py-6 text-base transition-all duration-300 hover:scale-105"
+                >
+                  <Link to="/services">View Services</Link>
                 </Button>
               </div>
             </div>
 
-            {/* Right side - Visual space for decorations */}
-            <div className="hero-illustration-wrapper relative hidden lg:block h-96">
-              {/* Space reserved for background decorations */}
-            </div>
-            
+            {/* Right side - Space for decorations */}
+            <div className="relative hidden lg:block h-96"></div>
           </div>
         </div>
       </section>
-      {/* ========== HERO SECTION END ========== */}
 
-
-      {/* ========== AI/ML SOLUTIONS SECTION START ========== */}
-      <section className="aiml-solutions-section py-20 px-4 bg-white">
-        <div className="section-content-wrapper container mx-auto max-w-6xl">
-          
-          <h2 className="section-title text-4xl font-bold text-center mb-3 text-black">
+      {/* AI/ML SOLUTIONS SECTION */}
+      <section className="py-20 px-4 bg-white">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl font-bold text-center mb-3 text-black">
             Our AI & ML Solutions
           </h2>
           
-          <p className="section-subtitle text-center text-gray-600 mb-16">
+          <p className="text-center text-gray-600 mb-16">
             Comprehensive artificial intelligence services to revolutionize your business operations
           </p>
 
-          {/* Solutions Grid - 2 rows x 2 columns for first 4 items */}
-          <div className="solutions-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
                 title: "Intelligent Process Automation",
@@ -317,35 +288,32 @@ const AIML = () => {
               return (
                 <div
                   key={index}
-                  className="solution-card bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 relative overflow-hidden"
+                  className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 relative overflow-hidden transform hover:-translate-y-2 group"
                 >
-                  {/* Colored bottom border */}
                   <div 
-                    className="card-bottom-accent absolute bottom-0 left-0 right-0 h-1 rounded-b-2xl"
+                    className="absolute bottom-0 left-0 right-0 h-1 rounded-b-2xl transition-all duration-300 group-hover:h-2"
                     style={{ backgroundColor: solution.borderColor }}
                   />
                   
-                  {/* Icon with gradient */}
                   <div 
-                    className={`solution-icon w-14 h-14 rounded-xl flex items-center justify-center mb-4 bg-gradient-to-br ${solution.iconGradient}`}
+                    className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 bg-gradient-to-br ${solution.iconGradient} transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-6`}
                   >
                     <IconComponent className="w-7 h-7 text-white" />
                   </div>
                   
-                  <h3 className="solution-title text-xl font-bold mb-3 text-black">
+                  <h3 className="text-xl font-bold mb-3 text-black">
                     {solution.title}
                   </h3>
                   
-                  <p className="solution-description text-gray-600 mb-4 text-sm leading-relaxed">
+                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">
                     {solution.description}
                   </p>
                   
-                  {/* Features list */}
-                  <ul className="solution-features-list space-y-2">
+                  <ul className="space-y-2">
                     {solution.features.map((feature, fIndex) => (
-                      <li key={fIndex} className="feature-item flex items-start gap-2 text-sm text-gray-700">
-                        <span className="feature-bullet text-purple-600 mt-0.5">•</span>
-                        <span className="feature-text">{feature}</span>
+                      <li key={fIndex} className="flex items-start gap-2 text-sm text-gray-700">
+                        <span className="text-purple-600 mt-0.5">•</span>
+                        <span>{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -353,35 +321,72 @@ const AIML = () => {
               );
             })}
           </div>
-          
         </div>
       </section>
-      {/* ========== AI/ML SOLUTIONS SECTION END ========== */}
 
-
-      {/* ========== TECH STACK SECTION START ========== */}
       <TechStack categories={techCategories} />
-      {/* ========== TECH STACK SECTION END ========== */}
-
-
-      {/* ========== DEVELOPMENT PROCESS SECTION START ========== */}
       <DevelopmentProcess steps={developmentSteps} />
-      {/* ========== DEVELOPMENT PROCESS SECTION END ========== */}
-
-
-      {/* ========== CTA SECTION START ========== */}
       <ServicesCTA
         primaryButtonText="Get AI Consultation"
         secondaryButtonText="Request Demo"
       />
-      {/* ========== CTA SECTION END ========== */}
-
-
-      {/* ========== FOOTER START ========== */}
       <Footer />
-      {/* ========== FOOTER END ========== */}
-
       
+      <style jsx>{`
+        @keyframes fade-in-left {
+          from {
+            opacity: 0;
+            transform: translateX(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes pulse-ring {
+          0%, 100% {
+            opacity: 0.3;
+          }
+          50% {
+            opacity: 0.6;
+          }
+        }
+        
+        @keyframes glow {
+          0%, 100% {
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+          }
+          50% {
+            box-shadow: 0 0 40px rgba(167, 139, 250, 0.8);
+          }
+        }
+        
+        @keyframes float-orb {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-20px);
+          }
+        }
+        
+        .animate-fade-in-left {
+          animation: fade-in-left 0.8s ease-out;
+        }
+        
+        .animate-pulse-ring {
+          animation: pulse-ring 3s ease-in-out infinite;
+        }
+        
+        .animate-glow {
+          animation: glow 2s ease-in-out infinite;
+        }
+        
+        .animate-float-orb {
+          animation: float-orb 4s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 };

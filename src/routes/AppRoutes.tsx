@@ -23,23 +23,20 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="legal" element={<LegalPage />} />
+        <Route path="portfolio" element={<Portfolio />}/>
+        <Route path="*" element={<NotFound />} />
       </Route>
+      
+      {/* Service Routes */}
       <Route path="/Services" element={<Services />} />
       <Route path="/Services/SoftwareSolutions" element={<SoftwareSolutions />} />
       <Route path="/Services/AIML" element={<AIML />} />
       <Route path="/Services/CloudSolutions" element={<CloudSolutions/>} />
       <Route path="/Services/MobileAppDevelopment" element={<MobileAppDevelopment/>} />
     </Routes>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="legal" element={<LegalPage />} />
-          <Route path="portfolio" element={<Portfolio />}/>
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
   )
 }
 

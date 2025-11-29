@@ -1,7 +1,7 @@
-// ========== IMPORTS START ==========
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { Button } from "@/components/ui/button";
 import DevelopmentProcess from "@/components/DevelopmentProcess";
 import TechStack from "@/components/TechStack";
 import ServicesCTA from "@/components/ServicesCTA";
@@ -17,11 +17,8 @@ import {
   Database,
   Cloud
 } from "lucide-react";
-// ========== IMPORTS END ==========
-
 
 const MobileAppDevelopment = () => {
-  // ========== DEVELOPMENT STEPS DATA ==========
   const developmentSteps = [
     {
       title: "Discovery & Planning",
@@ -54,10 +51,7 @@ const MobileAppDevelopment = () => {
       position: "right" as const,
     },
   ];
-  // ========== END DEVELOPMENT STEPS DATA ==========
 
-
-  // ========== TECH STACK DATA ==========
   const techCategories = [
     {
       name: "Frontend",
@@ -80,131 +74,129 @@ const MobileAppDevelopment = () => {
       techs: ["AWS", "Azure", "Google Cloud", "Docker", "Kubernetes", "CI/CD"],
     },
   ];
-  // ========== END TECH STACK DATA ==========
-
 
   return (
     <div className="page-container min-h-screen">
-      
-      {/* ========== NAVBAR START ========== */}
       <Navbar />
-      {/* ========== NAVBAR END ========== */}
 
-
-      {/* ========== HERO SECTION START ========== */}
+      {/* HERO SECTION */}
       <section className="hero-section relative bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#334155] text-white py-24 px-4 overflow-hidden">
-        
-        {/* Background decorative elements */}
-        <div className="hero-background-decorations absolute inset-0 opacity-10">
-          <div className="decoration-blur-1 absolute top-20 left-20 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl" />
-          <div className="decoration-blur-2 absolute bottom-20 right-20 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl" />
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-20 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl animate-float" />
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-float-delayed" />
         </div>
         
-        <div className="hero-content-wrapper relative z-10 container mx-auto max-w-6xl">
-          <div className="hero-grid grid lg:grid-cols-2 gap-12 items-center">
-            
-            {/* Left side - Hero text content */}
-            <div className="hero-text-content">
-              
-              {/* Service category badge */}
-              <div className="hero-badge inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-2 mb-6">
+        <div className="relative z-10 container mx-auto max-w-6xl">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="animate-slide-in-left">
+              <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-2 mb-6">
                 <Smartphone className="w-4 h-4 text-blue-400" />
                 <span className="text-sm text-blue-300 font-medium">Mobile App Development</span>
               </div>
 
-              <h1 className="hero-title text-5xl md:text-6xl font-bold mb-6 font-montserrat leading-tight">
+              <h1 className="text-5xl md:text-6xl font-bold mb-6 font-montserrat leading-tight">
                 Build Amazing
                 <br />
-                <span className="hero-title-gradient text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
                   Mobile Apps
                 </span>
               </h1>
               
-              <p className="hero-description text-lg text-white/80 mb-8 leading-relaxed">
+              <p className="text-lg text-white/80 mb-8 leading-relaxed">
                 Transform your ideas into powerful mobile experiences. Create iOS, Android, and cross-platform applications that users love with cutting-edge technology and exceptional design.
               </p>
 
               {/* Platform badges */}
-              <div className="platform-badges flex flex-wrap gap-3 mb-8">
-                <div className="platform-badge flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-4 py-2">
-                  <span className="platform-icon text-2xl">🍎</span>
-                  <span className="platform-name text-sm font-medium">iOS</span>
-                </div>
-                <div className="platform-badge flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-4 py-2">
-                  <span className="platform-icon text-2xl">🤖</span>
-                  <span className="platform-name text-sm font-medium">Android</span>
-                </div>
-                <div className="platform-badge flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-4 py-2">
-                  <span className="platform-icon text-2xl">⚛️</span>
-                  <span className="platform-name text-sm font-medium">React Native</span>
-                </div>
+              <div className="flex flex-wrap gap-3 mb-8">
+                {[
+                  { icon: "🍎", name: "iOS" },
+                  { icon: "🤖", name: "Android" },
+                  { icon: "⚛️", name: "React Native" }
+                ].map((platform, idx) => (
+                  <div 
+                    key={idx}
+                    className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-4 py-2 transform transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                  >
+                    <span className="text-2xl">{platform.icon}</span>
+                    <span className="text-sm font-medium">{platform.name}</span>
+                  </div>
+                ))}
               </div>
 
-              {/* Stats section */}
-              <div className="hero-stats-grid grid grid-cols-3 gap-4 mb-8">
-                <div className="stat-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4">
-                  <div className="stat-number text-3xl font-bold text-blue-400 mb-1">200+</div>
-                  <div className="stat-label text-sm text-white/60">Apps Built</div>
-                </div>
-                <div className="stat-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4">
-                  <div className="stat-number text-3xl font-bold text-purple-400 mb-1">4.8★</div>
-                  <div className="stat-label text-sm text-white/60">Avg Rating</div>
-                </div>
-                <div className="stat-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4">
-                  <div className="stat-number text-3xl font-bold text-pink-400 mb-1">5M+</div>
-                  <div className="stat-label text-sm text-white/60">Downloads</div>
-                </div>
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-4 mb-8">
+                {[
+                  { number: "200+", label: "Apps Built", color: "blue" },
+                  { number: "4.8★", label: "Avg Rating", color: "purple" },
+                  { number: "5M+", label: "Downloads", color: "pink" }
+                ].map((stat, idx) => (
+                  <div 
+                    key={idx}
+                    className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 transform transition-all duration-300 hover:scale-105 hover:bg-white/10"
+                  >
+                    <div className={`text-3xl font-bold text-${stat.color}-400 mb-1`}>{stat.number}</div>
+                    <div className="text-sm text-white/60">{stat.label}</div>
+                  </div>
+                ))}
               </div>
 
-              {/* CTA Button */}
-              <div className="hero-cta-button">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 font-poppins">
-                  Start Your Project
+              {/* CTA Buttons */}
+              <div className="flex flex-wrap gap-3">
+                <Button 
+                  asChild
+                  size="lg" 
+                  className="bg-blue-600 hover:bg-blue-700 font-poppins transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                >
+                  <Link to="/contact">Start Your Project</Link>
+                </Button>
+                <Button 
+                  asChild
+                  size="lg" 
+                  variant="outline"
+                  className="border-2 border-white text-white hover:bg-white/10 transition-all duration-300 hover:scale-105"
+                >
+                  <Link to="/services">View Services</Link>
                 </Button>
               </div>
             </div>
 
-            {/* Right side - Mobile phone mockup */}
-            <div className="hero-phone-mockup relative lg:flex justify-center hidden">
-              <div className="mockup-wrapper relative">
-                
-                {/* Decorative floating elements */}
-                <div className="floating-element-1 absolute -left-8 top-20 w-16 h-16 bg-blue-500/20 backdrop-blur-sm rounded-2xl border border-blue-500/30 flex items-center justify-center">
-                  <Code2 className="w-8 h-8 text-blue-400" />
-                </div>
-                <div className="floating-element-2 absolute -right-8 top-40 w-16 h-16 bg-purple-500/20 backdrop-blur-sm rounded-2xl border border-purple-500/30 flex items-center justify-center">
-                  <Palette className="w-8 h-8 text-purple-400" />
-                </div>
-                <div className="floating-element-3 absolute -left-8 bottom-32 w-16 h-16 bg-pink-500/20 backdrop-blur-sm rounded-2xl border border-pink-500/30 flex items-center justify-center">
-                  <Layers className="w-8 h-8 text-pink-400" />
-                </div>
+            {/* Phone Mockup */}
+            <div className="relative lg:flex justify-center hidden animate-slide-in-right">
+              <div className="relative">
+                {/* Floating elements */}
+                {[
+                  { Icon: Code2, pos: "-left-8 top-20", color: "blue" },
+                  { Icon: Palette, pos: "-right-8 top-40", color: "purple" },
+                  { Icon: Layers, pos: "-left-8 bottom-32", color: "pink" }
+                ].map((item, idx) => (
+                  <div 
+                    key={idx}
+                    className={`absolute ${item.pos} w-16 h-16 bg-${item.color}-500/20 backdrop-blur-sm rounded-2xl border border-${item.color}-500/30 flex items-center justify-center animate-float`}
+                    style={{ animationDelay: `${idx * 0.5}s` }}
+                  >
+                    <item.Icon className={`w-8 h-8 text-${item.color}-400`} />
+                  </div>
+                ))}
 
-                {/* Mobile phone mockup */}
-                <div className="phone-device relative w-80 h-[600px] bg-slate-900 rounded-[3rem] p-3 shadow-2xl border-8 border-slate-800">
+                {/* Phone */}
+                <div className="relative w-80 h-[600px] bg-slate-900 rounded-[3rem] p-3 shadow-2xl border-8 border-slate-800 transform transition-transform duration-500 hover:scale-105">
+                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-40 h-7 bg-slate-900 rounded-b-3xl z-10"></div>
                   
-                  {/* Phone notch */}
-                  <div className="phone-notch absolute top-0 left-1/2 transform -translate-x-1/2 w-40 h-7 bg-slate-900 rounded-b-3xl z-10"></div>
-                  
-                  {/* Phone screen */}
-                  <div className="phone-screen w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 rounded-[2.5rem] overflow-hidden">
-                    
-                    {/* Status bar */}
-                    <div className="status-bar flex justify-between items-center px-8 pt-3 pb-2 text-white text-xs">
-                      <span className="status-time font-semibold">9:41</span>
-                      <div className="status-icons flex items-center gap-1">
+                  <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 rounded-[2.5rem] overflow-hidden">
+                    <div className="flex justify-between items-center px-8 pt-3 pb-2 text-white text-xs">
+                      <span className="font-semibold">9:41</span>
+                      <div className="flex items-center gap-1">
                         <div className="w-4 h-3">📶</div>
                         <div className="w-4 h-3">📡</div>
                         <div className="w-4 h-3">🔋</div>
                       </div>
                     </div>
 
-                    {/* App content */}
-                    <div className="app-content px-6 pt-8">
-                      <div className="app-title text-white text-2xl font-bold mb-2">Your App</div>
-                      <div className="app-subtitle text-white/80 text-sm mb-6">Beautiful & Functional</div>
+                    <div className="px-6 pt-8">
+                      <div className="text-white text-2xl font-bold mb-2">Your App</div>
+                      <div className="text-white/80 text-sm mb-6">Beautiful & Functional</div>
                       
-                      {/* Feature cards */}
-                      <div className="feature-cards-list space-y-3">
+                      <div className="space-y-3">
                         {[
                           { icon: "🎨", label: "Modern Design", color: "from-blue-400 to-blue-600" },
                           { icon: "⚡", label: "Fast Performance", color: "from-purple-400 to-purple-600" },
@@ -213,10 +205,11 @@ const MobileAppDevelopment = () => {
                         ].map((feature, idx) => (
                           <div
                             key={idx}
-                            className={`feature-card bg-gradient-to-r ${feature.color} rounded-2xl p-4 flex items-center gap-3 backdrop-blur-sm`}
+                            className={`bg-gradient-to-r ${feature.color} rounded-2xl p-4 flex items-center gap-3 backdrop-blur-sm transform transition-all duration-300 hover:scale-105`}
+                            style={{ animationDelay: `${idx * 100}ms` }}
                           >
-                            <div className="feature-icon text-2xl">{feature.icon}</div>
-                            <div className="feature-label text-white font-medium">{feature.label}</div>
+                            <div className="text-2xl">{feature.icon}</div>
+                            <div className="text-white font-medium">{feature.label}</div>
                           </div>
                         ))}
                       </div>
@@ -225,24 +218,19 @@ const MobileAppDevelopment = () => {
                 </div>
               </div>
             </div>
-            
           </div>
         </div>
       </section>
-      {/* ========== HERO SECTION END ========== */}
 
-
-      {/* ========== MOBILE DEVELOPMENT SERVICES SECTION START ========== */}
-      <section className="mobile-services-section py-20 px-4 bg-background">
-        <div className="section-content-wrapper container mx-auto max-w-6xl">
-          
-          <h2 className="section-title text-4xl font-bold text-center mb-4">Mobile Development Services</h2>
-          <p className="section-subtitle text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
+      {/* SERVICES SECTION */}
+      <section className="py-20 px-4 bg-background">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl font-bold text-center mb-4">Mobile Development Services</h2>
+          <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
             Comprehensive mobile solutions tailored to your business needs
           </p>
 
-          {/* Services grid - 2 rows x 3 columns */}
-          <div className="services-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
                 icon: Smartphone,
@@ -255,7 +243,7 @@ const MobileAppDevelopment = () => {
               {
                 icon: Code2,
                 title: "Native Android Development",
-                description: "Create robust Android applications with Kotlin and Jetpack Compose for Android devices and Android-powered devices.",
+                description: "Create robust Android applications with Kotlin and Jetpack Compose for Android devices.",
                 features: ["Kotlin & Jetpack Compose", "Material Design 3", "Google Play services", "Firebase integration"],
                 iconGradient: "from-green-500 to-green-600",
                 borderColor: "#10B981",
@@ -263,7 +251,7 @@ const MobileAppDevelopment = () => {
               {
                 icon: Layers,
                 title: "Cross-Platform Apps",
-                description: "Develop once, deploy everywhere with React Native and Flutter for consistent experiences across iOS and Android devices.",
+                description: "Develop once, deploy everywhere with React Native and Flutter for consistent experiences.",
                 features: ["React Native & Flutter", "Code reusability", "Native performance", "Single codebase"],
                 iconGradient: "from-purple-500 to-purple-600",
                 borderColor: "#8B5CF6",
@@ -271,7 +259,7 @@ const MobileAppDevelopment = () => {
               {
                 icon: Palette,
                 title: "UI/UX Design",
-                description: "Create stunning, intuitive interfaces that work seamlessly across all devices while following platform-specific design principles.",
+                description: "Create stunning, intuitive interfaces that work seamlessly across all devices.",
                 features: ["User research & wireframes", "Wireframing & prototyping", "Design systems", "Usability testing"],
                 iconGradient: "from-pink-500 to-pink-600",
                 borderColor: "#EC4899",
@@ -279,7 +267,7 @@ const MobileAppDevelopment = () => {
               {
                 icon: Wrench,
                 title: "App Maintenance",
-                description: "Keep your app running smoothly with regular updates, bug fixes, performance monitoring, and OS compatibility maintenance.",
+                description: "Keep your app running smoothly with regular updates and performance monitoring.",
                 features: ["Regular updates", "Bug fixing", "Performance monitoring", "OS compatibility"],
                 iconGradient: "from-orange-500 to-orange-600",
                 borderColor: "#F97316",
@@ -287,7 +275,7 @@ const MobileAppDevelopment = () => {
               {
                 icon: Plug,
                 title: "API Integration",
-                description: "Connect your app to any backend service with RESTful APIs, GraphQL, and third-party service integrations.",
+                description: "Connect your app to any backend service with RESTful APIs and GraphQL.",
                 features: ["RESTful API integration", "GraphQL implementation", "Third-party services", "Real-time data sync"],
                 iconGradient: "from-cyan-500 to-cyan-600",
                 borderColor: "#06B6D4",
@@ -298,28 +286,25 @@ const MobileAppDevelopment = () => {
               return (
                 <div
                   key={index}
-                  className="service-card bg-card border border-border rounded-2xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 relative overflow-hidden"
+                  className="bg-card border border-border rounded-2xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 relative overflow-hidden group"
                 >
-                  {/* Colored bottom border */}
                   <div 
-                    className="card-bottom-accent absolute bottom-0 left-0 right-0 h-1 rounded-b-2xl"
+                    className="absolute bottom-0 left-0 right-0 h-1 rounded-b-2xl transition-all duration-300 group-hover:h-2"
                     style={{ backgroundColor: service.borderColor }}
                   />
                   
-                  {/* Icon container */}
-                  <div className={`service-icon w-14 h-14 bg-gradient-to-br ${service.iconGradient} rounded-xl flex items-center justify-center mb-4`}>
+                  <div className={`w-14 h-14 bg-gradient-to-br ${service.iconGradient} rounded-xl flex items-center justify-center mb-4 transform transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6`}>
                     <IconComponent className="w-8 h-8 text-white" />
                   </div>
                   
-                  <h3 className="service-title text-xl font-bold mb-3 font-montserrat">{service.title}</h3>
-                  <p className="service-description text-muted-foreground mb-4 text-sm leading-relaxed">{service.description}</p>
+                  <h3 className="text-xl font-bold mb-3 font-montserrat">{service.title}</h3>
+                  <p className="text-muted-foreground mb-4 text-sm leading-relaxed">{service.description}</p>
                   
-                  {/* Feature list */}
-                  <ul className="service-features-list space-y-2">
+                  <ul className="space-y-2">
                     {service.features.map((feature, fIndex) => (
-                      <li key={fIndex} className="feature-item flex items-center gap-2 text-sm">
-                        <div className="feature-bullet w-1.5 h-1.5 bg-blue-500 rounded-full flex-shrink-0" />
-                        <span className="feature-text text-muted-foreground">{feature}</span>
+                      <li key={fIndex} className="flex items-center gap-2 text-sm">
+                        <div className="w-1.5 h-1.5 bg-blue-500 rounded-full flex-shrink-0" />
+                        <span className="text-muted-foreground">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -327,20 +312,15 @@ const MobileAppDevelopment = () => {
               );
             })}
           </div>
-          
         </div>
       </section>
-      {/* ========== MOBILE DEVELOPMENT SERVICES SECTION END ========== */}
 
-
-      {/* ========== WHY CHOOSE SECTION START ========== */}
-      <section className="why-choose-section py-16 px-4 bg-gray-50">
-        <div className="section-content-wrapper container mx-auto max-w-6xl">
+      {/* WHY CHOOSE SECTION */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-3xl font-bold text-center mb-12">Why Choose Our Mobile App Development</h2>
           
-          <h2 className="section-title text-3xl font-bold text-center mb-12">Why Choose Our Mobile App Development</h2>
-          
-          {/* Benefits grid - 2 rows x 3 columns */}
-          <div className="benefits-grid grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 title: "Expert Team",
@@ -367,41 +347,83 @@ const MobileAppDevelopment = () => {
                 description: "Continuous maintenance and support to keep your app updated and secure",
               },
             ].map((item, index) => (
-              <div key={index} className="benefit-card bg-card border border-border rounded-xl p-6 hover:shadow-md transition-shadow">
-                <h3 className="benefit-title text-lg font-semibold mb-2">{item.title}</h3>
-                <p className="benefit-description text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+              <div 
+                key={index} 
+                className="bg-card border border-border rounded-xl p-6 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
+              >
+                <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
               </div>
             ))}
           </div>
-          
         </div>
       </section>
-      {/* ========== WHY CHOOSE SECTION END ========== */}
 
-
-      {/* ========== TECH STACK SECTION START ========== */}
       <TechStack categories={techCategories} />
-      {/* ========== TECH STACK SECTION END ========== */}
-
-
-      {/* ========== DEVELOPMENT PROCESS SECTION START ========== */}
       <DevelopmentProcess steps={developmentSteps} />
-      {/* ========== DEVELOPMENT PROCESS SECTION END ========== */}
-
-
-      {/* ========== CTA SECTION START ========== */}
       <ServicesCTA 
         primaryButtonText="Start Your App Project"
         secondaryButtonText="Schedule Consultation"
       />
-      {/* ========== CTA SECTION END ========== */}
-
-
-      {/* ========== FOOTER START ========== */}
       <Footer />
-      {/* ========== FOOTER END ========== */}
-
       
+      <style jsx>{`
+        @keyframes slide-in-left {
+          from {
+            opacity: 0;
+            transform: translateX(-40px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes slide-in-right {
+          from {
+            opacity: 0;
+            transform: translateX(40px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-15px);
+          }
+        }
+        
+        @keyframes float-delayed {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-20px);
+          }
+        }
+        
+        .animate-slide-in-left {
+          animation: slide-in-left 0.8s ease-out;
+        }
+        
+        .animate-slide-in-right {
+          animation: slide-in-right 0.8s ease-out;
+        }
+        
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+        
+        .animate-float-delayed {
+          animation: float-delayed 4s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 };

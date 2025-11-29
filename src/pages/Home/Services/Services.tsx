@@ -30,25 +30,21 @@ const Services = () => {
       image: SSServiceCard,
       title: "Software Solutions",
       description: "High-performance web solutions built for scale, combining creativity, functionality, and technology.",
-      path: "/services/software-solutions"
     },
     {
       image: CSServiceCard,
       title: "Cloud Solutions",
       description: "Optimize with cloud infrastructure design, migration, management, and secure your data securely from anywhere.",
-      path: "/services/cloud-architecture"
     },
     {
       image: AIMLServiceCard,
       title: "AI & ML",
       description: "Captivate with development, AI integrations, natural language, machine learning, and smarter decisions.",
-      path: "/services/ai-ml"
     },
     {
       image: ITCServiceCard,
       title: "Mobile App Development",
       description: "Optimize with development, strategic planning and AI guidance to navigate digital complexity efficiently.",
-      path: "/services/it-consultancy"
     }
   ];
   // ========== END SERVICES DATA ==========
