@@ -1,3 +1,6 @@
+// ========== IMPORTS START ==========
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import DevelopmentProcess from "@/components/DevelopmentProcess";
 import TechStack from "@/components/TechStack";
@@ -16,6 +19,7 @@ import {
   Database,
   Cloud
 } from "lucide-react";
+// ========== IMPORTS END ==========
 
 
 const AIML = () => {
@@ -84,6 +88,11 @@ const AIML = () => {
   return (
     <div className="page-container min-h-screen">
       
+      {/* ========== NAVBAR START ========== */}
+      <Navbar />
+      {/* ========== NAVBAR END ========== */}
+
+
       {/* ========== HERO SECTION START ========== */}
       <section className="hero-section relative text-white py-24 px-4 overflow-hidden" style={{
         background: 'linear-gradient(135deg, #111C4C 0%, #33123F 100%)'
@@ -366,6 +375,11 @@ const AIML = () => {
         secondaryButtonText="Request Demo"
       />
       {/* ========== CTA SECTION END ========== */}
+
+
+      {/* ========== FOOTER START ========== */}
+      <Footer />
+      {/* ========== FOOTER END ========== */}
 
       
     </div>

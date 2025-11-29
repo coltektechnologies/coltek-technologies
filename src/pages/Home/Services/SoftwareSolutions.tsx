@@ -1,8 +1,13 @@
+// ========== IMPORTS START ==========
 import { Button } from "@/components/ui/button";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import DevelopmentProcess from "@/components/DevelopmentProcess";
 import TechStack from "@/components/TechStack";
 import ServicesCTA from "@/components/ServicesCTA";
 import { Globe, Code, Server, Database, Cloud } from "lucide-react";
+// ========== IMPORTS END ==========
+
 
 const SoftwareSolutions = () => {
   // ========== DEVELOPMENT STEPS DATA ==========
@@ -70,6 +75,11 @@ const SoftwareSolutions = () => {
   return (
     <div className="page-container min-h-screen">
       
+      {/* ========== NAVBAR START ========== */}
+      <Navbar />
+      {/* ========== NAVBAR END ========== */}
+
+
       {/* ========== HERO SECTION START ========== */}
       <section className="hero-section relative bg-gradient-to-br from-[#0A1628] via-[#1a2847] to-[#2a3f6f] text-white py-24 px-4 overflow-hidden">
         
@@ -323,11 +333,13 @@ const SoftwareSolutions = () => {
 
 
       {/* ========== CTA SECTION START ========== */}
-      <ServicesCTA
-        primaryButtonText="Start Your Project"
-        secondaryButtonText="Schedule a Call"
-      />
+      <ServicesCTA />
       {/* ========== CTA SECTION END ========== */}
+
+
+      {/* ========== FOOTER START ========== */}
+      <Footer />
+      {/* ========== FOOTER END ========== */}
 
       
     </div>

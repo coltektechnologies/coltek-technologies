@@ -15,16 +15,6 @@ import {
   TrendingUp
 } from "lucide-react";
 
-// Icon imports for Why Choose section
-import { 
-  DollarSign,
-  Zap,
-  Globe,
-  Rocket,
-  Users,
-} from "lucide-react";
-// ========== IMPORTS END ==========
-
 
 const CloudSolutions = () => {
   // ========== DEVELOPMENT STEPS DATA ==========
