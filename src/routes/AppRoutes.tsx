@@ -8,7 +8,6 @@ import LegalPage from "../pages/LegalPage/legal";
 import Portfolio from "../pages/Portfolio/Portfolio";
 
 
-
 const AppRoutes = () => {
   return (
       <Routes>

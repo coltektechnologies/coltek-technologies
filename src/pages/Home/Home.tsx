@@ -1,48 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
-import images from '../../assets/images/images';
-
-
-const allServices = [
-  {
-    id: 1,
-    title: "Web Development",
-    description: "Provide and manage website services",
-    image: images.web,
-    buttonColor: "bg-[#E8F3FF] text-[#0066FF] hover:bg-[#d8ecff]"
-  },
-  {
-    id: 2,
-    title: "Cloud Solutions",
-    description: "Provide Cloud hosting and service",
-    image: images.cloud,
-    buttonColor: "bg-[#0055CC] text-white hover:bg-[#0044a3]"
-  },
-  {
-    id: 3,
-    title: "Mobile App Development",
-    description: "Create powerful cross-platform mobile applications",
-    image: images.app,
-    buttonColor: "bg-[#E8F3FF] text-[#0066FF] hover:bg-[#d8ecff]"
-  },
-  {
-    id: 4,
-    title: "IT Consulting",
-    description: "Expert IT solutions for your business",
-    image: images.team,
-    buttonColor: "bg-[#0055CC] text-white hover:bg-[#0044a3]"
-  }
-];
-
-const serviceGroups = [
-  {
-    id: 1,
-    services: [allServices[0], allServices[1]]
-  },
-  {
-    id: 2,
-    services: [allServices[2], allServices[3]]
-  }
-];
+import { useEffect, useRef, useState } from "react";
+import images from "../../assets/images/images";
+import { allServices, serviceGroups } from "../../data/services";
 
 const Home = () => {
   const words = ['Excellence', 'Innovation', 'Success', 'Impact', 'Growth'];
