@@ -139,7 +139,10 @@ const Contact: React.FC = () => {
   return (
     <div className="min-h-screen w-full bg-[#F4F7FA] text-[#102A43] flex flex-col">
       {/* Toast container (top-right) */}
-      <div aria-live="polite" className="fixed top-5 right-5 z-50 flex flex-col gap-3">
+      <div
+        aria-live="polite"
+        className="fixed top-5 right-5 z-50 flex flex-col gap-3"
+      >
         {toasts.map((t) => (
           <div
             key={t.id}
@@ -160,7 +163,9 @@ const Contact: React.FC = () => {
 
             <div className="flex-1 text-sm">
               <div className="font-semibold">{t.title}</div>
-              {t.message && <div className="mt-1 text-sm opacity-90">{t.message}</div>}
+              {t.message && (
+                <div className="mt-1 text-sm opacity-90">{t.message}</div>
+              )}
             </div>
 
             <button
@@ -178,13 +183,21 @@ const Contact: React.FC = () => {
       <Reveal delay={50}>
         <section className="relative w-full">
           <div className="h-[220px] md:h-[260px] lg:h-[320px] bg-[url('/placeholder-hero.jpg')] bg-cover bg-center flex items-center">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#102A43]/70 to-transparent" aria-hidden />
+            <div
+              className="absolute inset-0 bg-gradient-to-r from-[#102A43]/70 to-transparent"
+              aria-hidden
+            />
 
             <div className="relative z-10 max-w-6xl mx-auto px-6 text-white">
-              <div className="text-sm text-white/80 mb-2">Home / Contact Us</div>
-              <h1 className="text-2xl md:text-4xl font-extrabold">Contact Us</h1>
+              <div className="text-sm text-white/80 mb-2">
+                Home / Contact Us
+              </div>
+              <h1 className="text-2xl md:text-4xl font-extrabold">
+                Contact Us
+              </h1>
               <p className="mt-2 max-w-2xl text-sm md:text-base text-white/90">
-                Let’s bring your vision to life — software, cloud, and AI solutions designed for your goals.
+                Let’s bring your vision to life — software, cloud, and AI
+                solutions designed for your goals.
               </p>
             </div>
           </div>
@@ -198,7 +211,9 @@ const Contact: React.FC = () => {
             {/* Left: Contact Info */}
             <div className="flex flex-col gap-4">
               <h2 className="text-2xl font-bold text-[#1C3D72]">CONTACT US</h2>
-              <p className="text-sm text-[#42566A] mb-2">Reach out through phone, email, or our quick contact form.</p>
+              <p className="text-sm text-[#42566A] mb-2">
+                Reach out through phone, email, or our quick contact form.
+              </p>
 
               <div className="flex flex-col gap-3">
                 {/* Email */}
@@ -208,7 +223,9 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-sm font-semibold">Email</div>
-                    <div className="text-xs text-[#607B8B]">coltektechnologies@gmail.com</div>
+                    <div className="text-xs text-[#607B8B]">
+                      coltektechnologies@gmail.com
+                    </div>
                   </div>
                 </div>
 
@@ -219,7 +236,9 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-sm font-semibold">Phone</div>
-                    <div className="text-xs text-[#607B8B]">+233 (0) 55 123 4567</div>
+                    <div className="text-xs text-[#607B8B]">
+                      +233 (0) 54 936 1771
+                    </div>
                   </div>
                 </div>
 
@@ -230,7 +249,9 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-sm font-semibold">Location</div>
-                    <div className="text-xs text-[#607B8B]">Sunyani, Ghana (Remote-friendly)</div>
+                    <div className="text-xs text-[#607B8B]">
+                      Sunyani, Ghana (Remote-friendly)
+                    </div>
                   </div>
                 </div>
 
@@ -241,7 +262,9 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-sm font-semibold">Business Hours</div>
-                    <div className="text-xs text-[#607B8B]">Mon–Fri: 9:00 AM – 5:00 PM</div>
+                    <div className="text-xs text-[#607B8B]">
+                      Mon–Fri: 9:00 AM – 5:00 PM
+                    </div>
                   </div>
                 </div>
               </div>
@@ -256,20 +279,73 @@ const Contact: React.FC = () => {
                 >
                   {/* simple phone icon using existing Phone icon */}
                   <Phone className="w-4 h-4" />
-                  <span className="text-sm">WhatsApp: +233 XX XXX XXXX</span>
+                  <span className="text-sm">WhatsApp: +233 54 936 1771</span>
                 </a>
               </div>
 
               {/* Socials */}
               <div className="flex gap-3 mt-4">
-                <a href="#" aria-label="Facebook" className="p-2 bg-white rounded-full shadow hover:shadow-lg transform hover:-translate-y-1 transition">
+                {/* Facebook */}
+                <a
+                  href="https://www.facebook.com/coltektechnologies"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="p-2 bg-white rounded-full shadow hover:shadow-lg transform hover:-translate-y-1 transition"
+                >
                   <Facebook className="text-[#1C3D72]" />
                 </a>
-                <a href="#" aria-label="Instagram" className="p-2 bg-white rounded-full shadow hover:shadow-lg transform hover:-translate-y-1 transition">
+
+                {/* Instagram */}
+                <a
+                  href="https://www.instagram.com/coltektechnologies"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="p-2 bg-white rounded-full shadow hover:shadow-lg transform hover:-translate-y-1 transition"
+                >
                   <Instagram className="text-[#1C3D72]" />
                 </a>
-                <a href="#" aria-label="LinkedIn" className="p-2 bg-white rounded-full shadow hover:shadow-lg transform hover:-translate-y-1 transition">
+
+                {/* LinkedIn */}
+                <a
+                  href="https://www.linkedin.com/company/coltektechnologies"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="p-2 bg-white rounded-full shadow hover:shadow-lg transform hover:-translate-y-1 transition"
+                >
                   <Linkedin className="text-[#1C3D72]" />
+                </a>
+
+                {/* X (Twitter) */}
+                <a
+                  href="https://x.com/coltekdev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="X"
+                  className="p-2 bg-white rounded-full shadow hover:shadow-lg transform hover:-translate-y-1 transition"
+                >
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/5/53/X_logo_2023.svg"
+                    alt="X"
+                    className="w-5 h-5"
+                  />
+                </a>
+
+                {/* YouTube */}
+                <a
+                  href="https://www.youtube.com/@coltektechnologies"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="YouTube"
+                  className="p-2 bg-white rounded-full shadow hover:shadow-lg transform hover:-translate-y-1 transition"
+                >
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg"
+                    alt="YouTube"
+                    className="w-6 h-6"
+                  />
                 </a>
               </div>
             </div>
@@ -286,8 +362,11 @@ const Contact: React.FC = () => {
                 aria-live="polite"
               >
                 {/* Web3Forms Access Key (EMPTY) */}
-                <input type="hidden" name="access_key" value="6434308c-6eff-4352-8d7e-513d733ee4a4" />
-                
+                <input
+                  type="hidden"
+                  name="access_key"
+                  value="6434308c-6eff-4352-8d7e-513d733ee4a4"
+                />
 
                 {/* ensure messages get forwarded to the company email */}
                 <input
@@ -305,10 +384,11 @@ const Contact: React.FC = () => {
                   name="subject"
                   value="Website Contact Form Submission"
                 />
-                
 
                 <div>
-                  <label className="text-sm font-medium text-[#102A43]">Name</label>
+                  <label className="text-sm font-medium text-[#102A43]">
+                    Name
+                  </label>
                   <input
                     name="name"
                     type="text"
@@ -319,7 +399,9 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-[#102A43]">Email</label>
+                  <label className="text-sm font-medium text-[#102A43]">
+                    Email
+                  </label>
                   <input
                     name="email"
                     type="email"
@@ -330,7 +412,9 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-[#102A43]">Subject</label>
+                  <label className="text-sm font-medium text-[#102A43]">
+                    Subject
+                  </label>
                   <input
                     name="subject"
                     type="text"
@@ -340,7 +424,9 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-[#102A43]">Message</label>
+                  <label className="text-sm font-medium text-[#102A43]">
+                    Message
+                  </label>
                   <textarea
                     name="message"
                     required
@@ -354,13 +440,18 @@ const Contact: React.FC = () => {
                     type="submit"
                     disabled={sending}
                     className="mt-2 px-5 py-3 flex items-center justify-center gap-2 rounded-lg font-semibold text-white shadow-md transform hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
-                    style={{ background: "linear-gradient(90deg, #1C3D72 0%, #2EC4B6 100%)" }}
+                    style={{
+                      background:
+                        "linear-gradient(90deg, #1C3D72 0%, #2EC4B6 100%)",
+                    }}
                   >
                     {sending ? "Sending..." : "Send Message"}
                     <Send className="w-4 h-4" />
                   </button>
 
-                  <div className="text-sm text-[#607B8B]">We reply within 48 hours</div>
+                  <div className="text-sm text-[#607B8B]">
+                    We reply within 48 hours
+                  </div>
                 </div>
               </form>
             </div>
@@ -391,27 +482,36 @@ const Contact: React.FC = () => {
 
                 <div className="p-4 bg-white">
                   <div className="text-sm font-semibold">Sunyani, Ghana</div>
-                  <div className="text-xs text-[#607B8B]">We operate remotely — no public office yet.</div>
+                  <div className="text-xs text-[#607B8B]">
+                    We operate remotely — no public office yet.
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* FAQ */}
             <div>
-              <h3 className="text-xl font-semibold text-[#1C3D72] mb-4">Frequently Asked Questions</h3>
+              <h3 className="text-xl font-semibold text-[#1C3D72] mb-4">
+                Frequently Asked Questions
+              </h3>
 
               <div className="space-y-3">
                 {faqItems.map((item, i) => {
                   const isOpen = openFaq === i;
                   return (
-                    <div key={i} className="border border-[#E3E8EF] rounded-lg overflow-hidden">
+                    <div
+                      key={i}
+                      className="border border-[#E3E8EF] rounded-lg overflow-hidden"
+                    >
                       <button
                         aria-expanded={isOpen}
                         aria-controls={`faq-${i}`}
                         onClick={() => toggleFaq(i)}
                         className="w-full flex items-center justify-between px-4 py-3 bg-white hover:bg-[#fbfdff] transition"
                       >
-                        <span className="text-sm font-medium text-[#102A43]">{item.q}</span>
+                        <span className="text-sm font-medium text-[#102A43]">
+                          {item.q}
+                        </span>
                         <ChevronDown
                           className={`w-5 h-5 text-[#1C3D72] transform transition-transform duration-300 ${isOpen ? "rotate-180" : "rotate-0"}`}
                         />
@@ -443,8 +543,12 @@ const Contact: React.FC = () => {
                     <Users className="w-6 h-6 text-[#1C3D72]" />
                   </div>
                   <div>
-                    <div className="font-semibold text-[#102A43]">Customer Support</div>
-                    <div className="text-sm text-[#607B8B]">Get in touch with our support team</div>
+                    <div className="font-semibold text-[#102A43]">
+                      Customer Support
+                    </div>
+                    <div className="text-sm text-[#607B8B]">
+                      Get in touch with our support team
+                    </div>
                   </div>
                 </div>
               </div>
@@ -456,7 +560,9 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <div className="font-semibold text-[#102A43]">Sales</div>
-                    <div className="text-sm text-[#607B8B]">Contact our sales professionals</div>
+                    <div className="text-sm text-[#607B8B]">
+                      Contact our sales professionals
+                    </div>
                   </div>
                 </div>
               </div>
@@ -467,8 +573,12 @@ const Contact: React.FC = () => {
                     <Star className="w-6 h-6 text-[#5EC9F5]" />
                   </div>
                   <div>
-                    <div className="font-semibold text-[#102A43]">Technical Support</div>
-                    <div className="text-sm text-[#607B8B]">Need technical help? Our engineers are ready</div>
+                    <div className="font-semibold text-[#102A43]">
+                      Technical Support
+                    </div>
+                    <div className="text-sm text-[#607B8B]">
+                      Need technical help? Our engineers are ready
+                    </div>
                   </div>
                 </div>
               </div>
@@ -519,7 +629,9 @@ const Contact: React.FC = () => {
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
           <div>
             <div className="font-semibold">COLTEK Technologies</div>
-            <div className="text-xs text-[#CDE9EF] mt-2">Building innovative software and digital solutions.</div>
+            <div className="text-xs text-[#CDE9EF] mt-2">
+              Building innovative software and digital solutions.
+            </div>
           </div>
 
           <div>
@@ -541,7 +653,10 @@ const Contact: React.FC = () => {
           </div>
         </div>
 
-        <div className="max-w-6xl mx-auto mt-6 text-center text-sm text-[#CDE9EF]">© {new Date().getFullYear()} COLTEK Technologies — Built with care by the COLTEK team</div>
+        <div className="max-w-6xl mx-auto mt-6 text-center text-sm text-[#CDE9EF]">
+          © {new Date().getFullYear()} COLTEK Technologies — Built with care by
+          the COLTEK team
+        </div>
       </footer>
     </div>
   );
