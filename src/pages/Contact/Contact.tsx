@@ -272,7 +272,7 @@ const Contact: React.FC = () => {
               {/* WhatsApp placeholder button */}
               <div className="mt-4">
                 <a
-                  href="https://wa.me/233000000000"
+                  href="https://wa.me/233549361771"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-3 bg-[#25D366] text-white py-2 px-4 rounded-lg shadow hover:brightness-90 transition"
@@ -309,7 +309,7 @@ const Contact: React.FC = () => {
 
                 {/* LinkedIn */}
                 <a
-                  href="https://www.linkedin.com/company/coltektechnologies"
+                  href="https://www.linkedin.com/company/coltek-technologies/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
@@ -634,23 +634,11 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          <div>
-            <div className="font-semibold">Support</div>
-            <div className="text-xs text-[#CDE9EF] mt-2">Help Center</div>
-            <div className="text-xs text-[#CDE9EF] mt-1">Contact</div>
-          </div>
+          
 
-          <div>
-            <div className="font-semibold">Account</div>
-            <div className="text-xs text-[#CDE9EF] mt-2">Your Account</div>
-            <div className="text-xs text-[#CDE9EF] mt-1">Privacy</div>
-          </div>
+          
 
-          <div>
-            <div className="font-semibold">Quick Links</div>
-            <div className="text-xs text-[#CDE9EF] mt-2">About</div>
-            <div className="text-xs text-[#CDE9EF] mt-1">Contact</div>
-          </div>
+          
         </div>
 
         <div className="max-w-6xl mx-auto mt-6 text-center text-sm text-[#CDE9EF]">
