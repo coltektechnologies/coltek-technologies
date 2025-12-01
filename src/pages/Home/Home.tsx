@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-import images from "../../assets/images/images";
+import { useState, useEffect, useRef } from 'react';
+import { images } from "../../assets/images/images";
 import { allServices, serviceGroups } from "../../data/services";
+import TestimonialsSlider from "../../components/sections/TestimonialsSlider";
 
 const Home = () => {
   const words = ['Excellence', 'Innovation', 'Success', 'Impact', 'Growth'];

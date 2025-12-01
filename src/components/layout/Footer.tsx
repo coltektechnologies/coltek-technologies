@@ -191,7 +191,7 @@ const Footer = () => {
               <h4 className="text-white text-lg font-semibold md:text-right">Follow Us</h4>
               <div className="flex gap-4">
                 <a 
-                  href="https://facebook.com" 
+                  href="https://web.facebook.com/coltektechnologies" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
@@ -204,11 +204,11 @@ const Footer = () => {
                   />
                 </a>
                 <a 
-                  href="https://twitter.com" 
+                  href="https://x.com/coltekdev" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
-                  aria-label="Visit our Twitter page"
+                  aria-label="Visit our X (Twitter) page"
                 >
                   <img 
                     src={images.twiter} 
@@ -217,7 +217,7 @@ const Footer = () => {
                   />
                 </a>
                 <a 
-                  href="https://linkedin.com" 
+                  href="https://www.linkedin.com/company/coltek-technologies" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
@@ -230,7 +230,7 @@ const Footer = () => {
                   />
                 </a>
                 <a 
-                  href="https://instagram.com" 
+                  href="https://www.instagram.com/coltektechnologies/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
@@ -238,19 +238,6 @@ const Footer = () => {
                 >
                   <img 
                     src={images.instagram} 
-                    alt="" 
-                    className="h-5 w-5"
-                  />
-                </a>
-                <a 
-                  href="https://youtube.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
-                  aria-label="Visit our YouTube channel"
-                >
-                  <img 
-                    src={images.fb} 
                     alt="" 
                     className="h-5 w-5"
                   />

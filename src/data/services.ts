@@ -1,52 +1,57 @@
+import images from "../assets/images/images";
+
 export interface Service {
   id: number;
   title: string;
   description: string;
   icon: string;
+  image: string;
+  buttonColor?: string;
 }
 
 export const allServices: Service[] = [
   {
     id: 1,
-    title: 'Web Development',
-    description: 'Custom web applications built with modern technologies',
-    icon: '🌐'
+    title: "Web Development",
+    description: "Provide and manage website services",
+    image: images.web,
+    icon: '🌐',
+    buttonColor: "bg-[#E8F3FF] text-[#0066FF] hover:bg-[#d8ecff]"
   },
   {
     id: 2,
-    title: 'Mobile Apps',
-    description: 'Cross-platform mobile applications for iOS and Android',
-    icon: '📱'
+    title: "Cloud Solutions",
+    description: "Provide Cloud hosting and service",
+    image: images.cloud,
+    icon: '☁️',
+    buttonColor: "bg-[#0055CC] text-white hover:bg-[#0044a3]"
   },
   {
     id: 3,
-    title: 'UI/UX Design',
-    description: 'Beautiful and intuitive user interfaces',
-    icon: '🎨'
+    title: "Mobile App Development",
+    description: "Create powerful cross-platform mobile applications",
+    image: images.app,
+    icon: '📱',
+    buttonColor: "bg-[#E8F3FF] text-[#0066FF] hover:bg-[#d8ecff]"
   },
   {
     id: 4,
-    title: 'Cloud Solutions',
-    description: 'Scalable cloud infrastructure and services',
-    icon: '☁️'
-  },
-  {
-    id: 5,
-    title: 'AI & ML',
-    description: 'Artificial Intelligence and Machine Learning solutions',
-    icon: '🤖'
-  },
-  {
-    id: 6,
-    title: 'DevOps',
-    description: 'CI/CD pipelines and infrastructure automation',
-    icon: '🔄'
+    title: "IT Consulting",
+    description: "Expert IT solutions for your business",
+    image: images.team,
+    icon: '💼',
+    buttonColor: "bg-[#0055CC] text-white hover:bg-[#0044a3]"
   }
 ];
 
-// Group services for desktop view (3 per group)
+// Group services for desktop view (2 per group)
 export const serviceGroups = [
-  allServices.slice(0, 3),
-  allServices.slice(3, 6),
-  allServices.slice(0, 3) // Repeating to ensure smooth carousel
+  {
+    id: 1,
+    services: [allServices[0], allServices[1]]
+  },
+  {
+    id: 2,
+    services: [allServices[2], allServices[3]]
+  }
 ];

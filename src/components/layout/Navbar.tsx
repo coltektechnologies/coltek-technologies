@@ -39,13 +39,18 @@ const Navbar = () => {
 
   return (
     <div 
-      className="flex justify-between top-0 left-0 right-0" 
-      style={{ backgroundColor: 'var(--slider-track-color)' }}
+      className="flex justify-between top-0 left-0 right-0 shadow-md" 
+      style={{ 
+        background: 'linear-gradient(97.91deg, #00D9FD 2.91%, #0AFE36 97.09%)',
+        position: 'sticky',
+        top: 0,
+        zIndex: 50
+      }}
     >
       <div className=" w-full max-w-screen-xl mx-auto flex justify-between items-center py-2 px-4 md:px-10 lg:px-20">
-        <img src={images.logo} className="w-25" alt="" />
+        <img src={images.logo} className="w-25 filter brightness-0 invert" alt="Coltek Technologies Logo" />
         {/* Desktop Navigation */}
-        <ul className="hidden md:flex gap-6 style={{ color: 'var(--text-color)' }} items-center relative">
+        <ul className="hidden md:flex gap-6 items-center relative">
           <NavLink to="/"
            className={({ isActive }) =>
             `relative cursor-pointer after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full ${
@@ -92,17 +97,18 @@ const Navbar = () => {
         </ul>
 
         {/* Desktop Button */}
-        <button  className=" px-6 py-2 rounded-full " style={{ 
-            backgroundColor: 'var(--nav-button-bg)',
-            color: 'var(--nav-button-text-color)'
-          }}>Get a Quote</button>
+        <button 
+          className="px-6 py-2 rounded-full bg-white text-gray-900 font-semibold hover:bg-gray-100 transition-colors duration-200 shadow-md"
+        >
+          Get a Quote
+        </button>
 
-          {/* Mobile Menu Icon - Only show on mobile */}
-          <div className="mobile-menu-button md:hidden cursor-pointer" onClick={() => setShowMobileMenu(true)}>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
-            </svg>
-          </div>
+        {/* Mobile Menu Icon - Only show on mobile */}
+        <div className="mobile-menu-button md:hidden cursor-pointer" onClick={() => setShowMobileMenu(true)}>
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
+          </svg>
+        </div>
 
         {/* Mobile Navigation Menu */}
         {/* Mobile Menu Overlay */}
@@ -113,8 +119,7 @@ const Navbar = () => {
           />
         )}
         <div 
-          className={`mobile-menu fixed inset-y-0 left-0 w-4/5 max-w-sm z-50 transform ${showMobileMenu ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out md:hidden`}
-          style={{ backgroundColor: 'var(--slider-track-color)' }}
+          className={`mobile-menu fixed inset-y-0 left-0 w-4/5 max-w-sm z-50 transform ${showMobileMenu ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out md:hidden bg-white`}
           onClick={(e) => e.stopPropagation()}
         >
           {/* Close Button */}

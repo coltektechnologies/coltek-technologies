@@ -514,35 +514,7 @@ const Contact: React.FC = () => {
         </section>
       </Reveal>
 
-      {/* FOOTER */}
-      <footer className="w-full bg-[#102A43] text-white py-6 px-6 mt-10">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div>
-            <div className="font-semibold">COLTEK Technologies</div>
-            <div className="text-xs text-[#CDE9EF] mt-2">Building innovative software and digital solutions.</div>
-          </div>
-
-          <div>
-            <div className="font-semibold">Support</div>
-            <div className="text-xs text-[#CDE9EF] mt-2">Help Center</div>
-            <div className="text-xs text-[#CDE9EF] mt-1">Contact</div>
-          </div>
-
-          <div>
-            <div className="font-semibold">Account</div>
-            <div className="text-xs text-[#CDE9EF] mt-2">Your Account</div>
-            <div className="text-xs text-[#CDE9EF] mt-1">Privacy</div>
-          </div>
-
-          <div>
-            <div className="font-semibold">Quick Links</div>
-            <div className="text-xs text-[#CDE9EF] mt-2">About</div>
-            <div className="text-xs text-[#CDE9EF] mt-1">Contact</div>
-          </div>
-        </div>
-
-        <div className="max-w-6xl mx-auto mt-6 text-center text-sm text-[#CDE9EF]">© {new Date().getFullYear()} COLTEK Technologies — Built with care by the COLTEK team</div>
-      </footer>
+    
     </div>
   );
 };
