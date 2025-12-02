@@ -5,6 +5,7 @@ import ServiceCard from "@/components/ServicesCard";
 import CTASection from "@/components/CTASection";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 // Images
 import SSServiceCard from "@/assets/ServicesPageImages/SS ServiceCard.png";
@@ -22,6 +23,21 @@ import CloudSolutionImg from "@/assets/ServicesPageImages/CloudSolutionImg.jpg";
 import ITCImg from "@/assets/ServicesPageImages/ITC ServiceCard.jpg";
 // ========== IMPORTS END ==========
 
+// Animation variants
+const fadeUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const fadeRight = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { opacity: 1, x: 0 },
+};
+
+const fadeLeft = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { opacity: 1, x: 0 },
+};
 
 const Services = () => {
   // ========== SERVICES DATA ==========
@@ -29,460 +45,466 @@ const Services = () => {
     {
       image: SSServiceCard,
       title: "Software Solutions",
+<<<<<<< HEAD
       description: "High-performance web solutions built for scale, combining creativity, functionality, and technology.",
+=======
+      description:
+        "High-performance web solutions built for scale, combining creativity, functionality, and technology.",
+      path: "/services/software-solutions",
+>>>>>>> 63f72c182a48f2dd02ed785a15a66e4b0e028666
     },
     {
       image: CSServiceCard,
       title: "Cloud Solutions",
+<<<<<<< HEAD
       description: "Optimize with cloud infrastructure design, migration, management, and secure your data securely from anywhere.",
+=======
+      description:
+        "Optimize with cloud infrastructure design, migration, management, and secure your data securely from anywhere.",
+      path: "/services/cloud-architecture",
+>>>>>>> 63f72c182a48f2dd02ed785a15a66e4b0e028666
     },
     {
       image: AIMLServiceCard,
       title: "AI & ML",
+<<<<<<< HEAD
       description: "Captivate with development, AI integrations, natural language, machine learning, and smarter decisions.",
+=======
+      description:
+        "Captivate with development, AI integrations, natural language, machine learning, and smarter decisions.",
+      path: "/services/ai-ml",
+>>>>>>> 63f72c182a48f2dd02ed785a15a66e4b0e028666
     },
     {
       image: ITCServiceCard,
       title: "Mobile App Development",
+<<<<<<< HEAD
       description: "Optimize with development, strategic planning and AI guidance to navigate digital complexity efficiently.",
     }
+=======
+      description:
+        "Optimize with development, strategic planning and AI guidance to navigate digital complexity efficiently.",
+      path: "/services/it-consultancy",
+    },
+>>>>>>> 63f72c182a48f2dd02ed785a15a66e4b0e028666
   ];
   // ========== END SERVICES DATA ==========
 
-
   return (
     <div className="services-page-container min-h-screen bg-background">
-      
-      {/* ========== NAVBAR START ========== */}
       <Navbar />
-      {/* ========== NAVBAR END ========== */}
 
+{/* ========== HERO SECTION — PREMIUM VERSION ========== */}
+<section className="relative pt-24 pb-12 px-4">
+  <div className="relative h-[300px] md:h-[360px] rounded-3xl overflow-hidden max-w-7xl mx-auto shadow-xl">
 
-      {/* ========== HERO SECTION START ========== */}
-      <section className="hero-section relative pt-24 pb-12 px-8">
-        <div className="hero-content-wrapper relative h-[380px] md:h-[430px] flex items-center justify-center overflow-hidden rounded-[3rem] max-w-7xl mx-auto">
-          
-          <div
-            className="hero-background absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${ServiceHeroImage})` }}
-          >
-            <div className="hero-overlay absolute inset-0 bg-gradient-to-r from-primary/80 to-secondary/80 rounded-[3rem]" />
-          </div>
+    {/* Background Image */}
+    <div
+      className="absolute inset-0 bg-cover bg-center"
+      style={{ backgroundImage: `url(${ServiceHeroImage})` }}
+    ></div>
 
-          <div className="hero-text-content relative z-10 text-left text-white px-8 w-full">
-            <h1
-              className="hero-title text-4xl md:text-5xl font-bold mb-4"
-              style={{ fontFamily: "Montserrat-Bold" }}
-            >
-              OUR SERVICES
-            </h1>
-            <p
-              className="hero-description text-lg md:text-xl mb-8 text-white/90 max-w-xl"
-              style={{ fontFamily: "Montserrat-Regular" }}
-            >
-              Comprehensive solutions to help your business grow
-            </p>
-            <Button
-              className="hero-cta-button bg-[#0EA5E9] hover:bg-[#0EA5E9]/90 text-white px-8 h-11 rounded-lg"
-              style={{ fontFamily: "Poppins-SemiBold" }}
-              onClick={() =>
-                document
-                  .getElementById("services-grid")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-            >
-              Get Started
-            </Button>
-          </div>
-        </div>
-      </section>
-      {/* ========== HERO SECTION END ========== */}
+    {/* Gradient Overlay */}
+    <div className="absolute inset-0 bg-gradient-to-br from-[#041979]/80 to-[#00D9FD]/50"></div>
+
+    {/* Text Content */}
+    <div className="relative z-10 flex flex-col justify-center h-full px-6 md:px-12 max-w-xl">
+      <h1
+        className="text-3xl md:text-4xl font-bold text-white mb-3"
+        style={{ fontFamily: "Montserrat-Bold" }}
+      >
+        Our Services
+      </h1>
+
+      <p
+        className="text-white/90 text-base md:text-lg mb-6"
+        style={{ fontFamily: "Montserrat-Regular" }}
+      >
+        Comprehensive solutions to help your business grow.
+      </p>
+
+      <Button
+        className="w-fit bg-[#00D9FD] hover:bg-[#00D9FD]/90 text-white px-6 h-10 rounded-lg shadow-lg transition"
+        onClick={() =>
+          document.getElementById("services-grid")?.scrollIntoView({
+            behavior: "smooth",
+          })
+        }
+      >
+        Get Started
+      </Button>
+    </div>
+  </div>
+</section>
+{/* ========== END HERO SECTION ========== */}
 
 
       {/* ========== SERVICES GRID SECTION START ========== */}
-      <section id="services-grid" className="services-grid-section py-16 bg-background scroll-mt-20">
-        <div className="section-content-wrapper container mx-auto px-4">
-          <div className="services-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+      <section id="services-grid" className="py-20 bg-background scroll-mt-20">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeUp}
+            viewport={{ once: true }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto"
+          >
             {services.map((service, index) => (
-              <div
+              <motion.div
                 key={index}
-                onClick={() =>
-                  document
-                    .getElementById(`service-${index}`)
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
-                className="service-card-wrapper cursor-pointer"
+                whileHover={{ scale: 1.04, y: -6 }}
+                transition={{ type: "spring", stiffness: 200 }}
+                className="rounded-2xl p-1 bg-white shadow-lg hover:shadow-xl border border-gray-200 cursor-pointer"
               >
                 <ServiceCard
                   image={service.image}
                   title={service.title}
                   description={service.description}
                 />
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
       {/* ========== SERVICES GRID SECTION END ========== */}
 
-
-      {/* ========== DETAILED SERVICES SECTION START ========== */}
-      <section className="detailed-services-section py-20 bg-muted">
-        <div className="section-content-wrapper container mx-auto px-4">
-          <div className="services-list space-y-0">
-            
-            {/* ========== SOFTWARE SOLUTIONS START ========== */}
-            <Link 
+      {/* ========== DETAILED SERVICES SECTION START (UPDATED DESIGN) ========== */}
+      <section className="detailed-services-section py-14 bg-muted/40">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="space-y-10">
+            {/* =======================================================
+          SOFTWARE SOLUTIONS
+      ======================================================== */}
+            <Link
               to="/Services/SoftwareSolutions"
-              id="service-0" 
-              className="service-detail-card grid grid-cols-1 lg:grid-cols-2 gap-12 items-center scroll-mt-20 py-12 hover:bg-muted/50 transition-colors duration-300 cursor-pointer block"
+              id="service-0"
+              className="group bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center p-6 md:p-10 cursor-pointer scroll-mt-24"
             >
-              <div className="service-text-content px-4">
-                <h2 className="service-title text-3xl font-bold mb-4" style={{ fontFamily: 'Montserrat-SemiBold' }}>
+              {/* TEXT */}
+              <div className="space-y-4">
+                <h2 className="text-2xl md:text-3xl font-bold text-primary">
                   1. Software Solutions
                 </h2>
-                <p className="service-description text-muted-foreground mb-6" style={{ fontFamily: 'Montserrat-Regular' }}>
-                  At Coltek Technologies, we specialize in building high-performance web applications that combine creativity, functionality, and technology.
+
+                <p className="text-muted-foreground text-[15px] leading-relaxed">
+                  At Coltek Technologies, we specialize in building
+                  high-performance web applications that combine creativity and
+                  modern technology.
                 </p>
-                <h3 className="service-features-title text-xl font-semibold mb-4" style={{ fontFamily: 'Montserrat-SemiBold' }}>
-                  Our team provides solutions including:
+
+                <h3 className="text-lg font-semibold text-primary mt-4">
+                  What We Offer:
                 </h3>
-                <ul className="service-features-list space-y-2 mb-6">
-                  <li className="feature-item flex items-start" style={{ fontFamily: 'Montserrat-Regular' }}>
-                    <span className="feature-bullet text-secondary mr-2">•</span>
-                    <span>Custom website design and development</span>
+
+                <ul className="space-y-2 text-[15px] text-muted-foreground">
+                  <li className="flex items-start gap-2">
+                    <span className="text-secondary">•</span>
+                    Custom website design and development
                   </li>
-                  <li className="feature-item flex items-start" style={{ fontFamily: 'Montserrat-Regular' }}>
-                    <span className="feature-bullet text-secondary mr-2">•</span>
-                    <span>E-commerce platforms and CMS integration</span>
+                  <li className="flex items-start gap-2">
+                    <span className="text-secondary">•</span>
+                    E-commerce platforms and CMS integration
                   </li>
-                  <li className="feature-item flex items-start" style={{ fontFamily: 'Montserrat-Regular' }}>
-                    <span className="feature-bullet text-secondary mr-2">•</span>
-                    <span>Website implementation and optimization</span>
+                  <li className="flex items-start gap-2">
+                    <span className="text-secondary">•</span>
+                    Website implementation and optimization
                   </li>
-                  <li className="feature-item flex items-start" style={{ fontFamily: 'Montserrat-Regular' }}>
-                    <span className="feature-bullet text-secondary mr-2">•</span>
-                    <span>SEO and performance enhancement</span>
+                  <li className="flex items-start gap-2">
+                    <span className="text-secondary">•</span>
+                    SEO and performance enhancement
                   </li>
                 </ul>
-                <p className="service-closing text-muted-foreground mb-6" style={{ fontFamily: 'Montserrat-Regular' }}>
-                  We ensure every project delivers a seamless user experience and helps your brand grow in the digital space.
-                </p>
-                <Button 
-                  className="service-cta-button bg-transparent hover:bg-[#00D9FD]/10 border-2"
-                  style={{ 
-                    fontFamily: 'Poppins-SemiBold',
-                    borderColor: '#00D9FD',
-                    color: '#041979'
-                  }}
+
+                <Button
+                  className="bg-transparent hover:bg-secondary/10 border-2 border-secondary text-primary font-semibold mt-2"
                   onClick={(e) => e.stopPropagation()}
                 >
                   Read More
                 </Button>
               </div>
-              <div className="service-image-wrapper bg-card rounded-lg shadow-card overflow-hidden h-[400px]">
-                <img 
+
+              {/* IMAGE */}
+              <div className="rounded-xl overflow-hidden h-[240px] md:h-[300px] lg:h-[320px] shadow-md">
+                <img
                   src={SoftwareSolutionsImg}
-                  alt="Web Development"
-                  className="service-image w-full h-full object-cover"
+                  alt="Software Solutions"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
                 />
               </div>
             </Link>
-            {/* ========== SOFTWARE SOLUTIONS END ========== */}
 
             {/* Divider */}
-            <div className="section-divider border-t-2 border-border my-8" />
+            <div className="border-t border-gray-300" />
 
-            {/* ========== AI & ML START ========== */}
+            {/* =======================================================
+          AI & ML
+      ======================================================== */}
             <Link
               to="/Services/AIML"
-              id="service-2" 
-              className="service-detail-card grid grid-cols-1 lg:grid-cols-2 gap-12 items-center scroll-mt-20 py-12 hover:bg-muted/50 transition-colors duration-300 cursor-pointer block"
+              id="service-2"
+              className="group bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center p-6 md:p-10 cursor-pointer scroll-mt-24"
             >
-              <div className="service-image-wrapper order-2 lg:order-1 bg-card rounded-lg shadow-card overflow-hidden h-[400px]">
-                <img 
+              {/* IMAGE LEFT */}
+              <div className="order-2 lg:order-1 rounded-xl overflow-hidden h-[240px] md:h-[300px] lg:h-[320px] shadow-md">
+                <img
                   src={AIMLImg}
                   alt="AI & ML Automation"
-                  className="service-image w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
                 />
               </div>
-              <div className="service-text-content order-1 lg:order-2 px-4">
-                <h2 className="service-title text-3xl font-bold mb-4" style={{ fontFamily: 'Montserrat-SemiBold' }}>
+
+              {/* TEXT RIGHT */}
+              <div className="order-1 lg:order-2 space-y-4">
+                <h2 className="text-2xl md:text-3xl font-bold text-primary">
                   2. AI & ML Automation
                 </h2>
-                <p className="service-description text-muted-foreground mb-6" style={{ fontFamily: 'Montserrat-Regular' }}>
-                  We help businesses harness the power of artificial intelligence and Machine Learning Automation to unlock new opportunities.
+
+                <p className="text-muted-foreground text-[15px] leading-relaxed">
+                  We help businesses harness artificial intelligence and ML
+                  automation to unlock new possibilities.
                 </p>
-                <h3 className="service-features-title text-xl font-semibold mb-4" style={{ fontFamily: 'Montserrat-SemiBold' }}>
+
+                <h3 className="text-lg font-semibold text-primary mt-4">
                   Our solutions include:
                 </h3>
-                <ul className="service-features-list space-y-2 mb-6">
-                  <li className="feature-item flex items-start" style={{ fontFamily: 'Montserrat-Regular' }}>
-                    <span className="feature-bullet text-secondary mr-2">•</span>
-                    <span>AI model development and training</span>
+
+                <ul className="space-y-2 text-[15px] text-muted-foreground">
+                  <li className="flex items-start gap-2">
+                    <span className="text-secondary">•</span>
+                    AI model development and training
                   </li>
-                  <li className="feature-item flex items-start" style={{ fontFamily: 'Montserrat-Regular' }}>
-                    <span className="feature-bullet text-secondary mr-2">•</span>
-                    <span>Predictive analytics and labeling services</span>
+                  <li className="flex items-start gap-2">
+                    <span className="text-secondary">•</span>
+                    Predictive analytics and data labeling
                   </li>
-                  <li className="feature-item flex items-start" style={{ fontFamily: 'Montserrat-Regular' }}>
-                    <span className="feature-bullet text-secondary mr-2">•</span>
-                    <span>Natural language processing (NLP)</span>
+                  <li className="flex items-start gap-2">
+                    <span className="text-secondary">•</span>
+                    Natural Language Processing (NLP)
                   </li>
-                  <li className="feature-item flex items-start" style={{ fontFamily: 'Montserrat-Regular' }}>
-                    <span className="feature-bullet text-secondary mr-2">•</span>
-                    <span>Integration of intelligent systems into existing workflows</span>
+                  <li className="flex items-start gap-2">
+                    <span className="text-secondary">•</span>
+                    Integration of AI systems into your workflow
                   </li>
                 </ul>
-                <p className="service-closing text-muted-foreground mb-6" style={{ fontFamily: 'Montserrat-Regular' }}>
-                  With predictive automation, we help streamline and labeling smarter, data-driven decisions.
-                </p>
-                <Button 
-                  className="service-cta-button bg-transparent hover:bg-[#00D9FD]/10 border-2"
-                  style={{ 
-                    fontFamily: 'Poppins-SemiBold',
-                    borderColor: '#00D9FD',
-                    color: '#041979'
-                  }}
+
+                <Button
+                  className="bg-transparent hover:bg-secondary/10 border-2 border-secondary text-primary font-semibold mt-2"
                   onClick={(e) => e.stopPropagation()}
                 >
                   Read More
                 </Button>
               </div>
             </Link>
-            {/* ========== AI & ML END ========== */}
 
             {/* Divider */}
-            <div className="section-divider border-t-2 border-border my-8" />
+            <div className="border-t border-gray-300" />
 
-            {/* ========== CLOUD SOLUTIONS START ========== */}
+            {/* =======================================================
+          CLOUD SOLUTIONS
+      ======================================================== */}
             <Link
               to="/Services/CloudSolutions"
               id="service-1"
-              className="service-detail-card grid grid-cols-1 lg:grid-cols-2 gap-10 items-center scroll-mt-20 py-12 hover:bg-muted/50 transition-colors duration-300 cursor-pointer block"
+              className="group bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center p-6 md:p-10 cursor-pointer scroll-mt-24"
             >
-              <div className="service-text-content px-4">
-                <h2
-                  className="service-title text-3xl font-bold mb-4"
-                  style={{ fontFamily: "Montserrat-SemiBold" }}
-                >
+              {/* TEXT LEFT */}
+              <div className="space-y-4">
+                <h2 className="text-2xl md:text-3xl font-bold text-primary">
                   3. Cloud Solutions
                 </h2>
 
-                <p
-                  className="service-description text-muted-foreground mb-6 leading-relaxed"
-                  style={{ fontFamily: "Montserrat-Regular" }}
-                >
-                  Coltek offers end-to-end cloud services to help you scale, manage, and secure your data securely from anywhere.
+                <p className="text-muted-foreground text-[15px] leading-relaxed">
+                  Reliable cloud infrastructure to scale your digital operations
+                  securely.
                 </p>
 
-                <h3
-                  className="service-features-title text-xl font-semibold mb-4"
-                  style={{ fontFamily: "Montserrat-SemiBold" }}
-                >
+                <h3 className="text-lg font-semibold text-primary mt-4">
                   We offer:
                 </h3>
 
-                <ul className="service-features-list space-y-2 mb-6">
-                  <li className="feature-item flex items-start">
-                    <span className="feature-bullet text-secondary mr-2">•</span> 
-                    <span>Cloud strategy and infrastructure setup</span>
+                <ul className="space-y-2 text-[15px] text-muted-foreground">
+                  <li className="flex items-start gap-2">
+                    <span className="text-secondary">•</span>
+                    Cloud strategy & infrastructure setup
                   </li>
-                  <li className="feature-item flex items-start">
-                    <span className="feature-bullet text-secondary mr-2">•</span> 
-                    <span>Data backup and recovery services</span>
+                  <li className="flex items-start gap-2">
+                    <span className="text-secondary">•</span>
+                    Backup & disaster recovery
                   </li>
-                  <li className="feature-item flex items-start">
-                    <span className="feature-bullet text-secondary mr-2">•</span> 
-                    <span>Cloud migration and deployment</span>
+                  <li className="flex items-start gap-2">
+                    <span className="text-secondary">•</span>
+                    Cloud migration & deployment
                   </li>
-                  <li className="feature-item flex items-start">
-                    <span className="feature-bullet text-secondary mr-2">•</span> 
-                    <span>Multi-cloud and hybrid cloud management</span>
+                  <li className="flex items-start gap-2">
+                    <span className="text-secondary">•</span>
+                    Hybrid & multi-cloud management
                   </li>
                 </ul>
 
-                <p className="service-closing text-muted-foreground mb-6">
-                  With Coltek Technologies, you gain flexibility, security, and scalability for your digital infrastructure.
-                </p>
-
                 <Button
-                  className="service-cta-button bg-transparent hover:bg-[#00D9FD]/10 border-2"
-                  style={{
-                    fontFamily: "Poppins-SemiBold",
-                    borderColor: "#00D9FD",
-                    color: "#041979",
-                  }}
+                  className="bg-transparent hover:bg-secondary/10 border-2 border-secondary text-primary font-semibold mt-2"
                   onClick={(e) => e.stopPropagation()}
                 >
                   Read More
                 </Button>
               </div>
 
-              <div className="service-image-wrapper bg-card rounded-lg shadow-card overflow-hidden h-[320px]">
+              {/* IMAGE RIGHT */}
+              <div className="rounded-xl overflow-hidden h-[240px] md:h-[300px] lg:h-[320px] shadow-md">
                 <img
                   src={CloudSolutionImg}
                   alt="Cloud Solutions"
-                  className="service-image w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
                 />
               </div>
             </Link>
-            {/* ========== CLOUD SOLUTIONS END ========== */}
 
             {/* Divider */}
-            <div className="section-divider border-t-2 border-border my-8" />
+            <div className="border-t border-gray-300" />
 
-            {/* ========== MOBILE APP DEVELOPMENT START ========== */}
+            {/* =======================================================
+          MOBILE APP DEVELOPMENT
+      ======================================================== */}
             <Link
               to="/Services/MobileAppDevelopment"
               id="service-3"
-              className="service-detail-card grid grid-cols-1 lg:grid-cols-2 gap-10 items-center scroll-mt-20 py-12 hover:bg-muted/50 transition-colors duration-300 cursor-pointer block"
+              className="group bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center p-6 md:p-10 cursor-pointer scroll-mt-24"
             >
-              <div className="service-image-wrapper order-2 lg:order-1 bg-card rounded-lg shadow-card overflow-hidden h-[320px]">
+              {/* IMAGE LEFT */}
+              <div className="order-2 lg:order-1 rounded-xl overflow-hidden h-[240px] md:h-[300px] lg:h-[320px] shadow-md">
                 <img
                   src={ITCImg}
                   alt="Mobile App Development"
-                  className="service-image w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
                 />
               </div>
 
-              <div className="service-text-content order-1 lg:order-2 px-4">
-                <h2
-                  className="service-title text-3xl font-bold mb-4"
-                  style={{ fontFamily: "Montserrat-SemiBold" }}
-                >
+              {/* TEXT RIGHT */}
+              <div className="order-1 lg:order-2 space-y-4">
+                <h2 className="text-2xl md:text-3xl font-bold text-primary">
                   4. Mobile App Development
                 </h2>
 
-                <p
-                  className="service-description text-muted-foreground mb-6 leading-relaxed"
-                  style={{ fontFamily: "Montserrat-Regular" }}
-                >
-                  We design and develop cutting-edge mobile applications for Android, iOS, and cross-platform solutions. Our apps are built with performance, scalability, and user experience in mind giving your users seamless access to your services anywhere.
+                <p className="text-muted-foreground text-[15px] leading-relaxed">
+                  We build modern and performant mobile applications for
+                  Android, iOS, and cross-platform environments.
                 </p>
 
-                <h3
-                  className="service-features-title text-xl font-semibold mb-4"
-                  style={{ fontFamily: "Montserrat-SemiBold" }}
-                >
+                <h3 className="text-lg font-semibold text-primary mt-4">
                   Key Features:
                 </h3>
 
-                <ul className="service-features-list space-y-2 mb-6">
-                  <li className="feature-item flex items-start">
-                    <span className="feature-bullet text-secondary mr-2">•</span> 
-                    <span>Android & iOS app development</span>
+                <ul className="space-y-2 text-[15px] text-muted-foreground">
+                  <li className="flex items-start gap-2">
+                    <span className="text-secondary">•</span>
+                    Android & iOS app development
                   </li>
-                  <li className="feature-item flex items-start">
-                    <span className="feature-bullet text-secondary mr-2">•</span> 
-                    <span>Cross-platform and hybrid apps</span>
+                  <li className="flex items-start gap-2">
+                    <span className="text-secondary">•</span>
+                    Cross-platform hybrid apps
                   </li>
-                  <li className="feature-item flex items-start">
-                    <span className="feature-bullet text-secondary mr-2">•</span> 
-                    <span>UI/UX design and prototyping</span>
+                  <li className="flex items-start gap-2">
+                    <span className="text-secondary">•</span>
+                    UI/UX design & prototyping
                   </li>
-                  <li className="feature-item flex items-start">
-                    <span className="feature-bullet text-secondary mr-2">•</span> 
-                    <span>Testing, deployment, and maintenance</span>
+                  <li className="flex items-start gap-2">
+                    <span className="text-secondary">•</span>
+                    Testing, deployment & maintenance
                   </li>
                 </ul>
 
                 <Button
-                  className="service-cta-button bg-transparent hover:bg-[#00D9FD]/10 border-2"
-                  style={{
-                    fontFamily: "Poppins-SemiBold",
-                    borderColor: "#00D9FD",
-                    color: "#041979",
-                  }}
+                  className="bg-transparent hover:bg-secondary/10 border-2 border-secondary text-primary font-semibold mt-2"
                   onClick={(e) => e.stopPropagation()}
                 >
                   Read More
                 </Button>
               </div>
             </Link>
-            {/* ========== MOBILE APP DEVELOPMENT END ========== */}
-            
           </div>
         </div>
       </section>
-      {/* ========== DETAILED SERVICES SECTION END ========== */}
+      {/* ========== DETAILED SERVICES SECTION END (UPDATED DESIGN) ========== */}
 
-
-      {/* ========== WHY CHOOSE US SECTION START ========== */}
-      <section className="why-choose-us-section py-16 bg-background">
-        <div className="section-content-wrapper container mx-auto px-4 max-w-7xl">
+      {/* WHY CHOOSE US */}
+      {/* ========== WHY CHOOSE US SECTION — PREMIUM VERSION ========== */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4 max-w-7xl">
+          {/* Title */}
           <h2
-            className="section-title text-4xl md:text-5xl font-bold text-center mb-12"
-            style={{ fontFamily: "Montserrat-Bold", color: "#000000" }}
+            className="text-3xl md:text-4xl font-extrabold text-center mb-10"
+            style={{ fontFamily: "Montserrat-Bold" }}
           >
-            WHY YOU CHOOSE US
+            Why Choose Us
           </h2>
 
-          <div
-            className="why-choose-us-card rounded-3xl p-8 md:p-12"
-            style={{ backgroundColor: "#3E66DF" }}
-          >
-            <div className="features-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-              
-              {/* Expertise */}
-              <div className="feature-item flex flex-col items-center text-center">
-                <img src={IconExpertise} alt="Expertise" className="feature-icon w-20 h-20 mb-4" />
-                <h3
-                  className="feature-title text-xl font-bold"
-                  style={{ fontFamily: "Montserrat-Bold", color: "#FFFFFF" }}
-                >
-                  EXPERTISE
-                </h3>
-              </div>
+          {/* Card Container */}
+          <div className="rounded-2xl p-[1.5px] bg-gradient-to-r from-[#00D9FD] to-[#3E66DF] shadow-lg">
+            <div
+              className="rounded-2xl p-8 md:p-10"
+              style={{ backgroundColor: "#3E66DF" }}
+            >
+              {/* GRID */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+                {/* Single Feature */}
+                {[
+                  {
+                    icon: IconExpertise,
+                    title: "Expertise",
+                    subtitle: "Skilled Specialists",
+                  },
+                  {
+                    icon: IconReliable,
+                    title: "Reliable",
+                    subtitle: "On-time Delivery",
+                  },
+                  {
+                    icon: IconInnovation,
+                    title: "Innovation",
+                    subtitle: "Future-Ready Solutions",
+                  },
+                  {
+                    icon: IconSupport,
+                    title: "Support",
+                    subtitle: "Dedicated Assistance",
+                  },
+                ].map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-col items-center text-center group transition-all duration-300 hover:scale-105"
+                  >
+                    <div className="w-14 h-14 mb-3 transition-all duration-300 group-hover:drop-shadow-xl">
+                      <img
+                        src={item.icon}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
 
-              {/* Reliable */}
-              <div className="feature-item flex flex-col items-center text-center">
-                <img src={IconReliable} alt="Reliable" className="feature-icon w-20 h-20 mb-4" />
-                <h3
-                  className="feature-title text-xl font-bold"
-                  style={{ fontFamily: "Montserrat-Bold", color: "#FFFFFF" }}
-                >
-                  RELIABLE
-                </h3>
-              </div>
+                    <h3
+                      className="text-lg font-bold text-white tracking-wide"
+                      style={{ fontFamily: "Montserrat-Bold" }}
+                    >
+                      {item.title}
+                    </h3>
 
-              {/* Innovation */}
-              <div className="feature-item flex flex-col items-center text-center">
-                <img src={IconInnovation} alt="Innovation" className="feature-icon w-20 h-20 mb-4" />
-                <h3
-                  className="feature-title text-xl font-bold"
-                  style={{ fontFamily: "Montserrat-Bold", color: "#FFFFFF" }}
-                >
-                  INNOVATION
-                </h3>
+                    <p
+                      className="text-white/80 text-sm mt-1"
+                      style={{ fontFamily: "Montserrat-Regular" }}
+                    >
+                      {item.subtitle}
+                    </p>
+                  </div>
+                ))}
               </div>
-
-              {/* Support */}
-              <div className="feature-item flex flex-col items-center text-center">
-                <img src={IconSupport} alt="Support" className="feature-icon w-20 h-20 mb-4" />
-                <h3
-                  className="feature-title text-xl font-bold"
-                  style={{ fontFamily: "Montserrat-Bold", color: "#FFFFFF" }}
-                >
-                  SUPPORT
-                </h3>
-              </div>
-              
             </div>
           </div>
         </div>
       </section>
-      {/* ========== WHY CHOOSE US SECTION END ========== */}
+      {/* ========== END ENHANCED WHY CHOOSE US SECTION ========== */}
 
-
-      {/* ========== CTA SECTION START ========== */}
       <CTASection />
-      {/* ========== CTA SECTION END ========== */}
-
-
-      {/* ========== FOOTER START ========== */}
       <Footer />
-</div>
+    </div>
   );
 };
 
