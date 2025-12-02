@@ -5,7 +5,6 @@ import ServiceCard from "@/components/ServicesCard";
 import CTASection from "@/components/CTASection";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 
 // Images
 import SSServiceCard from "@/assets/ServicesPageImages/SS ServiceCard.png";
@@ -23,70 +22,37 @@ import CloudSolutionImg from "@/assets/ServicesPageImages/CloudSolutionImg.jpg";
 import ITCImg from "@/assets/ServicesPageImages/ITC ServiceCard.jpg";
 // ========== IMPORTS END ==========
 
-// Animation variants
-const fadeUp = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0 },
-};
-
-const fadeRight = {
-  hidden: { opacity: 0, x: -50 },
-  visible: { opacity: 1, x: 0 },
-};
-
-const fadeLeft = {
-  hidden: { opacity: 0, x: 50 },
-  visible: { opacity: 1, x: 0 },
-};
-
 const Services = () => {
   // ========== SERVICES DATA ==========
   const services = [
     {
       image: SSServiceCard,
       title: "Software Solutions",
-<<<<<<< HEAD
-      description: "High-performance web solutions built for scale, combining creativity, functionality, and technology.",
-=======
       description:
         "High-performance web solutions built for scale, combining creativity, functionality, and technology.",
       path: "/services/software-solutions",
->>>>>>> 63f72c182a48f2dd02ed785a15a66e4b0e028666
     },
     {
       image: CSServiceCard,
       title: "Cloud Solutions",
-<<<<<<< HEAD
-      description: "Optimize with cloud infrastructure design, migration, management, and secure your data securely from anywhere.",
-=======
       description:
         "Optimize with cloud infrastructure design, migration, management, and secure your data securely from anywhere.",
       path: "/services/cloud-architecture",
->>>>>>> 63f72c182a48f2dd02ed785a15a66e4b0e028666
     },
     {
       image: AIMLServiceCard,
       title: "AI & ML",
-<<<<<<< HEAD
-      description: "Captivate with development, AI integrations, natural language, machine learning, and smarter decisions.",
-=======
       description:
         "Captivate with development, AI integrations, natural language, machine learning, and smarter decisions.",
       path: "/services/ai-ml",
->>>>>>> 63f72c182a48f2dd02ed785a15a66e4b0e028666
     },
     {
       image: ITCServiceCard,
       title: "Mobile App Development",
-<<<<<<< HEAD
-      description: "Optimize with development, strategic planning and AI guidance to navigate digital complexity efficiently.",
-    }
-=======
       description:
-        "Optimize with development, strategic planning and AI guidance to navigate digital complexity efficiently.",
-      path: "/services/it-consultancy",
+        "Build modern and performant mobile applications for Android, iOS, and cross-platform environments.",
+      path: "/services/mobile-app-development",
     },
->>>>>>> 63f72c182a48f2dd02ed785a15a66e4b0e028666
   ];
   // ========== END SERVICES DATA ==========
 
@@ -94,76 +60,66 @@ const Services = () => {
     <div className="services-page-container min-h-screen bg-background">
       <Navbar />
 
-{/* ========== HERO SECTION — PREMIUM VERSION ========== */}
-<section className="relative pt-24 pb-12 px-4">
-  <div className="relative h-[300px] md:h-[360px] rounded-3xl overflow-hidden max-w-7xl mx-auto shadow-xl">
+      {/* ========== HERO SECTION — PREMIUM VERSION ========== */}
+      <section className="relative pt-24 pb-12 px-4">
+        <div className="relative h-[300px] md:h-[360px] rounded-3xl overflow-hidden max-w-7xl mx-auto shadow-xl">
+          {/* Background Image */}
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${ServiceHeroImage})` }}
+          ></div>
 
-    {/* Background Image */}
-    <div
-      className="absolute inset-0 bg-cover bg-center"
-      style={{ backgroundImage: `url(${ServiceHeroImage})` }}
-    ></div>
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#041979]/80 to-[#00D9FD]/50"></div>
 
-    {/* Gradient Overlay */}
-    <div className="absolute inset-0 bg-gradient-to-br from-[#041979]/80 to-[#00D9FD]/50"></div>
+          {/* Text Content */}
+          <div className="relative z-10 flex flex-col justify-center h-full px-6 md:px-12 max-w-xl">
+            <h1
+              className="text-3xl md:text-4xl font-bold text-white mb-3"
+              style={{ fontFamily: "Montserrat-Bold" }}
+            >
+              Our Services
+            </h1>
 
-    {/* Text Content */}
-    <div className="relative z-10 flex flex-col justify-center h-full px-6 md:px-12 max-w-xl">
-      <h1
-        className="text-3xl md:text-4xl font-bold text-white mb-3"
-        style={{ fontFamily: "Montserrat-Bold" }}
-      >
-        Our Services
-      </h1>
+            <p
+              className="text-white/90 text-base md:text-lg mb-6"
+              style={{ fontFamily: "Montserrat-Regular" }}
+            >
+              Comprehensive solutions to help your business grow.
+            </p>
 
-      <p
-        className="text-white/90 text-base md:text-lg mb-6"
-        style={{ fontFamily: "Montserrat-Regular" }}
-      >
-        Comprehensive solutions to help your business grow.
-      </p>
-
-      <Button
-        className="w-fit bg-[#00D9FD] hover:bg-[#00D9FD]/90 text-white px-6 h-10 rounded-lg shadow-lg transition"
-        onClick={() =>
-          document.getElementById("services-grid")?.scrollIntoView({
-            behavior: "smooth",
-          })
-        }
-      >
-        Get Started
-      </Button>
-    </div>
-  </div>
-</section>
-{/* ========== END HERO SECTION ========== */}
-
+            <Button
+              className="w-fit bg-[#00D9FD] hover:bg-[#00D9FD]/90 text-white px-6 h-10 rounded-lg shadow-lg transition"
+              onClick={() =>
+                document.getElementById("services-grid")?.scrollIntoView({
+                  behavior: "smooth",
+                })
+              }
+            >
+              Get Started
+            </Button>
+          </div>
+        </div>
+      </section>
+      {/* ========== END HERO SECTION ========== */}
 
       {/* ========== SERVICES GRID SECTION START ========== */}
       <section id="services-grid" className="py-20 bg-background scroll-mt-20">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            variants={fadeUp}
-            viewport={{ once: true }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto"
-          >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
             {services.map((service, index) => (
-              <motion.div
+              <div
                 key={index}
-                whileHover={{ scale: 1.04, y: -6 }}
-                transition={{ type: "spring", stiffness: 200 }}
-                className="rounded-2xl p-1 bg-white shadow-lg hover:shadow-xl border border-gray-200 cursor-pointer"
+                className="rounded-2xl p-1 bg-white shadow-lg hover:shadow-xl border border-gray-200 cursor-pointer transition-all hover:scale-105"
               >
                 <ServiceCard
                   image={service.image}
                   title={service.title}
                   description={service.description}
                 />
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
       {/* ========== SERVICES GRID SECTION END ========== */}
@@ -476,6 +432,7 @@ const Services = () => {
                     <div className="w-14 h-14 mb-3 transition-all duration-300 group-hover:drop-shadow-xl">
                       <img
                         src={item.icon}
+                        alt={item.title}
                         className="w-full h-full object-contain"
                       />
                     </div>
