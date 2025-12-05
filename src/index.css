@@ -1,3 +1,18 @@
 @import "tailwindcss";
 @import "./styles/variables.css";
 @import "./styles/global.css";
+
+@keyframes route-fade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-route-fade {
+  animation: route-fade 0.35s ease-out;
+}

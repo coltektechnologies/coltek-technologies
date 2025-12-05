@@ -1,3 +1,4 @@
+// src/pages/About/About.tsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Reveal from "../../components/Reveal";
@@ -8,6 +9,9 @@ import FrederickImg from "../../assets/team/CTO.jpg";
 import MarkImg from "../../assets/team/mark.png";
 import WilliamsImg from "../../assets/team/william.jpg";
 import NancyImg from "../../assets/team/nancy.png";
+
+// NEW ABOUT HERO IMAGE
+import AboutHeroImg from "../../assets/images/about-hero.jpg";
 
 // Icons
 import {
@@ -26,7 +30,6 @@ import {
   Facebook,
   Instagram,
   ArrowRightCircle,
-  Twitter
 } from "lucide-react";
 
 const milestones = [
@@ -67,7 +70,7 @@ const milestones = [
 const About: React.FC = () => {
   const [active, setActive] = useState<number | null>(null);
 
-  // Auto-cycle milestones every 5 seconds unless user selects one
+  // Auto-cycle milestones
   useEffect(() => {
     if (active !== null) return;
 
@@ -82,12 +85,36 @@ const About: React.FC = () => {
 
   return (
     <div className="min-h-screen w-full bg-[#F4F7FA] text-[#102A43] flex flex-col">
-
-      {/* HERO SECTION */}
+      {/* NEW HERO SECTION — Same quality as Contact */}
       <Reveal delay={50}>
-        <section className="relative w-full">
-          <div className="h-[200px] md:h-[300px] lg:h-[380px] bg-gradient-to-r from-[#1C3D72] via-[#16406b] to-[#2C6B8F] flex items-center justify-center px-6">
-            <div className="text-center">
+        <section className="relative w-full overflow-hidden">
+          <div
+            className="
+              relative 
+              h-[260px]
+              md:h-[340px] 
+              lg:h-[420px]
+              w-full
+              flex items-center justify-center
+            "
+          >
+            {/* Background Image */}
+            <img
+              src={AboutHeroImg}
+              alt="About COLTEK"
+              className="
+                absolute inset-0 
+                w-full h-full 
+                object-cover 
+                object-center
+              "
+            />
+
+            {/* Dark overlay */}
+            <div className="absolute inset-0 bg-black/55" />
+
+            {/* Hero Content */}
+            <div className="relative z-10 text-center px-6">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white">
                 About Us
               </h1>
@@ -262,34 +289,63 @@ const About: React.FC = () => {
       {/* CEO SECTION */}
       <Reveal delay={450}>
         <section className="py-10 md:py-14 bg-[#F8FBFD]">
-          <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center gap-8">
+          <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center gap-10">
+            {/* Larger CEO Photo */}
             <img
               src={CEOImage}
               alt="CEO"
-              className="w-44 h-44 rounded-full object-cover ring-4 ring-white shadow-md"
+              className="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover ring-4 ring-white shadow-lg"
             />
 
             <div>
-              <h3 className="text-2xl font-bold text-[#1C3D72]">
+              <h3 className="text-3xl font-bold text-[#1C3D72]">
                 Boansi Kyeremateng Collins
               </h3>
-              <p className="text-sm text-[#607B8B] mb-3">
+
+              <p className="text-base text-[#607B8B] mb-3">
                 Chief Executive Officer
               </p>
-              <p className="text-sm text-[#42566A] leading-relaxed">
+
+              <p className="text-sm text-[#42566A] leading-relaxed max-w-xl">
                 Collins leads with innovation, integrity, and a long-term vision
-                for COLTEK Technologies.
+                for COLTEK Technologies — inspiring a culture built on
+                excellence, growth, and purpose-driven impact.
               </p>
 
-              <div className="flex gap-3 mt-4">
-                <a className="p-2 bg-white rounded-full shadow hover:-translate-y-1 transition">
-                  <Linkedin className="text-[#1C3D72]" />
+              {/* CEO Social Links — REAL LINKS */}
+              <div className="flex gap-4 mt-5">
+                {/* Facebook */}
+                <a
+                  href="https://www.facebook.com/CollinsBoansi"
+                  target="_blank"
+                  className="p-3 bg-white rounded-full shadow hover:-translate-y-1 transition"
+                >
+                  <Facebook className="text-[#1C3D72] w-5 h-5" />
                 </a>
-                <a className="p-2 bg-white rounded-full shadow hover:-translate-y-1 transition">
-                  <Facebook className="text-[#1C3D72]" />
+
+                {/* Instagram */}
+                <a
+                  href="https://www.instagram.com/boansicollins"
+                  target="_blank"
+                  className="p-3 bg-white rounded-full shadow hover:-translate-y-1 transition"
+                >
+                  <Instagram className="text-[#1C3D72] w-5 h-5" />
                 </a>
-                <a className="p-2 bg-white rounded-full shadow hover:-translate-y-1 transition">
-                  <Instagram className="text-[#1C3D72]" />
+
+                {/* X (Twitter) */}
+                <a
+                  href="https://twitter.com/Profs123456"
+                  target="_blank"
+                  className="p-3 bg-white rounded-full shadow hover:-translate-y-1 transition"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    className="w-5 h-5 text-[#1C3D72]"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M18.244 2.25h3.308l-7.227 8.26L23.25 21.75h-6.843l-5.003-6.536-5.75 6.536H2.344l7.73-8.79L1.125 2.25H8.12l4.533 5.993 5.59-5.993z" />
+                  </svg>
                 </a>
               </div>
             </div>
@@ -301,21 +357,16 @@ const About: React.FC = () => {
       <Reveal delay={550}>
         <section className="py-10 md:py-14">
           <div className="max-w-6xl mx-auto px-6">
-            <h2 className="text-2xl md:text-3xl font-bold text-center text-[#1C3D72] mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-center text-[#1C3D72] mb-10">
               Meet Our Team
             </h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
               {[
                 {
                   name: "Owusu Bonsu Frederick",
                   role: "Chief Technology Officer",
                   image: FrederickImg,
-                },
-                {
-                  name: "Ampomah Mark Hill",
-                  role: "Product Manager",
-                  image: MarkImg,
                 },
                 {
                   name: "Owusu Williams",
@@ -330,16 +381,38 @@ const About: React.FC = () => {
               ].map((m) => (
                 <div
                   key={m.name}
-                  className="bg-white rounded-xl p-5 text-center shadow-sm hover:-translate-y-1 hover:shadow-lg transition"
+                  className="
+              bg-white 
+              rounded-2xl 
+              p-8 
+              text-center 
+              shadow-md 
+              hover:shadow-xl 
+              hover:-translate-y-1 
+              transition
+              min-h-[340px]
+              flex flex-col items-center justify-start
+            "
                 >
+                  {/* BIGGER TEAM AVATAR */}
                   <img
                     src={m.image}
                     alt={m.name}
-                    className="w-28 h-28 rounded-full object-cover mx-auto mb-3 shadow-md"
+                    className="
+                w-36 
+                h-36 
+                rounded-full 
+                object-cover 
+                shadow-lg 
+                mb-5
+              "
                   />
 
-                  <div className="font-semibold text-[#102A43]">{m.name}</div>
-                  <div className="text-sm text-[#607B8B]">{m.role}</div>
+                  <div className="text-xl font-semibold text-[#102A43]">
+                    {m.name}
+                  </div>
+
+                  <div className="text-sm text-[#607B8B] mt-1">{m.role}</div>
                 </div>
               ))}
             </div>
@@ -387,7 +460,9 @@ const About: React.FC = () => {
       <footer className="w-full bg-[#102A43] text-white py-4 px-6">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between text-sm">
           <div>© {new Date().getFullYear()} COLTEK Technologies</div>
-          <div className="text-[#CDE9EF]">Built with care by the COLTEK team</div>
+          <div className="text-[#CDE9EF]">
+            Built with care by the COLTEK team
+          </div>
         </div>
       </footer>
     </div>
