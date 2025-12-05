@@ -20,7 +20,7 @@ import {
 import ContactHeroImg from "../../assets/images/contact-hero (1).jpg";
 
 /**
- * CONTACT PAGE —(Hero Polish)
+ * CONTACT PAGE (Hero Image Polish)
  *
  * ✔ Full hero image (no white gaps)
  * ✔ Correct cropping (object-cover)
@@ -155,9 +155,7 @@ const Contact: React.FC = () => {
 
             <div className="flex-1 text-sm">
               <div className="font-semibold">{t.title}</div>
-              {t.message && (
-                <div className="mt-1 text-sm opacity-90">{t.message}</div>
-              )}
+              {t.message && <div className="mt-1 text-sm opacity-90">{t.message}</div>}
             </div>
 
             <button
@@ -237,9 +235,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-sm font-semibold">Email</div>
-                    <div className="text-xs text-[#607B8B]">
-                      coltektechnologies@gmail.com
-                    </div>
+                    <div className="text-xs text-[#607B8B]">coltektechnologies@gmail.com</div>
                   </div>
                 </div>
 
@@ -263,9 +259,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-sm font-semibold">Location</div>
-                    <div className="text-xs text-[#607B8B]">
-                      Sunyani, Ghana (Remote-friendly)
-                    </div>
+                    <div className="text-xs text-[#607B8B]">Sunyani, Ghana (Remote-friendly)</div>
                   </div>
                 </div>
 
@@ -303,6 +297,15 @@ const Contact: React.FC = () => {
                   target="_blank"
                   className="p-2 bg-white rounded-full shadow hover:shadow-lg transform hover:-translate-y-1 transition"
                 >
+                  {/* simple phone icon using existing Phone icon */}
+                  <Phone className="w-4 h-4" />
+                  <span className="text-sm">WhatsApp: +233 XX XXX XXXX</span>
+                </a>
+              </div>
+
+              {/* Socials */}
+              <div className="flex gap-3 mt-4">
+                <a href="#" aria-label="Facebook" className="p-2 bg-white rounded-full shadow hover:shadow-lg transform hover:-translate-y-1 transition">
                   <Facebook className="text-[#1C3D72]" />
                 </a>
 
@@ -370,9 +373,7 @@ const Contact: React.FC = () => {
                 />
 
                 <div>
-                  <label className="text-sm font-medium text-[#102A43]">
-                    Name
-                  </label>
+                  <label className="text-sm font-medium text-[#102A43]">Name</label>
                   <input
                     name="name"
                     type="text"
@@ -383,9 +384,7 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-[#102A43]">
-                    Email
-                  </label>
+                  <label className="text-sm font-medium text-[#102A43]">Email</label>
                   <input
                     name="email"
                     type="email"
@@ -396,9 +395,7 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-[#102A43]">
-                    Subject
-                  </label>
+                  <label className="text-sm font-medium text-[#102A43]">Subject</label>
                   <input
                     name="subject"
                     type="text"
@@ -408,9 +405,7 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-[#102A43]">
-                    Message
-                  </label>
+                  <label className="text-sm font-medium text-[#102A43]">Message</label>
                   <textarea
                     name="message"
                     required
@@ -424,18 +419,13 @@ const Contact: React.FC = () => {
                     type="submit"
                     disabled={sending}
                     className="mt-2 px-5 py-3 flex items-center justify-center gap-2 rounded-lg font-semibold text-white shadow-md transform hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
-                    style={{
-                      background:
-                        "linear-gradient(90deg, #1C3D72 0%, #2EC4B6 100%)",
-                    }}
+                    style={{ background: "linear-gradient(90deg, #1C3D72 0%, #2EC4B6 100%)" }}
                   >
                     {sending ? "Sending..." : "Send Message"}
                     <Send className="w-4 h-4" />
                   </button>
 
-                  <div className="text-sm text-[#607B8B]">
-                    We reply within 48 hours
-                  </div>
+                  <div className="text-sm text-[#607B8B]">We reply within 48 hours</div>
                 </div>
               </form>
             </div>
@@ -464,27 +454,20 @@ const Contact: React.FC = () => {
 
                 <div className="p-4 bg-white">
                   <div className="text-sm font-semibold">Sunyani, Ghana</div>
-                  <div className="text-xs text-[#607B8B]">
-                    We operate remotely — no public office yet.
-                  </div>
+                  <div className="text-xs text-[#607B8B]">We operate remotely — no public office yet.</div>
                 </div>
               </div>
             </div>
 
             {/* FAQ */}
             <div>
-              <h3 className="text-xl font-semibold text-[#1C3D72] mb-4">
-                Frequently Asked Questions
-              </h3>
+              <h3 className="text-xl font-semibold text-[#1C3D72] mb-4">Frequently Asked Questions</h3>
 
               <div className="space-y-3">
                 {faqItems.map((item, i) => {
                   const isOpen = openFaq === i;
                   return (
-                    <div
-                      key={i}
-                      className="border border-[#E3E8EF] rounded-lg overflow-hidden"
-                    >
+                    <div key={i} className="border border-[#E3E8EF] rounded-lg overflow-hidden">
                       <button
                         aria-expanded={isOpen}
                         aria-controls={`faq-${i}`}
