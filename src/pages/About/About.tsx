@@ -6,7 +6,7 @@ import Reveal from "../../components/Reveal";
 // TEAM IMAGES
 import CEOImage from "../../assets/team/ceo.jpg";
 import FrederickImg from "../../assets/team/CTO.jpg";
-import MarkImg from "../../assets/team/mark.png";
+
 import WilliamsImg from "../../assets/team/william.jpg";
 import NancyImg from "../../assets/team/nancy.png";
 
