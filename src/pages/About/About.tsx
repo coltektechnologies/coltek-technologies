@@ -67,6 +67,41 @@ const milestones = [
   },
 ];
 
+const milestones = [
+  {
+    date: "Aug 2025",
+    title: "Founding of COLTEK",
+    description:
+      "A group of passionate young innovators came together to build a company focused on integrity, innovation, and purpose-driven technology.",
+    icon: <Flag className="text-[#5EC9F5]" />,
+    accent: "#5EC9F5",
+  },
+  {
+    date: "Sept 2025",
+    title: "Core Team Formation",
+    description:
+      "Our leadership and technical teams were officially formed, establishing a strong foundation for collaboration and excellence.",
+    icon: <Target className="text-[#FFB766]" />,
+    accent: "#FFB766",
+  },
+  {
+    date: "Oct 2025",
+    title: "First Projects & Clients",
+    description:
+      "We began delivering digital solutions, earning trust through professionalism, timely delivery, and consistent quality.",
+    icon: <Rocket className="text-[#7DE3C7]" />,
+    accent: "#7DE3C7",
+  },
+  {
+    date: "Nov 2025",
+    title: "Website Launch",
+    description:
+      "COLTEK’s official digital presence went live, signaling our readiness to serve clients globally with excellence.",
+    icon: <Globe className="text-[#8FB4FF]" />,
+    accent: "#8FB4FF",
+  },
+];
+
 const About: React.FC = () => {
   const [active, setActive] = useState<number | null>(null);
 
@@ -85,7 +120,7 @@ const About: React.FC = () => {
 
   return (
     <div className="min-h-screen w-full bg-[#F4F7FA] text-[#102A43] flex flex-col">
-      {/* NEW HERO SECTION — Same quality as Contact */}
+      {/* NEW HERO SECTION  */}
       <Reveal delay={50}>
         <section className="relative w-full overflow-hidden">
           <div
@@ -308,11 +343,11 @@ const About: React.FC = () => {
 
               <p className="text-sm text-[#42566A] leading-relaxed max-w-xl">
                 Collins leads with innovation, integrity, and a long-term vision
-                for COLTEK Technologies — inspiring a culture built on
+                for COLTEK Technologies, inspiring a culture built on
                 excellence, growth, and purpose-driven impact.
               </p>
 
-              {/* CEO Social Links — REAL LINKS */}
+              {/* CEO Social Links */}
               <div className="flex gap-4 mt-5">
                 {/* Facebook */}
                 <a
