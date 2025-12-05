@@ -26,7 +26,6 @@ import {
   HeartHandshake,
   Star,
   HandHelping,
-  
   Facebook,
   Instagram,
   ArrowRightCircle,
