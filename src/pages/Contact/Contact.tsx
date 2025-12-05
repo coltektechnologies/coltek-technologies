@@ -290,22 +290,11 @@ const Contact: React.FC = () => {
                 </a>
               </div>
 
-              {/* Socials */}
-              <div className="flex gap-3 mt-4">
-                <a
-                  href="https://www.facebook.com/coltektechnologies"
-                  target="_blank"
-                  className="p-2 bg-white rounded-full shadow hover:shadow-lg transform hover:-translate-y-1 transition"
-                >
-                  {/* simple phone icon using existing Phone icon */}
-                  <Phone className="w-4 h-4" />
-                  <span className="text-sm">WhatsApp: +233 XX XXX XXXX</span>
-                </a>
-              </div>
+             
 
               {/* Socials */}
               <div className="flex gap-3 mt-4">
-                <a href="#" aria-label="Facebook" className="p-2 bg-white rounded-full shadow hover:shadow-lg transform hover:-translate-y-1 transition">
+                <a href="https://www.facebook.com/coltektechnologies" aria-label="Facebook" className="p-2 bg-white rounded-full shadow hover:shadow-lg transform hover:-translate-y-1 transition">
                   <Facebook className="text-[#1C3D72]" />
                 </a>
 

@@ -67,40 +67,7 @@ const milestones = [
   },
 ];
 
-const milestones = [
-  {
-    date: "Aug 2025",
-    title: "Founding of COLTEK",
-    description:
-      "A group of passionate young innovators came together to build a company focused on integrity, innovation, and purpose-driven technology.",
-    icon: <Flag className="text-[#5EC9F5]" />,
-    accent: "#5EC9F5",
-  },
-  {
-    date: "Sept 2025",
-    title: "Core Team Formation",
-    description:
-      "Our leadership and technical teams were officially formed, establishing a strong foundation for collaboration and excellence.",
-    icon: <Target className="text-[#FFB766]" />,
-    accent: "#FFB766",
-  },
-  {
-    date: "Oct 2025",
-    title: "First Projects & Clients",
-    description:
-      "We began delivering digital solutions, earning trust through professionalism, timely delivery, and consistent quality.",
-    icon: <Rocket className="text-[#7DE3C7]" />,
-    accent: "#7DE3C7",
-  },
-  {
-    date: "Nov 2025",
-    title: "Website Launch",
-    description:
-      "COLTEK’s official digital presence went live, signaling our readiness to serve clients globally with excellence.",
-    icon: <Globe className="text-[#8FB4FF]" />,
-    accent: "#8FB4FF",
-  },
-];
+
 
 const About: React.FC = () => {
   const [active, setActive] = useState<number | null>(null);
