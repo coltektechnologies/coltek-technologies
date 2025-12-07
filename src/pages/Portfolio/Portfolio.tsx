@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import {
   Tag,
   ArrowRightCircle,
- 
   Globe,
   Smartphone,
   Cpu,
