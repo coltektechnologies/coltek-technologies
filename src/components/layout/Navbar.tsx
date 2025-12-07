@@ -41,14 +41,14 @@ const Navbar = () => {
     <div 
       className="flex justify-between top-0 left-0 right-0 shadow-md" 
       style={{ 
-        background: 'linear-gradient(97.91deg, #00D9FD 2.91%, #0AFE36 97.09%)',
+        backgroundColor: '#04062D',
         position: 'sticky',
         top: 0,
         zIndex: 50
       }}
     >
       <div className=" w-full max-w-screen-xl mx-auto flex justify-between items-center py-2 px-4 md:px-10 lg:px-20">
-        <img src={images.logo} className="w-25 filter brightness-0 invert" alt="Coltek Technologies Logo" />
+        <img src={images.logo} className="w-25" alt="Coltek Technologies Logo" />
         {/* Desktop Navigation */}
         <ul className="hidden md:flex gap-6 items-center relative">
           <NavLink to="/"

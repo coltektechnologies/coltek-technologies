@@ -1,4 +1,4 @@
-import logo from "./logo.svg"
+import logo from "./logo.png"
 import vector from "./Vector.svg"
 import app from "./app.svg"
 import fb from "./fb.svg"

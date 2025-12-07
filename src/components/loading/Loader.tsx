@@ -1,5 +1,5 @@
 
-import Logo from "../../assets/loading/logo.jpg";
+import Logo from "../../assets/loading/loading.jpg";
 
 const Loader = () => {
   return (
