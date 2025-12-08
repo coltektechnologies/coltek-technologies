@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { images } from "../../assets/images/images";
 import { allServices, serviceGroups } from "../../data/services";
 import TestimonialsSlider from "../../components/sections/TestimonialsSlider";
@@ -123,8 +123,8 @@ export default function Home() {
 // Hero Component
 // ------------------------
 
-function Hero({ }: { isMobile: boolean }) {
-  const words = ['Excellence', 'Innovation', 'Success', 'Impact', 'Growth'];
+function Hero({ isMobile }: { isMobile: boolean }) {
+  const words = useMemo(() => ['Excellence', 'Innovation', 'Success', 'Impact', 'Growth'], []);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -138,11 +138,13 @@ function Hero({ }: { isMobile: boolean }) {
     }, 2800);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [words.length]);
+  
+  const heroClass = isMobile ? 'h-[80vh]' : 'h-screen';
 
   return (
     <section
-      className="relative h-full w-full bg-cover bg-center bg-no-repeat flex items-center justify-center"
+      className={`relative w-full bg-cover bg-center bg-no-repeat flex items-center justify-center ${heroClass}`}
       style={{
         backgroundImage: `url(${images.heroBg})`,
       }}
