@@ -20,6 +20,7 @@ import rating from "./rating.svg"
 import client from "./client.svg"
 import _24_7 from "./24-7.svg"
 import logohover from "./logohover.png"
+import mobile from './mobile.jpg'
 
 export const images = {
     logo,
@@ -43,6 +44,7 @@ export const images = {
     rating,
     client,
     _24_7,
-    logohover
+    logohover,
+    mobile
     }
 export default images;
