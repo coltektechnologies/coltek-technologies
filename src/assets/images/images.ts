@@ -15,6 +15,11 @@ import testimonial1 from "./imgs1.svg"
 import testimonial2 from "./imgs2.svg"
 import web from "./web.svg"
 import cloud from "./cloud.svg"
+import globe from "./globe.svg"
+import rating from "./rating.svg"
+import client from "./client.svg"
+import _24_7 from "./24-7.svg"
+import logohover from "./logohover.png"
 
 export const images = {
     logo,
@@ -34,5 +39,10 @@ export const images = {
     testimonial2,
     web,
     cloud,
-}
+    globe,
+    rating,
+    client,
+    _24_7,
+    logohover
+    }
 export default images;

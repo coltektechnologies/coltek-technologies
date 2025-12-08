@@ -16,7 +16,7 @@ export const allServices: Service[] = [
     description: "Provide and manage website services",
     image: images.web,
     icon: '🌐',
-    buttonColor: "bg-[#E8F3FF] text-[#0066FF] hover:bg-[#d8ecff]"
+    buttonColor: "bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] text-white hover:opacity-90"
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ export const allServices: Service[] = [
     description: "Provide Cloud hosting and service",
     image: images.cloud,
     icon: '☁️',
-    buttonColor: "bg-[#0055CC] text-white hover:bg-[#0044a3]"
+    buttonColor: "bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] text-white hover:opacity-90"
   },
   {
     id: 3,
@@ -32,7 +32,7 @@ export const allServices: Service[] = [
     description: "Create powerful cross-platform mobile applications",
     image: images.app,
     icon: '📱',
-    buttonColor: "bg-[#E8F3FF] text-[#0066FF] hover:bg-[#d8ecff]"
+    buttonColor: "bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] text-white hover:opacity-90"
   },
   {
     id: 4,
@@ -40,7 +40,7 @@ export const allServices: Service[] = [
     description: "Expert IT solutions for your business",
     image: images.team,
     icon: '💼',
-    buttonColor: "bg-[#0055CC] text-white hover:bg-[#0044a3]"
+    buttonColor: "bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] text-white hover:opacity-90"
   }
 ];
 
