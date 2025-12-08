@@ -80,9 +80,13 @@ export default function Home() {
               <img
                 src={images.chooseUs}
                 alt="Team working on robotics project"
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover rounded-lg"
                 loading="lazy"
               />
+              <div className="p-4 bg-[#070C29] text-center">
+                <h3 className="text-xl font-bold text-white mb-2">Robotics Project</h3>
+                <p className="text-gray-300 text-sm">Innovative automation solutions for modern industries</p>
+              </div>
             </div>
 
             <div className="text-white">
@@ -140,11 +144,11 @@ function Hero({ isMobile }: { isMobile: boolean }) {
     return () => clearInterval(interval);
   }, [words.length]);
   
-  const heroClass = isMobile ? 'h-[80vh]' : 'h-screen';
+  const heroClass = isMobile ? 'min-h-[70vh] pt-6' : 'min-h-screen flex items-center';
 
   return (
     <section
-      className={`relative w-full bg-cover bg-center bg-no-repeat flex items-center justify-center ${heroClass}`}
+      className={`relative w-full bg-cover bg-center bg-no-repeat flex items-center justify-center ${heroClass} md:bg-contain`}
       style={{
         backgroundImage: `url(${images.heroBg})`,
       }}
@@ -152,23 +156,23 @@ function Hero({ isMobile }: { isMobile: boolean }) {
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40" />
 
       {/* Main hero content - centered */}
-      <div className="relative z-10 w-full px-6 sm:px-8 lg:px-12 py-12">
+      <div className="relative z-10 w-full px-6 sm:px-8 lg:px-12 py-4 mt-4 sm:mt-0">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div className="space-y-5 sm:space-y-6 max-w-2xl mx-auto lg:mx-0 px-2 sm:px-0">
               <h1 className="font-bold leading-tight">
-                <span className="uppercase block text-2xl sm:text-3xl md:text-3xl lg:text-3xl xl:text-4xl mb-1">Transforming Potentials</span>
+                <span className="uppercase block text-2xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl mb-2 sm:mb-3">Transforming Potentials</span>
                 
-                <span className="flex items-baseline gap-2">
+                <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-3">
                   <span className="uppercase text-xl sm:text-2xl lg:text-3xl xl:text-4xl">into</span>
-                  <span className="relative min-h-[2rem] sm:min-h-[2.5rem] lg:min-h-[3rem] flex items-center flex-1">
+                  <div className="relative min-h-[2.5rem] sm:min-h-[2.5rem] lg:min-h-[3.5rem] flex-1">
                     <span
-                      className={`transition-all duration-500 inline-block ${isAnimating ? 'opacity-0 -translate-y-2' : 'opacity-100 translate-y-0'} bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] bg-clip-text text-transparent font-bold uppercase text-xl sm:text-2xl lg:text-3xl xl:text-4xl`}
+                      className={`transition-all duration-500 inline-block w-full ${isAnimating ? 'opacity-0 -translate-y-2' : 'opacity-100 translate-y-0'} bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] bg-clip-text text-transparent font-bold uppercase text-2xl sm:text-3xl lg:text-4xl xl:text-5xl`}
                     >
                       {words[currentIndex]}
                     </span>
-                  </span>
-                </span>
+                  </div>
+                </div>
               </h1>
 
               <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 leading-relaxed">
