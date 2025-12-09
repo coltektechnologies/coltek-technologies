@@ -1,10 +1,17 @@
+// ========== MOBILE APP DEVELOPMENT PAGE START ==========
+// Main page for showcasing mobile app development services
+
+// ========== IMPORTS START ==========
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+// NOTE: Assuming these components exist in your project structure
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import DevelopmentProcess from "@/components/DevelopmentProcess";
 import TechStack from "@/components/TechStack";
 import ServicesCTA from "@/components/ServicesCTA";
+
+// VALUE IMPORTS (Icons and components)
 import { 
   Smartphone, 
   Code2, 
@@ -12,11 +19,28 @@ import {
   Palette, 
   Wrench, 
   Plug,
-  Code,
   Server,
   Database,
-  Cloud
+  Apple, 
+  SquareTerminal, 
+  Zap, 
+  Shield, 
+  User, 
+  Rocket, 
 } from "lucide-react";
+
+// TYPE IMPORTS
+import type { LucideProps } from "lucide-react";
+// ========== IMPORTS END ==========
+
+
+// Define the structure for the tech category data
+interface TechCategory {
+  name: string;
+  icon: React.FC<LucideProps>; 
+  techs: string[];
+}
+
 
 const MobileAppDevelopment = () => {
   const developmentSteps = [
@@ -52,164 +76,180 @@ const MobileAppDevelopment = () => {
     },
   ];
 
-  const techCategories = [
+  const techCategories: TechCategory[] = [
     {
-      name: "Frontend",
-      icon: Code,
-      techs: ["React", "Vue.js", "Next.js", "Angular", "TypeScript", "Tailwind CSS"],
+      name: "Native",
+      icon: Smartphone,
+      techs: ["Swift", "Kotlin", "Java", "Objective-C"],
+    },
+    {
+      name: "Cross-Platform",
+      icon: Layers,
+      techs: ["React Native", "Flutter", "Xamarin", "Ionic"],
     },
     {
       name: "Backend",
       icon: Server,
-      techs: ["Node.js", "Python", "PHP", "JAVA", "Express.js", "Django"],
+      techs: ["Node.js", "Python (Django/Flask)", "Go", "Firebase"],
     },
     {
-      name: "Database",
+      name: "Databases & Cloud",
       icon: Database,
-      techs: ["MongoDB", "PostgreSQL", "MySQL", "Redis", "Firebase", "DynamoDB"],
-    },
-    {
-      name: "Cloud & DevOps",
-      icon: Cloud,
-      techs: ["AWS", "Azure", "Google Cloud", "Docker", "Kubernetes", "CI/CD"],
+      techs: ["MongoDB", "PostgreSQL", "AWS", "Google Cloud", "Azure"],
     },
   ];
 
   return (
-    <div className="page-container min-h-screen">
+    // ========== PAGE CONTAINER START ==========
+    <div className="page-container min-h-screen bg-gray-900"> {/* Set global dark background */}
+      {/* ========== NAVBAR START ========== */}
       <Navbar />
+      {/* ========== NAVBAR END ========== */}
 
-      {/* HERO SECTION */}
-      <section className="hero-section relative bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#334155] text-white py-24 px-4 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-20 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl animate-float" />
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-float-delayed" />
+      {/* ============================================ */}
+      {/* START: HERO SECTION (DEEP SPACE BLACK & ELECTRIC BLUE) */}
+      {/* ============================================ */}
+      <section className="hero-section relative text-white py-24 lg:py-32 px-4 overflow-hidden" style={{
+        // PURE BLACK BACKGROUND FOR MAX CONTRAST
+        background: '#000000', 
+      }}>
+        {/* Background decorative elements - Intense Neon Effect */}
+        <div className="hero-bg-decorations absolute inset-0 opacity-40">
+          {/* Unified Accent Color (Teal/Blue) */}
+          <div className="decoration-circle absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-cyan-500 rounded-full blur-3xl mix-blend-lighten opacity-30 animate-float" />
+          <div className="decoration-circle absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-blue-500 rounded-full blur-3xl mix-blend-lighten opacity-30 animate-float-delayed" />
         </div>
         
-        <div className="relative z-10 container mx-auto max-w-6xl">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="animate-slide-in-left">
-              <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-2 mb-6">
-                <Smartphone className="w-4 h-4 text-blue-400" />
-                <span className="text-sm text-blue-300 font-medium">Mobile App Development</span>
+        <div className="hero-content-wrapper relative z-10 container mx-auto max-w-7xl">
+          <div className="hero-grid grid lg:grid-cols-2 gap-12 items-center">
+            
+            {/* ========== LEFT CONTENT START ========== */}
+            <div className="hero-left-content max-w-xl space-y-7 animate-slide-in-left">
+              {/* Service badge */}
+              <div className="service-badge inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-cyan-400/50 rounded-full px-5 py-2 shadow-lg shadow-cyan-500/10">
+                <Smartphone className="w-4 h-4 text-cyan-400" />
+                <span className="text-sm text-white font-semibold">Mobile App Development</span>
               </div>
 
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 font-montserrat leading-tight">
-                Build Amazing
-                <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                  Mobile Apps
+              {/* Main heading - ELECTRIC BLUE/TEAL GLOW */}
+              <h1 className="hero-title text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight" style={{textShadow: '0 0 5px rgba(255, 255, 255, 0.4)'}}>
+                Build Cutting-Edge
+                <span className="block mt-2 title-gradient text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-400" style={{textShadow: '0 0 10px rgba(74, 234, 252, 0.8), 0 0 20px rgba(59, 130, 246, 0.6)'}}>
+                  Mobile Experiences
                 </span>
               </h1>
               
-              <p className="text-lg text-white/80 mb-8 leading-relaxed">
-                Transform your ideas into powerful mobile experiences. Create iOS, Android, and cross-platform applications that users love with cutting-edge technology and exceptional design.
+              {/* Description */}
+              <p className="hero-description text-lg text-gray-300 leading-relaxed">
+                Transform your ideas into high-performance, market-ready applications for **iOS**, **Android**, and cross-platform ecosystems.
               </p>
 
-              {/* Platform badges */}
-              <div className="flex flex-wrap gap-3 mb-8">
+              {/* Key benefits grid - High Contrast Dark Cards */}
+              <div className="key-benefits-grid grid grid-cols-2 gap-4 pt-4">
                 {[
-                  { icon: "🍎", name: "iOS" },
-                  { icon: "🤖", name: "Android" },
-                  { icon: "⚛️", name: "React Native" }
-                ].map((platform, idx) => (
-                  <div 
-                    key={idx}
-                    className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-4 py-2 transform transition-all duration-300 hover:scale-105 hover:bg-white/20"
-                  >
-                    <span className="text-2xl">{platform.icon}</span>
-                    <span className="text-sm font-medium">{platform.name}</span>
-                  </div>
-                ))}
+                  { icon: Zap, title: "Optimized Performance", gradient: "from-blue-500 to-cyan-500", glow: "shadow-cyan-500/50" },
+                  { icon: User, title: "Intuitive UI/UX", gradient: "from-indigo-500 to-purple-500", glow: "shadow-indigo-500/50" },
+                  { icon: Shield, title: "Enterprise-Grade Security", gradient: "from-green-500 to-teal-500", glow: "shadow-teal-500/50" },
+                  { icon: Rocket, title: "Fast Time-to-Market", gradient: "from-cyan-500 to-blue-500", glow: "shadow-blue-500/50" }
+                ].map((benefit, idx) => {
+                  const BenefitIcon = benefit.icon;
+                  return (
+                    <div 
+                      key={idx}
+                      className={`benefit-card group bg-gray-900/80 rounded-xl p-4 border border-cyan-400/30 transform transition-all duration-300 hover:scale-105 hover:bg-gray-800 shadow-2xl shadow-black/70 hover:${benefit.glow}`}
+                    >
+                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center mb-2 bg-gradient-to-br ${benefit.gradient} shadow-lg group-hover:scale-110 transition-transform`}>
+                        <BenefitIcon className="w-4 h-4 text-white" strokeWidth={2.5} />
+                      </div>
+                      <div className="text-sm font-bold text-white">{benefit.title}</div>
+                    </div>
+                  );
+                })}
               </div>
 
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-4 mb-8">
-                {[
-                  { number: "200+", label: "Apps Built", color: "blue" },
-                  { number: "4.8★", label: "Avg Rating", color: "purple" },
-                  { number: "5M+", label: "Downloads", color: "pink" }
-                ].map((stat, idx) => (
-                  <div 
-                    key={idx}
-                    className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 transform transition-all duration-300 hover:scale-105 hover:bg-white/10"
-                  >
-                    <div className={`text-3xl font-bold text-${stat.color}-400 mb-1`}>{stat.number}</div>
-                    <div className="text-sm text-white/60">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-wrap gap-3">
+              {/* CTA buttons */}
+              <div className="cta-buttons-container flex flex-wrap gap-4 pt-2">
                 <Button 
                   asChild
                   size="lg" 
-                  className="bg-blue-600 hover:bg-blue-700 font-poppins transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                  className="cta-button-primary bg-cyan-400 text-gray-900 hover:bg-cyan-300 font-bold rounded-full px-8 py-6 text-base transition-all duration-300 shadow-xl shadow-cyan-500/40 hover:shadow-cyan-500/70 border-0"
                 >
-                  <Link to="/contact">Start Your Project</Link>
+                  <Link to="/contact">Start Your Project →</Link>
                 </Button>
                 <Button 
                   asChild
                   size="lg" 
-                  variant="outline"
-                  className="border-2 border-white text-white hover:bg-white/10 transition-all duration-300 hover:scale-105"
+                  className="cta-button-secondary bg-transparent hover:bg-white/10 text-white font-semibold rounded-full px-8 py-6 text-base border-2 border-white/40 hover:border-cyan-400 transition-all duration-300 shadow-lg shadow-black/50"
                 >
-                  <Link to="/services">View Services</Link>
+                  <Link to="/services">Explore Solutions</Link>
                 </Button>
               </div>
             </div>
+            {/* ========== LEFT CONTENT END ========== */}
 
-            {/* Phone Mockup */}
-            <div className="relative lg:flex justify-center hidden animate-slide-in-right">
-              <div className="relative">
-                {/* Floating elements */}
+            {/* ========== RIGHT CONTENT (PHONE MOCKUP) START ========== */}
+            <div className="hero-right-content relative lg:flex justify-center hidden animate-slide-in-right">
+              <div className="phone-mockup-wrapper relative transform perspective-1000 rotate-y-6 transition-transform duration-700">
+                
+                {/* Floating NEON Glow element behind the phone (Teal/Blue) */}
+                <div className="absolute inset-x-20 inset-y-10 bg-cyan-500/30 rounded-full blur-[80px] z-0 opacity-70 animate-pulse-slow" />
+
+
+                {/* Floating icon elements (Teal/Blue accents) */}
                 {[
-                  { Icon: Code2, pos: "-left-8 top-20", color: "blue" },
-                  { Icon: Palette, pos: "-right-8 top-40", color: "purple" },
-                  { Icon: Layers, pos: "-left-8 bottom-32", color: "pink" }
-                ].map((item, idx) => (
-                  <div 
-                    key={idx}
-                    className={`absolute ${item.pos} w-16 h-16 bg-${item.color}-500/20 backdrop-blur-sm rounded-2xl border border-${item.color}-500/30 flex items-center justify-center animate-float`}
-                    style={{ animationDelay: `${idx * 0.5}s` }}
-                  >
-                    <item.Icon className={`w-8 h-8 text-${item.color}-400`} />
-                  </div>
-                ))}
+                  { Icon: Apple, pos: "-left-12 top-16", gradient: "from-blue-400 to-cyan-400", delay: "0s" },
+                  { Icon: SquareTerminal, pos: "-right-12 top-40", gradient: "from-teal-400 to-green-400", delay: "0.5s" },
+                  { Icon: Code2, pos: "-left-12 bottom-24", gradient: "from-cyan-400 to-blue-400", delay: "1s" }
+                ].map((item, idx) => {
+                  const FloatingIcon = item.Icon;
+                  return (
+                    <div 
+                      key={idx}
+                      className={`floating-icon absolute ${item.pos} w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl flex items-center justify-center animate-float border border-white/30`}
+                      style={{ animationDelay: item.delay }}
+                    >
+                      <FloatingIcon className={`w-8 h-8 text-white bg-gradient-to-r ${item.gradient} bg-clip-text text-transparent`} />
+                    </div>
+                  );
+                })}
 
-                {/* Phone */}
-                <div className="relative w-80 h-[600px] bg-slate-900 rounded-[3rem] p-3 shadow-2xl border-8 border-slate-800 transform transition-transform duration-500 hover:scale-105">
-                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-40 h-7 bg-slate-900 rounded-b-3xl z-10"></div>
+                {/* Phone device mockup */}
+                <div className="phone-device relative w-80 h-[600px] bg-slate-900 rounded-[3rem] p-3 shadow-2xl border-8 border-cyan-700 z-10 transform transition-transform duration-500 hover:scale-105">
+                  {/* Phone notch */}
+                  <div className="phone-notch absolute top-0 left-1/2 transform -translate-x-1/2 w-40 h-7 bg-slate-900 rounded-b-3xl z-20"></div>
                   
-                  <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 rounded-[2.5rem] overflow-hidden">
-                    <div className="flex justify-between items-center px-8 pt-3 pb-2 text-white text-xs">
-                      <span className="font-semibold">9:41</span>
-                      <div className="flex items-center gap-1">
-                        <div className="w-4 h-3">📶</div>
-                        <div className="w-4 h-3">📡</div>
-                        <div className="w-4 h-3">🔋</div>
+                  {/* Phone screen */}
+                  <div className="phone-screen w-full h-full bg-gradient-to-br from-gray-900 via-blue-950 to-teal-950 rounded-[2.5rem] overflow-hidden">
+                    {/* Status bar */}
+                    <div className="status-bar flex justify-between items-center px-8 pt-3 pb-2 text-white text-xs">
+                      <span className="time font-semibold">9:42</span>
+                      <div className="status-icons flex items-center gap-1">
+                        <div className="icon w-4 h-3">📶</div>
+                        <div className="icon w-4 h-3">📡</div>
+                        <div className="icon w-4 h-3">🔋</div>
                       </div>
                     </div>
 
-                    <div className="px-6 pt-8">
-                      <div className="text-white text-2xl font-bold mb-2">Your App</div>
-                      <div className="text-white/80 text-sm mb-6">Beautiful & Functional</div>
+                    {/* App content */}
+                    <div className="app-content px-6 pt-8">
+                      <div className="app-title text-white text-2xl font-bold mb-2">Coltek App</div>
+                      <div className="app-subtitle text-white/80 text-sm mb-6">Designed for Excellence</div>
                       
-                      <div className="space-y-3">
+                      {/* Feature cards - High Contrast Neon/Glow (Teal/Blue) */}
+                      <div className="feature-cards space-y-3">
                         {[
-                          { icon: "🎨", label: "Modern Design", color: "from-blue-400 to-blue-600" },
-                          { icon: "⚡", label: "Fast Performance", color: "from-purple-400 to-purple-600" },
-                          { icon: "🔒", label: "Secure & Safe", color: "from-pink-400 to-pink-600" },
-                          { icon: "👤", label: "User Friendly", color: "from-indigo-400 to-indigo-600" },
+                          { icon: "🎨", label: "Modern Design", color: "shadow-cyan-400/50", glow: "border-cyan-400/70" },
+                          { icon: "⚡", label: "Fast Performance", color: "shadow-blue-400/50", glow: "border-blue-400/70" },
+                          { icon: "🔒", label: "Secure & Safe", color: "shadow-teal-400/50", glow: "border-teal-400/70" },
+                          { icon: "👤", label: "User Friendly", color: "shadow-indigo-400/50", glow: "border-indigo-400/70" },
                         ].map((feature, idx) => (
                           <div
                             key={idx}
-                            className={`bg-gradient-to-r ${feature.color} rounded-2xl p-4 flex items-center gap-3 backdrop-blur-sm transform transition-all duration-300 hover:scale-105`}
-                            style={{ animationDelay: `${idx * 100}ms` }}
+                            // Using transparent background and adding a strong, colored shadow
+                            className={`feature-card bg-white/5 backdrop-blur-md rounded-2xl p-4 flex items-center gap-3 transform transition-all duration-300 hover:scale-[1.02] shadow-xl ${feature.color} border ${feature.glow}`}
                           >
-                            <div className="text-2xl">{feature.icon}</div>
-                            <div className="text-white font-medium">{feature.label}</div>
+                            <div className="feature-icon text-2xl">{feature.icon}</div>
+                            <div className="feature-label text-white font-medium">{feature.label}</div>
                           </div>
                         ))}
                       </div>
@@ -218,214 +258,296 @@ const MobileAppDevelopment = () => {
                 </div>
               </div>
             </div>
+            {/* ========== RIGHT CONTENT (PHONE MOCKUP) END ========== */}
+            
           </div>
         </div>
       </section>
+      {/* ============================================ */}
+      {/* END: HERO SECTION */}
+      {/* ============================================ */}
 
-      {/* SERVICES SECTION */}
-      <section className="py-20 px-4 bg-background">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-center mb-4">Mobile Development Services</h2>
-          <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
-            Comprehensive mobile solutions tailored to your business needs
-          </p>
+      {/* ============================================ */}
+      {/* START: SERVICES SECTION (WHITE Background - As Requested) */}
+      {/* ============================================ */}
+      <section className="services-section py-24 px-4 bg-white"> 
+        <div className="services-content-wrapper container mx-auto max-w-7xl">
+          {/* Section header */}
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="section-title text-4xl md:text-5xl font-bold text-slate-900">
+              Mobile Development Services
+            </h2>
+            <p className="section-subtitle text-xl text-slate-600 max-w-2xl mx-auto">
+              Comprehensive mobile solutions tailored to your business needs
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Services grid */}
+          <div className="services-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                icon: Smartphone,
+                icon: Apple,
                 title: "Native iOS Development",
                 description: "Build powerful and intuitive iOS applications using Swift and SwiftUI with full access to Apple ecosystem integration.",
                 features: ["Swift & SwiftUI development", "App Store optimization", "Apple Watch & iPad apps", "iCloud & Core Data"],
-                iconGradient: "from-blue-500 to-blue-600",
-                borderColor: "#3B82F6",
+                iconGradient: "from-indigo-600 to-blue-600",
+                accentColor: "bg-blue-600",
+                colorClass: "text-blue-700",
               },
               {
-                icon: Code2,
+                icon: SquareTerminal, 
                 title: "Native Android Development",
                 description: "Create robust Android applications with Kotlin and Jetpack Compose for Android devices.",
                 features: ["Kotlin & Jetpack Compose", "Material Design 3", "Google Play services", "Firebase integration"],
-                iconGradient: "from-green-500 to-green-600",
-                borderColor: "#10B981",
+                iconGradient: "from-green-600 to-teal-600",
+                accentColor: "bg-teal-600",
+                colorClass: "text-teal-700",
               },
               {
                 icon: Layers,
                 title: "Cross-Platform Apps",
                 description: "Develop once, deploy everywhere with React Native and Flutter for consistent experiences.",
                 features: ["React Native & Flutter", "Code reusability", "Native performance", "Single codebase"],
-                iconGradient: "from-purple-500 to-purple-600",
-                borderColor: "#8B5CF6",
+                iconGradient: "from-purple-600 to-pink-600",
+                accentColor: "bg-purple-600",
+                colorClass: "text-purple-700",
               },
               {
                 icon: Palette,
-                title: "UI/UX Design",
+                title: "UI/UX Design & Prototyping",
                 description: "Create stunning, intuitive interfaces that work seamlessly across all devices.",
-                features: ["User research & wireframes", "Wireframing & prototyping", "Design systems", "Usability testing"],
-                iconGradient: "from-pink-500 to-pink-600",
-                borderColor: "#EC4899",
+                features: ["User research & wireframes", "Design systems", "Usability testing", "High-fidelity prototypes"],
+                iconGradient: "from-yellow-600 to-orange-600",
+                accentColor: "bg-orange-600",
+                colorClass: "text-orange-700",
               },
               {
                 icon: Wrench,
-                title: "App Maintenance",
+                title: "App Maintenance & Support",
                 description: "Keep your app running smoothly with regular updates and performance monitoring.",
                 features: ["Regular updates", "Bug fixing", "Performance monitoring", "OS compatibility"],
-                iconGradient: "from-orange-500 to-orange-600",
-                borderColor: "#F97316",
+                iconGradient: "from-cyan-600 to-teal-600",
+                accentColor: "bg-cyan-600",
+                colorClass: "text-cyan-700",
               },
               {
                 icon: Plug,
-                title: "API Integration",
+                title: "API & Backend Integration",
                 description: "Connect your app to any backend service with RESTful APIs and GraphQL.",
                 features: ["RESTful API integration", "GraphQL implementation", "Third-party services", "Real-time data sync"],
-                iconGradient: "from-cyan-500 to-cyan-600",
-                borderColor: "#06B6D4",
+                iconGradient: "from-rose-600 to-red-600",
+                accentColor: "bg-red-600",
+                colorClass: "text-red-700",
               },
             ].map((service, index) => {
               const IconComponent = service.icon;
               
               return (
+                // Service card - White background coherence
                 <div
                   key={index}
-                  className="bg-card border border-border rounded-2xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 relative overflow-hidden group"
+                  className={`service-card bg-white rounded-2xl p-7 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 group border border-gray-100 relative overflow-hidden transform hover:shadow-cyan-600/50`}
                 >
-                  <div 
-                    className="absolute bottom-0 left-0 right-0 h-1 rounded-b-2xl transition-all duration-300 group-hover:h-2"
-                    style={{ backgroundColor: service.borderColor }}
-                  />
-                  
-                  <div className={`w-14 h-14 bg-gradient-to-br ${service.iconGradient} rounded-xl flex items-center justify-center mb-4 transform transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6`}>
-                    <IconComponent className="w-8 h-8 text-white" />
+                  {/* Icon container - Prominent gradient */}
+                  <div className={`icon-container w-16 h-16 bg-gradient-to-br ${service.iconGradient} rounded-xl flex items-center justify-center mb-4 transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-2xl shadow-gray-400/50`}>
+                    <IconComponent className="icon w-8 h-8 text-white" strokeWidth={2.5} />
                   </div>
                   
-                  <h3 className="text-xl font-bold mb-3 font-montserrat">{service.title}</h3>
-                  <p className="text-muted-foreground mb-4 text-sm leading-relaxed">{service.description}</p>
+                  {/* Service title */}
+                  <h3 className={`service-title text-xl font-bold mb-3 text-slate-900 transition-colors duration-300 group-hover:${service.colorClass}`}>{service.title}</h3>
                   
-                  <ul className="space-y-2">
+                  {/* Service description */}
+                  <p className="service-description text-gray-600 mb-5 text-sm leading-relaxed">{service.description}</p>
+                  
+                  {/* Features list */}
+                  <ul className="features-list space-y-2">
                     {service.features.map((feature, fIndex) => (
-                      <li key={fIndex} className="flex items-center gap-2 text-sm">
-                        <div className="w-1.5 h-1.5 bg-blue-500 rounded-full flex-shrink-0" />
-                        <span className="text-muted-foreground">{feature}</span>
+                      <li key={fIndex} className="feature-item flex items-start gap-3 text-sm">
+                        {/* Bullet color matches the primary theme (deep blue) */}
+                        <div className={`feature-bullet w-1.5 h-1.5 bg-cyan-600 rounded-full flex-shrink-0 mt-1.5`} />
+                        <span className="feature-text text-gray-700">{feature}</span>
                       </li>
                     ))}
                   </ul>
+
+                  {/* Accent bottom line - Primary color accent - Solid color flash */}
+                  <div className={`absolute bottom-0 left-0 right-0 h-1 ${service.accentColor} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-b-2xl`} />
                 </div>
               );
             })}
           </div>
         </div>
       </section>
+      {/* ============================================ */}
+      {/* END: SERVICES SECTION */}
+      {/* ============================================ */}
 
-      {/* WHY CHOOSE SECTION */}
-      <section className="py-16 px-4 bg-gray-50">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl font-bold text-center mb-12">Why Choose Our Mobile App Development</h2>
+      {/* ============================================ */}
+      {/* START: WHY CHOOSE SECTION (Dark Background Coherence) */}
+      {/* ============================================ */}
+      <section className="why-choose-section py-24 px-4 bg-gray-950 border-t border-gray-800"> 
+        <div className="why-choose-content-wrapper container mx-auto max-w-7xl">
+          {/* Section header */}
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="section-title text-4xl md:text-5xl font-bold text-white">
+              Why Choose Coltek
+            </h2>
+            <p className="section-subtitle text-xl text-gray-400 max-w-2xl mx-auto">
+              Our commitment to quality, efficiency, and user-centric design sets us apart.
+            </p>
+          </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Benefits grid - Dark background, white text, top border accent (Fix for overlap) */}
+          <div className="benefits-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: "Expert Team",
-                description: "Experienced developers skilled in iOS, Android, and cross-platform technologies",
+                title: "Expert & Certified Team",
+                description: "Experienced developers skilled in native and cross-platform technologies (Swift, Kotlin, Flutter, React Native).",
+                icon: Code2,
+                color: "text-blue-400",
+                accent: "bg-blue-500",
               },
               {
-                title: "Agile Process",
-                description: "Flexible development approach with regular updates and continuous feedback",
+                title: "User-Centric UI/UX",
+                description: "We design intuitive and accessible interfaces that guarantee high user adoption and satisfaction.",
+                icon: Palette,
+                color: "text-cyan-400",
+                accent: "bg-cyan-500",
               },
               {
-                title: "Quality Assurance",
-                description: "Rigorous testing across devices and platforms to ensure flawless performance",
+                title: "Agile & Transparent Process",
+                description: "Flexible development approach with regular sprints, demos, and continuous feedback loops.",
+                icon: Layers,
+                color: "text-orange-400",
+                accent: "bg-orange-500",
               },
               {
-                title: "On-Time Delivery",
-                description: "Committed to meeting deadlines without compromising on quality",
+                title: "Rigorous Quality Assurance",
+                description: "Comprehensive testing, performance audits, and security checks across all target devices and OS versions.",
+                icon: Shield,
+                color: "text-green-400",
+                accent: "bg-green-500",
               },
               {
-                title: "Scalable Solutions",
-                description: "Apps built to grow with your business and handle increasing user loads",
+                title: "Scalable & Future-Proof Code",
+                description: "Apps built with modular architecture and clean code standards ready to handle massive user growth.",
+                icon: Server,
+                color: "text-indigo-400",
+                accent: "bg-indigo-500",
               },
               {
-                title: "Ongoing Support",
-                description: "Continuous maintenance and support to keep your app updated and secure",
+                title: "Post-Launch Partnership",
+                description: "Dedicated maintenance, monitoring, updates, and feature additions to ensure long-term success.",
+                icon: Plug,
+                color: "text-red-400",
+                accent: "bg-red-500",
               },
-            ].map((item, index) => (
-              <div 
-                key={index} 
-                className="bg-card border border-border rounded-xl p-6 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
-              >
-                <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
-              </div>
-            ))}
+            ].map((item, index) => {
+              const BenefitIcon = item.icon;
+              return (
+                <div 
+                  key={index} 
+                  className={`benefit-card bg-gray-800 rounded-xl p-8 shadow-lg transition-all duration-300 transform hover:scale-[1.02] relative group overflow-hidden border border-gray-700`}
+                >
+                  {/* Top Accent Line (Fixes the previous overlap issue) */}
+                  <div className={`absolute top-0 left-0 right-0 h-1 ${item.accent} transition-transform duration-300`} />
+                  
+                  {/* Icon and Title Container */}
+                  <div className="flex items-start space-x-4 mb-4">
+                      {/* Standard Icon */}
+                      <div className="icon-wrapper w-10 h-10 flex items-center justify-center rounded-lg bg-gray-900 text-blue-500 transition-all duration-300">
+                        <BenefitIcon className={`w-5 h-5 ${item.color}`} strokeWidth={2.5} />
+                      </div>
+                      <h3 className="benefit-title text-xl font-bold text-white">{item.title}</h3>
+                  </div>
+                  
+                  {/* Description */}
+                  <p className="benefit-description text-gray-400 text-sm leading-relaxed mt-4">{item.description}</p>
+
+                  {/* Hover glow effect (Teal/Blue) */}
+                  <div className={`absolute inset-0 rounded-xl transition-shadow duration-300 pointer-events-none group-hover:shadow-[0_0_20px_0px] group-hover:shadow-cyan-500/30`} />
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
+      {/* ============================================ */}
+      {/* END: WHY CHOOSE SECTION */}
+      {/* ============================================ */}
 
-      <TechStack categories={techCategories} />
+      {/* ============================================ */}
+      {/* START: TECH STACK SECTION */}
+      {/* ============================================ */}
+      <TechStack 
+        categories={techCategories} 
+        themeColor="blue" 
+      />
+      {/* ============================================ */}
+      {/* END: TECH STACK SECTION */}
+      {/* ============================================ */}
+
+      {/* ============================================ */}
+      {/* START: DEVELOPMENT PROCESS SECTION */}
+      {/* ============================================ */}
       <DevelopmentProcess steps={developmentSteps} />
+      {/* ============================================ */}
+      {/* END: DEVELOPMENT PROCESS SECTION */}
+      {/* ============================================ */}
+
+      {/* ============================================ */}
+      {/* START: SERVICES CTA SECTION (Updated Button Color) */}
+      {/* ============================================ */}
       <ServicesCTA 
         primaryButtonText="Start Your App Project"
         secondaryButtonText="Schedule Consultation"
       />
+      {/* ============================================ */}
+      {/* END: SERVICES CTA SECTION */}
+      {/* ============================================ */}
+
+      {/* ========== FOOTER START ========== */}
       <Footer />
+      {/* ========== FOOTER END ========== */}
       
-      <style jsx>{`
+      {/* ========== ANIMATIONS START (Ensured correct termination) ========== */}
+      <style>{`
         @keyframes slide-in-left {
-          from {
-            opacity: 0;
-            transform: translateX(-40px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
+          from { opacity: 0; transform: translateX(-40px); }
+          to { opacity: 1; transform: translateX(0); }
         }
         
         @keyframes slide-in-right {
-          from {
-            opacity: 0;
-            transform: translateX(40px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
+          from { opacity: 0; transform: translateX(40px); }
+          to { opacity: 1; transform: translateX(0); }
         }
         
         @keyframes float {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-15px);
-          }
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-15px); }
         }
         
         @keyframes float-delayed {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-20px);
-          }
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 0.5; transform: scale(1); }
+          50% { opacity: 0.8; transform: scale(1.05); }
         }
         
-        .animate-slide-in-left {
-          animation: slide-in-left 0.8s ease-out;
-        }
-        
-        .animate-slide-in-right {
-          animation: slide-in-right 0.8s ease-out;
-        }
-        
-        .animate-float {
-          animation: float 3s ease-in-out infinite;
-        }
-        
-        .animate-float-delayed {
-          animation: float-delayed 4s ease-in-out infinite;
-        }
+        .animate-slide-in-left { animation: slide-in-left 0.8s ease-out; }
+        .animate-slide-in-right { animation: slide-in-right 0.8s ease-out; }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-float-delayed { animation: float-delayed 4s ease-in-out infinite; }
+        .animate-pulse-slow { animation: pulse-slow 6s ease-in-out infinite; }
       `}</style>
+      {/* ========== ANIMATIONS END ========== */}
     </div>
+    // ========== PAGE CONTAINER END ==========
   );
 };
 
 export default MobileAppDevelopment;
+// ========== MOBILE APP DEVELOPMENT PAGE END ==========

@@ -1,3 +1,5 @@
+// Main page for showcasing web development and software solutions
+
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
@@ -5,9 +7,21 @@ import Footer from "@/components/layout/Footer";
 import DevelopmentProcess from "@/components/DevelopmentProcess";
 import TechStack from "@/components/TechStack";
 import ServicesCTA from "@/components/ServicesCTA";
-import { Globe, Code, Server, Database, Cloud } from "lucide-react";
+import { 
+  Code, 
+  Server, 
+  Database, 
+  Cloud,
+  Layers3,
+  ShoppingBag,
+  Maximize2,
+  LayoutGrid,
+  Plug,
+  Zap,
+} from "lucide-react";
 
 const SoftwareSolutions = () => {
+  
   const developmentSteps = [
     {
       title: "Discovery & Research",
@@ -65,32 +79,35 @@ const SoftwareSolutions = () => {
   ];
 
   return (
-    <div className="page-container min-h-screen">
+    <div className="page-container min-h-screen bg-white">
       <Navbar />
 
-      {/* HERO SECTION */}
-      <section className="hero-section relative bg-gradient-to-br from-[#0A1628] via-[#1a2847] to-[#2a3f6f] text-white py-24 px-4 overflow-hidden">
-        {/* Animated background */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 right-20 w-64 h-64 bg-blue-400 rounded-full blur-3xl animate-pulse-slow" />
-          <div className="absolute bottom-32 left-32 w-48 h-48 bg-purple-400 rounded-full blur-3xl animate-pulse-slow animation-delay-1000" />
+      {/* HERO SECTION - Dark Indigo/Violet theme */}
+      <section className="hero-section relative text-white py-24 px-4 overflow-hidden" style={{
+        background: 'linear-gradient(45deg, #1e1b4b 0%, #4c1d95 50%, #9333ea 100%)' 
+      }}>
+        <div className="hero-bg-decorations absolute inset-0 opacity-10">
+          <div className="decoration-circle absolute top-20 right-20 w-96 h-96 bg-violet-300 rounded-full blur-3xl animate-pulse-slow" />
+          <div className="decoration-circle absolute bottom-32 left-32 w-96 h-96 bg-indigo-300 rounded-full blur-3xl animate-pulse-slow animation-delay-1000" />
         </div>
         
-        <div className="relative z-10 container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="max-w-xl animate-fade-in-left">
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+        <div className="hero-content-wrapper relative z-10 container mx-auto max-w-7xl">
+          <div className="hero-grid grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            {/* LEFT CONTENT */}
+            <div className="hero-left-content max-w-xl animate-fade-in-left">
+              <h1 className="hero-title text-5xl md:text-6xl font-bold mb-6 leading-tight">
                 Web Development Solutions
               </h1>
               
-              <p className="text-lg text-white/80 leading-relaxed mb-8">
+              <p className="hero-description text-lg text-white/95 leading-relaxed mb-8">
                 Transform your digital presence with cutting-edge web applications. 
-                We create responsive, scalable, and user-centric websites that drive 
+                We create **responsive**, **scalable**, and **user-centric** websites that drive 
                 business growth and deliver exceptional experiences.
               </p>
 
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-4 mb-8">
+              {/* Stats grid */}
+              <div className="stats-grid grid grid-cols-3 gap-4 mb-8">
                 {[
                   { number: "300+", label: "Projects Delivered" },
                   { number: "98%", label: "Client Satisfaction" },
@@ -98,174 +115,193 @@ const SoftwareSolutions = () => {
                 ].map((stat, idx) => (
                   <div 
                     key={idx}
-                    className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-center transform transition-all duration-300 hover:scale-105 hover:bg-white/10"
-                    style={{ animationDelay: `${idx * 100}ms` }}
+                    className="stat-card bg-indigo-900/40 backdrop-blur-md border border-violet-400/30 rounded-xl p-4 text-center transform transition-all duration-300 hover:scale-105 hover:bg-indigo-800/60 shadow-lg"
                   >
-                    <div className="text-3xl font-bold mb-1">{stat.number}</div>
-                    <div className="text-xs text-white/70">{stat.label}</div>
+                    <div className="stat-number text-3xl font-bold mb-1 text-white">{stat.number}</div>
+                    <div className="stat-label text-xs text-violet-200">{stat.label}</div>
                   </div>
                 ))}
               </div>
 
-              {/* CTA Buttons */}
-              <div className="flex flex-wrap gap-3">
+              {/* CTA buttons */}
+              <div className="cta-buttons-container flex flex-wrap gap-3">
                 <Button 
                   asChild
                   size="lg" 
-                  className="text-white font-medium rounded-lg px-6 border-0 transition-all duration-300 hover:scale-105 hover:shadow-xl"
-                  style={{
-                    background: 'linear-gradient(to right, #111C4C 0%, #141E48 94%)',
-                    boxShadow: '0px 2px 4px 0px #00D9FD',
-                  }}
+                  className="cta-button-primary bg-violet-500 text-white hover:bg-violet-600 font-semibold rounded-xl px-8 py-6 text-base transition-all duration-300 hover:scale-105 hover:shadow-2xl border-0 shadow-lg shadow-violet-500/50"
                 >
                   <Link to="/contact">Start Your Project</Link>
                 </Button>
                 <Button
                   asChild
                   size="lg"
-                  className="text-white font-medium rounded-lg px-6 border-0 transition-all duration-300 hover:scale-105 hover:shadow-xl"
-                  style={{
-                    background: 'linear-gradient(to right, #111C4C 0%, #141E48 94%)',
-                    boxShadow: '0px 2px 4px 0px #00D9FD',
-                  }}
+                  variant="outline"
+                  className="cta-button-secondary border-2 border-white text-white hover:bg-white/10 rounded-xl px-8 py-6 text-base transition-all duration-300 hover:scale-105"
                 >
                   <Link to="/services">View Services</Link>
                 </Button>
               </div>
             </div>
+            {/* LEFT CONTENT END */}
 
-            {/* Code Preview */}
-            <div className="relative animate-fade-in-right">
+            {/* RIGHT CONTENT (CODE PREVIEW) - FIX: Darker background for contrast */}
+            <div className="hero-right-content relative animate-fade-in-right">
               <div 
-                className="rounded-2xl p-6 shadow-2xl transform transition-all duration-500 hover:scale-105"
+                className="code-preview-container rounded-2xl p-6 shadow-2xl transform transition-all duration-500 hover:scale-105 border border-violet-400/50"
                 style={{
-                  background: 'linear-gradient(135deg, #2E386D 0%, #1D2753 100%)',
-                  border: '1px solid #646060',
+                  // FIX: Changed to a solid, very dark background for maximum contrast
+                  background: 'rgba(15, 23, 42, 0.95)', // slate-900 with high opacity
+                  backdropFilter: 'blur(10px)',
                 }}
               >
-                <div className="flex gap-2 mb-6">
-                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                {/* Browser dots */}
+                <div className="browser-controls flex gap-2 mb-6">
+                  <div className="dot w-3 h-3 rounded-full bg-red-400"></div>
+                  <div className="dot w-3 h-3 rounded-full bg-yellow-400"></div>
+                  <div className="dot w-3 h-3 rounded-full bg-green-400"></div>
                 </div>
                 
+                {/* Code content */}
                 <div 
-                  className="font-mono text-sm space-y-2 rounded-lg p-4"
+                  className="code-content font-mono text-sm space-y-2 rounded-lg p-4"
                   style={{
-                    background: 'linear-gradient(135deg, #3F4978 0%, #1D2753 100%)',
+                    // FIX: Adjusted inner code block background to be slightly lighter than the container for visual separation
+                    background: 'rgba(30, 41, 59, 0.8)', // slate-800 with opacity
                   }}
                 >
                   {[
-                    { num: 1, line: '<span class="text-purple-400">const</span> <span class="text-blue-300">website</span> = {' },
-                    { num: 2, line: '  <span class="text-green-300">responsive:</span> <span class="text-orange-300">true</span>,' },
-                    { num: 3, line: '  <span class="text-green-300">performance:</span> <span class="text-orange-300">\'optimized\'</span>,' },
-                    { num: 4, line: '  <span class="text-green-300">design:</span> <span class="text-orange-300">\'modern\'</span>,' },
-                    { num: 5, line: '  <span class="text-green-300">security:</span> <span class="text-orange-300">\'enterprise-grade\'</span>' },
+                    { num: 1, line: '<span class="text-purple-300">const</span> <span class="text-cyan-300">website</span> = {' },
+                    { num: 2, line: '  <span class="text-green-300">responsive:</span> <span class="text-orange-300">true</span>,' },
+                    { num: 3, line: '  <span class="text-green-300">performance:</span> <span class="text-orange-300">\'optimized\'</span>,' },
+                    { num: 4, line: '  <span class="text-green-300">design:</span> <span class="text-orange-300">\'modern\'</span>,' },
+                    { num: 5, line: '  <span class="text-green-300">security:</span> <span class="text-orange-300">\'enterprise-grade\'</span>' },
                     { num: 6, line: '};' },
                     { num: 7, line: '' },
-                    { num: 8, line: '<span class="text-blue-400">buildAmazingWebsite</span>(website);' }
+                    { num: 8, line: '<span class="text-blue-300">buildAmazingWebsite</span>(website);' }
                   ].map((code, idx) => (
-                    <div key={idx} className="flex animate-code-appear" style={{ animationDelay: `${idx * 100}ms` }}>
-                      <span className="text-gray-500 mr-4">{code.num}</span>
-                      <span dangerouslySetInnerHTML={{ __html: code.line }} />
+                    <div key={idx} className="code-line flex animate-code-appear" style={{ animationDelay: `${idx * 100}ms` }}>
+                      <span className="line-number text-gray-400 mr-4">{code.num}</span>
+                      <span className="code-text" dangerouslySetInnerHTML={{ __html: code.line }} />
                     </div>
                   ))}
                 </div>
               </div>
             </div>
+            {/* RIGHT CONTENT (CODE PREVIEW) END */}
           </div>
         </div>
       </section>
+      {/* HERO SECTION END */}
 
-      {/* WHAT WE BUILD SECTION */}
-      <section className="py-20 px-4 bg-gray-50">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-center mb-3 text-black">What We Build</h2>
-          <p className="text-center text-gray-600 mb-16">
+      {/* WHAT WE BUILD SECTION - Clean, light gray background */}
+      <section className="services-section py-20 px-4" style={{
+        background: 'linear-gradient(to bottom, #ffffff 0%, #f9f9fb 50%, #f3f4f6 100%)' 
+      }}>
+        <div className="services-content-wrapper container mx-auto max-w-6xl">
+          {/* Section header */}
+          <h2 className="section-title text-4xl font-bold text-center mb-3 text-gray-900">What We Build</h2>
+          <p className="section-subtitle text-center text-gray-600 mb-16">
             Comprehensive web development services tailored to your business needs
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Services grid */}
+          <div className="services-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
+                icon: Layers3,
                 title: "Custom Web Applications",
                 description: "Tailored web solutions built with modern frameworks to match your unique business requirements and workflows.",
                 features: ["Business management systems", "Customer portals", "Internal tools & dashboards", "SaaS platforms"],
-                gradient: "from-blue-500 to-purple-600",
-                borderColor: "#8B5CF6",
+                iconGradient: "from-indigo-600 to-violet-500",
               },
               {
+                icon: ShoppingBag,
                 title: "E-Commerce Solutions",
                 description: "Powerful online stores with seamless shopping experiences and robust payment integrations.",
                 features: ["Custom shopping carts", "Payment gateway integration", "Inventory management", "Order tracking systems"],
-                gradient: "from-purple-500 to-pink-600",
-                borderColor: "#EC4899",
+                iconGradient: "from-pink-500 to-rose-500",
               },
               {
+                icon: Maximize2,
                 title: "Responsive Design",
                 description: "Mobile-first websites that provide perfect experiences across all devices and screen sizes.",
                 features: ["Mobile optimization", "Touch-first interfaces", "Cross-browser compatibility", "Progressive Web Apps (PWA)"],
-                gradient: "from-blue-500 to-cyan-600",
-                borderColor: "#06B6D4",
+                iconGradient: "from-green-500 to-emerald-500",
               },
               {
+                icon: LayoutGrid,
                 title: "UI/UX Design",
                 description: "Beautiful, intuitive interfaces designed with user experience and conversion optimization in mind.",
                 features: ["User research & testing", "Wireframing & prototyping", "Brand identity design", "Interactive animations"],
-                gradient: "from-purple-500 to-indigo-600",
-                borderColor: "#6366F1",
+                iconGradient: "from-violet-500 to-indigo-500",
               },
               {
+                icon: Plug,
                 title: "API Development",
                 description: "Robust RESTful and GraphQL APIs for seamless data exchange and third-party integrations.",
                 features: ["RESTful API design", "GraphQL implementations", "Third-party integrations", "API documentation"],
-                gradient: "from-blue-500 to-teal-600",
-                borderColor: "#14B8A6",
+                iconGradient: "from-yellow-500 to-amber-500",
               },
               {
+                icon: Zap,
                 title: "Performance Optimization",
                 description: "Lightning-fast websites optimized for speed and superior user experiences.",
                 features: ["Page speed optimization", "SEO best practices", "Code splitting & lazy loading", "CDN implementation"],
-                gradient: "from-purple-500 to-blue-600",
-                borderColor: "#3B82F6",
+                iconGradient: "from-cyan-500 to-blue-500",
               },
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="service-card bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 relative overflow-hidden transform hover:-translate-y-2 group"
-              >
-                <div 
-                  className="absolute bottom-0 left-0 right-0 h-1 rounded-b-2xl transition-all duration-300 group-hover:h-2"
-                  style={{ backgroundColor: item.borderColor }}
-                />
-                
-                <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 bg-gradient-to-br ${item.gradient} transform transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6`}>
-                  <Globe className="w-7 h-7 text-white" />
+            ].map((item, index) => {
+              const IconComponent = item.icon;
+              return (
+                <div
+                  key={index}
+                  className="service-card bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 relative overflow-hidden transform hover:-translate-y-2 group"
+                >
+                  {/* Icon container */}
+                  <div className={`icon-container w-16 h-16 bg-gradient-to-br ${item.iconGradient} rounded-2xl flex items-center justify-center mb-4 transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-lg`}>
+                    <IconComponent className="icon w-8 h-8 text-white" />
+                  </div>
+                  
+                  <h3 className="service-title text-xl font-bold mb-3 text-gray-900">{item.title}</h3>
+                  
+                  <p className="service-description text-gray-600 mb-4 text-sm leading-relaxed">{item.description}</p>
+                  
+                  {/* Features list */}
+                  <ul className="features-list space-y-2">
+                    {item.features.map((feature, fIndex) => (
+                      <li key={fIndex} className="feature-item flex items-start gap-2 text-sm text-gray-700">
+                        {/* Feature bullet color matches the primary theme (indigo/violet) */}
+                        <span className="feature-bullet w-1.5 h-1.5 bg-gradient-to-r from-violet-500 to-indigo-500 rounded-full flex-shrink-0 mt-1.5"></span>
+                        <span className="feature-text">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                
-                <h3 className="text-xl font-bold mb-3 text-black">{item.title}</h3>
-                <p className="text-gray-600 mb-4 text-sm leading-relaxed">{item.description}</p>
-                
-                <ul className="space-y-2">
-                  {item.features.map((feature, fIndex) => (
-                    <li key={fIndex} className="flex items-start gap-2 text-sm text-gray-700">
-                      <span className="text-purple-600 mt-0.5">•</span>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
+      {/* WHAT WE BUILD SECTION END */}
 
-      <TechStack categories={techCategories} />
+      {/* TECH STACK SECTION */}
+      <TechStack 
+        categories={techCategories} 
+        themeColor="indigo" 
+      />
+      {/* TECH STACK SECTION END */}
+
+      {/* DEVELOPMENT PROCESS SECTION */}
       <DevelopmentProcess steps={developmentSteps} />
+      {/* DEVELOPMENT PROCESS SECTION END */}
+
+      {/* SERVICES CTA SECTION */}
       <ServicesCTA />
+      {/* SERVICES CTA SECTION END */}
+
       <Footer />
       
-      <style jsx>{`
+      {/* ANIMATIONS */}
+      <style>{`
         @keyframes fade-in-left {
           from {
             opacity: 0;
