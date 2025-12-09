@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import SSServiceCard from "@/assets/ServicesPageImages/SS ServiceCard.png";
 import CSServiceCard from "@/assets/ServicesPageImages/CS ServiceCard.png";
 import AIMLServiceCard from "@/assets/ServicesPageImages/AIML ServiceCard.png";
-import ITCServiceCard from "@/assets/ServicesPageImages/ITC ServiceCard.jpg";
+import MobileAppServiceCard from "@/assets/ServicesPageImages/MobileAppServiceCard.jpg";
 import ServiceHeroImage from "@/assets/ServicesPageImages/ServiceHeroImage.jpg";
 import IconExpertise from "@/assets/ServicesPageImages/IconExpertise.png";
 import IconReliable from "@/assets/ServicesPageImages/IconReliable.png";
@@ -19,7 +19,7 @@ import IconSupport from "@/assets/ServicesPageImages/IconSupport.png";
 import SoftwareSolutionsImg from "@/assets/ServicesPageImages/SoftwareSolutionsImg.jpg";
 import AIMLImg from "@/assets/ServicesPageImages/AIMLImg.jpg";
 import CloudSolutionImg from "@/assets/ServicesPageImages/CloudSolutionImg.jpg";
-import ITCImg from "@/assets/ServicesPageImages/ITC ServiceCard.jpg";
+import MobileAppImg from "@/assets/ServicesPageImages/MobileAppImg.png";
 // ========== IMPORTS END ==========
 
 const Services = () => {
@@ -47,7 +47,7 @@ const Services = () => {
       path: "/services/ai-ml",
     },
     {
-      image: ITCServiceCard,
+      image: MobileAppServiceCard,
       title: "Mobile App Development",
       description:
         "Build modern and performant mobile applications for Android, iOS, and cross-platform environments.",
@@ -329,7 +329,7 @@ const Services = () => {
               {/* IMAGE LEFT */}
               <div className="order-2 lg:order-1 rounded-xl overflow-hidden h-[240px] md:h-[300px] lg:h-[320px] shadow-md">
                 <img
-                  src={ITCImg}
+                  src={MobileAppImg}
                   alt="Mobile App Development"
                   className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
                 />
