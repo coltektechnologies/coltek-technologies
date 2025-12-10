@@ -2,6 +2,12 @@
 import React, { useMemo, useState, useEffect } from "react";
 import Reveal from "../../components/Reveal";
 import { Link } from "react-router-dom";
+import Inventory from "../../assets/portfolio/inventory.png";
+import Banking from "../../assets/portfolio/banking.png";
+import CRM from "../../assets/portfolio/crm.png";
+import Product from "../../assets/portfolio/product.png";
+import Retail from "../../assets/portfolio/retail.png";
+import Commerce from "../../assets/portfolio/commerce.png";
 import {
   Tag,
   ArrowRightCircle,
@@ -11,7 +17,7 @@ import {
   Cloud,
   Zap,
 } from "lucide-react";
-import images from "../../assets/images/images";
+
 
 /**
  * Portfolio / Projects Page (Polished)
@@ -60,7 +66,7 @@ const projectsSeed: Project[] = [
     excerpt: "Smart inventory predictions and automatic reorder suggestions for growing businesses.",
     category: "AI Solutions",
     tags: ["AI", "Inventory", "Analytics"],
-    image: "/mnt/data/Screenshot 2025-11-24 102145.png",
+    image: Inventory,
   },
   {
     id: "p2",
@@ -68,7 +74,7 @@ const projectsSeed: Project[] = [
     excerpt: "Secure mobile banking with seamless onboarding and biometric authentication.",
     category: "Mobile Apps",
     tags: ["iOS", "Android", "Security"],
-    image: images.mobile,
+    image: Banking,
   },
   {
     id: "p3",
@@ -76,7 +82,7 @@ const projectsSeed: Project[] = [
     excerpt: "Scalable CRM to manage leads, automate tasks, and improve sales workflows.",
     category: "Cloud",
     tags: ["Cloud", "SaaS"],
-    image: images.mobile,
+    image: CRM,
   },
   {
     id: "p4",
@@ -84,7 +90,7 @@ const projectsSeed: Project[] = [
     excerpt: "Fast, accessible, conversion-optimized online stores that scale.",
     category: "Web Development",
     tags: ["React", "Payments"],
-    image: images.mobile,
+    image: Commerce,
   },
   {
     id: "p5",
@@ -92,7 +98,7 @@ const projectsSeed: Project[] = [
     excerpt: "Analytics-first dashboard to track product performance and team KPIs.",
     category: "Web Development",
     tags: ["Dashboard", "Analytics"],
-    image: "/mnt/data/Screenshot 2025-11-24 102145.png",
+    image: Product,
     featured: true,
   },
   {
@@ -101,7 +107,7 @@ const projectsSeed: Project[] = [
     excerpt: "An intuitive retail app with offline-first capabilities for emerging markets.",
     category: "Mobile Apps",
     tags: ["Offline", "Sync"],
-    image: "/mnt/data/Screenshot 2025-11-24 102145.png",
+    image: Retail,
   },
 ];
 
