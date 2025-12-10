@@ -146,7 +146,7 @@ const Portfolio: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F4F7FA] text-[#102A43]">
+    <div className="min-h-screen bg-[#F4F7FA] text-[#102A43] pt-24 md:pt-28">
       {/* HERO */}
       <Reveal delay={40}>
         <header className="bg-white shadow-sm">
@@ -218,7 +218,7 @@ const Portfolio: React.FC = () => {
               <Reveal key={p.id} delay={isVisible ? 80 : 0}>
                 <article
                   aria-live="polite"
-                  className={`bg-white rounded-xl overflow-hidden shadow-md transform transition-all duration-300 ${
+                  className={`bg-white rounded-xl overflow-hidden shadow-md transform transition-all duration-300 flex flex-col h-full ${
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
                   } hover:shadow-2xl hover:-translate-y-1`}
                   style={{ willChange: "transform, opacity" }}
@@ -236,7 +236,7 @@ const Portfolio: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="p-5 flex flex-col gap-3">
+                  <div className="p-5 flex flex-col gap-3 flex-1">
                     <div className="flex items-center justify-between">
                       <h3 className="font-semibold text-lg">{p.title}</h3>
                       <div className="text-xs text-[#607B8B]">{p.tags?.[0] ?? ""}</div>

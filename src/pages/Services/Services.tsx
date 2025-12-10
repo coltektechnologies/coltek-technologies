@@ -103,14 +103,30 @@ const Services = () => {
       </section>
       {/* ========== END HERO SECTION ========== */}
 
-      {/* ========== SERVICES GRID SECTION START ========== */}
-      <section id="services-grid" className="py-20 bg-background scroll-mt-20">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+      {/* ========== SERVICES GRID SECTION START — MARQUEE VERSION ========== */}
+      <section id="services-grid" className="py-20 bg-background scroll-mt-20 overflow-hidden">
+        <div className="relative">
+          {/* Marquee Container */}
+          <div className="flex animate-marquee hover:pause">
+            {/* First set of cards */}
             {services.map((service, index) => (
               <div
-                key={index}
-                className="rounded-2xl p-1 bg-white shadow-lg hover:shadow-xl border border-gray-200 cursor-pointer transition-all hover:scale-105"
+                key={`set1-${index}`}
+                className="flex-shrink-0 w-[320px] mx-4 rounded-2xl p-1 bg-white shadow-lg hover:shadow-xl border border-gray-200 cursor-pointer transition-all hover:scale-105"
+              >
+                <ServiceCard
+                  image={service.image}
+                  title={service.title}
+                  description={service.description}
+                  path={service.path}
+                />
+              </div>
+            ))}
+            {/* Duplicate set for seamless loop */}
+            {services.map((service, index) => (
+              <div
+                key={`set2-${index}`}
+                className="flex-shrink-0 w-[320px] mx-4 rounded-2xl p-1 bg-white shadow-lg hover:shadow-xl border border-gray-200 cursor-pointer transition-all hover:scale-105"
               >
                 <ServiceCard
                   image={service.image}
@@ -122,6 +138,26 @@ const Services = () => {
             ))}
           </div>
         </div>
+        
+        {/* CSS for marquee animation */}
+        <style jsx>{`
+          @keyframes marquee {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(-50%);
+            }
+          }
+          
+          .animate-marquee {
+            animation: marquee 30s linear infinite;
+          }
+          
+          .animate-marquee:hover {
+            animation-play-state: paused;
+          }
+        `}</style>
       </section>
       {/* ========== SERVICES GRID SECTION END ========== */}
 
