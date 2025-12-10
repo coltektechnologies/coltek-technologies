@@ -30,28 +30,28 @@ const Services = () => {
       title: "Software Solutions",
       description:
         "High-performance web solutions built for scale, combining creativity, functionality, and technology.",
-      path: "/services/software-solutions",
+      path: "/Services/SoftwareSolutions",
     },
     {
       image: CSServiceCard,
       title: "Cloud Solutions",
       description:
         "Optimize with cloud infrastructure design, migration, management, and secure your data securely from anywhere.",
-      path: "/services/cloud-architecture",
+      path: "/Services/CloudSolutions",
     },
     {
       image: AIMLServiceCard,
       title: "AI & ML",
       description:
         "Captivate with development, AI integrations, natural language, machine learning, and smarter decisions.",
-      path: "/services/ai-ml",
+      path: "/Services/AIML",
     },
     {
       image: MobileAppServiceCard,
       title: "Mobile App Development",
       description:
         "Build modern and performant mobile applications for Android, iOS, and cross-platform environments.",
-      path: "/services/mobile-app-development",
+      path: "/Services/MobileAppDevelopment",
     },
   ];
   // ========== END SERVICES DATA ==========
@@ -116,6 +116,7 @@ const Services = () => {
                   image={service.image}
                   title={service.title}
                   description={service.description}
+                  path={service.path}
                 />
               </div>
             ))}

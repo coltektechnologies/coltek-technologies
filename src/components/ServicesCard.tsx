@@ -1,16 +1,19 @@
 import { Card, CardContent } from "../components/ui/card";
+import { Link } from "react-router-dom";
 
 interface ServiceCardProps {
   image: string;
   title: string;
   description: string;
+  path: string;
   features?: string[];
 }
 
-const ServiceCard = ({ image, title, description, features }: ServiceCardProps) => {
+const ServiceCard = ({ image, title, description, path, features }: ServiceCardProps) => {
   return (
     <Card className="group hover:shadow-lg transition-all duration-300 border-border bg-card hover:border-secondary/50 hover:-translate-y-1 overflow-hidden h-full">
-      <CardContent className="p-6 flex flex-col items-center text-center h-full">
+      <Link to={path} className="block h-full">
+        <CardContent className="p-6 flex flex-col items-center text-center h-full">
         {/* Image Section */}
         <div className="flex-shrink-0 mb-4">
           <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-secondary/10 to-accent/10 flex items-center justify-center group-hover:from-secondary/20 group-hover:to-accent/20 transition-colors overflow-hidden">
@@ -52,6 +55,7 @@ const ServiceCard = ({ image, title, description, features }: ServiceCardProps) 
           )}
         </div>
       </CardContent>
+      </Link>
     </Card>
   );
 };
