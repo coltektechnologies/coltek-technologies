@@ -10,11 +10,12 @@ import Portfolio from "../pages/Portfolio/Portfolio";
 
 // Service page route import
 import "react-toastify/dist/ReactToastify.css";
-import Services from '@/pages/Home/Services/Services';
-import SoftwareSolutions from '@/pages/Home/Services/SoftwareSolutions';
-import AIML from '@/pages/Home/Services/AIML';
-import CloudSolutions from '@/pages/Home/Services/CloudSolutions';
-import MobileAppDevelopment from '@/pages/Home/Services/MobileAppDevelopment';
+import Services from "@/pages/Services/Services";
+import SoftwareSolutions from "@/pages/Services/SoftwareSolutions";
+import CloudSolutions from "@/pages/Services/CloudSolutions";
+import AIML from "@/pages/Services/AIML";
+import MobileAppDevelopment from "@/pages/Services/MobileAppDevelopment";
+
 
 
 

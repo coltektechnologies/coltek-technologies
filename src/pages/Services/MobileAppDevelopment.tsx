@@ -169,19 +169,21 @@ const MobileAppDevelopment = () => {
 
               {/* CTA buttons */}
               <div className="cta-buttons-container flex flex-wrap gap-4 pt-2">
-                <Button 
-                  asChild
-                  size="lg" 
-                  className="cta-button-primary bg-cyan-400 text-gray-900 hover:bg-cyan-300 font-bold rounded-full px-8 py-6 text-base transition-all duration-300 shadow-xl shadow-cyan-500/40 hover:shadow-cyan-500/70 border-0"
-                >
-                  <Link to="/contact">Start Your Project →</Link>
+                <Button asChild>
+                  <Link 
+                    to="/contact"
+                    className="flex items-center justify-center h-11 px-8 py-6 bg-cyan-400 text-gray-900 hover:bg-cyan-300 font-bold rounded-full text-base transition-all duration-300 shadow-xl shadow-cyan-500/40 hover:shadow-cyan-500/70 border-0"
+                  >
+                    Start Your Project →
+                  </Link>
                 </Button>
-                <Button 
-                  asChild
-                  size="lg" 
-                  className="cta-button-secondary bg-transparent hover:bg-white/10 text-white font-semibold rounded-full px-8 py-6 text-base border-2 border-white/40 hover:border-cyan-400 transition-all duration-300 shadow-lg shadow-black/50"
-                >
-                  <Link to="/services">Explore Solutions</Link>
+                <Button asChild>
+                  <Link 
+                    to="/services"
+                    className="flex items-center justify-center h-11 px-8 py-6 bg-transparent hover:bg-white/10 text-white font-semibold rounded-full text-base border-2 border-white/40 hover:border-cyan-400 transition-all duration-300 shadow-lg shadow-black/50"
+                  >
+                    Explore Solutions
+                  </Link>
                 </Button>
               </div>
             </div>

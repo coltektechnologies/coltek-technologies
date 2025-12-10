@@ -125,20 +125,21 @@ const SoftwareSolutions = () => {
 
               {/* CTA buttons */}
               <div className="cta-buttons-container flex flex-wrap gap-3">
-                <Button 
-                  asChild
-                  size="lg" 
-                  className="cta-button-primary bg-violet-500 text-white hover:bg-violet-600 font-semibold rounded-xl px-8 py-6 text-base transition-all duration-300 hover:scale-105 hover:shadow-2xl border-0 shadow-lg shadow-violet-500/50"
-                >
-                  <Link to="/contact">Start Your Project</Link>
+                <Button asChild>
+                  <Link 
+                    to="/contact"
+                    className="flex items-center justify-center h-11 px-8 py-6 bg-violet-500 text-white hover:bg-violet-600 font-semibold rounded-xl text-base transition-all duration-300 hover:scale-105 hover:shadow-2xl border-0 shadow-lg shadow-violet-500/50"
+                  >
+                    Start Your Project
+                  </Link>
                 </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="cta-button-secondary border-2 border-white text-white hover:bg-white/10 rounded-xl px-8 py-6 text-base transition-all duration-300 hover:scale-105"
-                >
-                  <Link to="/services">View Services</Link>
+                <Button asChild>
+                  <Link 
+                    to="/services"
+                    className="flex items-center justify-center h-11 px-8 py-6 border-2 border-white text-white hover:bg-white/10 rounded-xl text-base transition-all duration-300 hover:scale-105"
+                  >
+                    View Services
+                  </Link>
                 </Button>
               </div>
             </div>

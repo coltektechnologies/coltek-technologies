@@ -237,19 +237,21 @@ const CloudSolutions = () => {
 
               {/* CTA buttons */}
               <div className="flex flex-wrap gap-4">
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-gradient-to-r from-indigo-600 to-cyan-500 hover:from-indigo-700 hover:to-cyan-600 text-white font-semibold rounded-full px-8 py-6 text-base shadow-lg shadow-indigo-500/50 hover:shadow-xl hover:shadow-indigo-500/60 transition-all duration-300 border-0"
-                >
-                  <Link to="/contact">Get Started</Link>
+                <Button asChild>
+                  <Link 
+                    to="/contact"
+                    className="flex items-center justify-center h-11 px-8 py-6 bg-gradient-to-r from-indigo-600 to-cyan-500 hover:from-indigo-700 hover:to-cyan-600 text-white font-semibold rounded-full text-base shadow-lg shadow-indigo-500/50 hover:shadow-xl hover:shadow-indigo-500/60 transition-all duration-300 border-0"
+                  >
+                    Get Started
+                  </Link>
                 </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-white/10 backdrop-blur-md hover:bg-white/20 text-white font-semibold rounded-full px-8 py-6 text-base border border-white/30 hover:border-white/50 transition-all duration-300"
-                >
-                  <Link to="/services">View Services</Link>
+                <Button asChild>
+                  <Link 
+                    to="/services"
+                    className="flex items-center justify-center h-11 px-8 py-6 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white font-semibold rounded-full text-base border border-white/30 hover:border-white/50 transition-all duration-300"
+                  >
+                    View Services
+                  </Link>
                 </Button>
               </div>
             </div>
