@@ -42,11 +42,13 @@ const Navbar = () => {
   return (
     <div 
       ref={navbarRef}
-      className={`flex justify-between top-0 left-0 right-0 shadow-md transition-colors duration-300 ${isLogoHovered ? 'bg-[#D9D9D9]' : 'bg-[#04062D]'}`} 
-      style={{ 
-        position: 'sticky',
+      className={`fixed w-full flex justify-between top-0 left-0 right-0 shadow-md transition-all duration-300 ${isLogoHovered ? 'bg-[#D9D9D9]' : 'bg-[#04062D]'}`} 
+      style={{
+        zIndex: 50,
+        position: 'fixed',
         top: 0,
-        zIndex: 50
+        left: 0,
+        right: 0
       }}
     >
       <div className="w-full max-w-screen-xl mx-auto flex justify-between items-center py-2 px-4 md:px-10 lg:px-20">
