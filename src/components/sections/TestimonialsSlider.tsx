@@ -86,7 +86,7 @@ const TestimonialsSlider: React.FC = () => {
               key={t.id}
               className="flex-shrink-0 w-10/12 sm:w-8/12 md:w-5/12 lg:w-3/12 px-4 snap-center transition-transform duration-300 hover:scale-105"
             >
-              <div className="bg-white text-black p-6 rounded-xl shadow-xl h-full flex flex-col">
+              <div className="bg-[#D9D9D9] text-black p-6 rounded-xl shadow-xl h-full flex flex-col">
                 <div className="flex justify-center mb-4">
                   <img
                     src={t.image}

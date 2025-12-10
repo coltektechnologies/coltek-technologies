@@ -1,10 +1,12 @@
 import { NavLink } from "react-router-dom"
 import images from "../../assets/images/images"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 
 const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [isLogoHovered, setIsLogoHovered] = useState(false);
+  const navbarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.body.style.overflow = showMobileMenu ? 'hidden' : 'auto';
@@ -39,22 +41,39 @@ const Navbar = () => {
 
   return (
     <div 
-      className="flex justify-between top-0 left-0 right-0 shadow-md" 
-      style={{ 
-        background: 'linear-gradient(97.91deg, #00D9FD 2.91%, #0AFE36 97.09%)',
-        position: 'sticky',
+      ref={navbarRef}
+      className={`fixed w-full flex justify-between top-0 left-0 right-0 shadow-md transition-all duration-300 ${isLogoHovered ? 'bg-[#D9D9D9]' : 'bg-[#04062D]'}`} 
+      style={{
+        zIndex: 50,
+        position: 'fixed',
         top: 0,
-        zIndex: 50
+        left: 0,
+        right: 0
       }}
     >
-      <div className=" w-full max-w-screen-xl mx-auto flex justify-between items-center py-2 px-4 md:px-10 lg:px-20">
-        <img src={images.logo} className="w-25 filter brightness-0 invert" alt="Coltek Technologies Logo" />
+      <div className="w-full max-w-screen-xl mx-auto flex justify-between items-center py-2 px-4 md:px-10 lg:px-20">
+        <div 
+          className="relative" 
+          onMouseEnter={() => setIsLogoHovered(true)}
+          onMouseLeave={() => setIsLogoHovered(false)}
+        >
+          <img 
+            src={images.logo} 
+            className={`w-25 transition-opacity duration-300 ${isLogoHovered ? 'opacity-0' : 'opacity-100'}`} 
+            alt="Coltek Technologies Logo" 
+          />
+          <img 
+            src={images.logohover} 
+            className={`w-25 absolute top-0 left-0 transition-opacity duration-300 ${isLogoHovered ? 'opacity-100' : 'opacity-0'}`} 
+            alt="Coltek Technologies Hover Logo" 
+          />
+        </div>
         {/* Desktop Navigation */}
-        <ul className="hidden md:flex gap-6 items-center relative">
+        <ul className={`hidden md:flex gap-6 items-center relative ${isLogoHovered ? 'text-blue-500' : 'text-white'}`}>
           <NavLink to="/"
            className={({ isActive }) =>
-            `relative cursor-pointer after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full ${
-              isActive ? 'text-blue-500' : 'text-white hover:text-onhoveryellow'
+            `relative cursor-pointer after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 hover:after:w-full ${
+              isActive ? 'text-blue-500' : 'hover:text-blue-600'
             }`
           }
           >
@@ -62,24 +81,24 @@ const Navbar = () => {
           </NavLink>
           <NavLink to="/about"
           className={({ isActive }) =>
-            `relative cursor-pointer after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full ${
-              isActive ? 'text-blue-500' : 'text-white hover:text-onhoveryellow'
+            `relative cursor-pointer after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 hover:after:w-full ${
+              isActive ? 'text-blue-500' : 'hover:text-blue-600'
             }`
           }>
             About
             </NavLink>
           <NavLink to="/services"
           className={({ isActive }) =>
-            `relative cursor-pointer after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full ${
-              isActive ? 'text-blue-500' : 'text-white hover:text-onhoveryellow'
+            `relative cursor-pointer after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 hover:after:w-full ${
+              isActive ? 'text-blue-500' : 'hover:text-blue-600'
             }`
           }>
           Services
           </NavLink>
           <NavLink to="/blog"
           className={({ isActive }) =>
-            `relative cursor-pointer after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full ${
-              isActive ? 'text-blue-500' : 'text-white hover:text-onhoveryellow'
+            `relative cursor-pointer after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 hover:after:w-full ${
+              isActive ? 'text-blue-500' : 'hover:text-blue-600'
             }`
           }
           >
@@ -87,8 +106,8 @@ const Navbar = () => {
           </NavLink>
           <NavLink to="/contact"
           className={({ isActive }) =>
-            `relative cursor-pointer after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full ${
-              isActive ? 'text-blue-500' : 'text-white hover:text-onhoveryellow'
+            `relative cursor-pointer after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 hover:after:w-full ${
+              isActive ? 'text-blue-500' : 'hover:text-blue-600'
             }`
           }
           >
@@ -96,9 +115,9 @@ const Navbar = () => {
           </NavLink>
         </ul>
 
-        {/* Desktop Button */}
+        {/* Desktop Button - Hidden on mobile */}
         <button 
-          className="px-6 py-2 rounded-full bg-white text-gray-900 font-semibold hover:bg-gray-100 transition-colors duration-200 shadow-md"
+          className="hidden md:block px-6 py-2 rounded-full bg-white text-gray-900 font-semibold hover:bg-gray-100 transition-colors duration-200 shadow-md"
         >
           Get a Quote
         </button>
@@ -119,14 +138,14 @@ const Navbar = () => {
           />
         )}
         <div 
-          className={`mobile-menu fixed inset-y-0 left-0 w-4/5 max-w-sm z-50 transform ${showMobileMenu ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out md:hidden bg-white`}
+          className={`mobile-menu fixed inset-y-0 left-0 w-4/5 max-w-sm z-50 transform ${showMobileMenu ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out md:hidden bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6]`}
           onClick={(e) => e.stopPropagation()}
         >
           {/* Close Button */}
           <div className="flex justify-end p-4">
             <button 
               onClick={() => setShowMobileMenu(false)}
-              className="text-blue-500 hover:text-blue-600 focus:outline-none"
+              className="text-white hover:text-gray-200 focus:outline-none"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -136,14 +155,13 @@ const Navbar = () => {
           
           {/* Menu Items */}
           <div className="flex flex-col items-center justify-center h-[calc(100%-4rem)] -mt-10">
-            <ul className="flex flex-col items-center gap-4 justify-center text-white text-lg font-medium">
+              <ul className="flex flex-col items-center gap-6 justify-center text-white text-lg font-medium w-full px-4">
               <NavLink
               to="/"
               onClick={() => setShowMobileMenu(false)}
               className={({ isActive }) =>
-                `px-4 py-2 rounded-full ${
-                  isActive ? 'text-blue-500' : ''
-
+                `w-full text-center py-3 rounded-lg transition-colors duration-200 ${
+                  isActive ? 'bg-white/20' : 'hover:bg-white/10'
                 }`}
               >Home
               </NavLink>
@@ -151,9 +169,8 @@ const Navbar = () => {
               to="/about"
               onClick={() => setShowMobileMenu(false)}
               className={({ isActive }) =>
-                `px-4 py-2 rounded-full ${
-                  isActive ? 'text-blue-500' : ''
-
+                `w-full text-center py-3 rounded-lg transition-colors duration-200 ${
+                  isActive ? 'bg-white/20' : 'hover:bg-white/10'
                 }`}
               >About
               </NavLink>
@@ -161,9 +178,8 @@ const Navbar = () => {
               to="/services"
               onClick={() => setShowMobileMenu(false)}
               className={({ isActive }) =>
-                `px-4 py-2 rounded-full ${
-                  isActive ? 'text-blue-500' : ''
-
+                `w-full text-center py-3 rounded-lg transition-colors duration-200 ${
+                  isActive ? 'bg-white/20' : 'hover:bg-white/10'
                 }`}
               >Services
               </NavLink>
@@ -171,9 +187,8 @@ const Navbar = () => {
               to="/for-business"
               onClick={() => setShowMobileMenu(false)}
               className={({ isActive }) =>
-                `px-4 py-2 rounded-full ${
-                  isActive ? 'text-blue-500' : ''
-
+                `w-full text-center py-3 rounded-lg transition-colors duration-200 ${
+                  isActive ? 'bg-white/20' : 'hover:bg-white/10'
                 }`}
               >For Business
               </NavLink>
@@ -181,9 +196,8 @@ const Navbar = () => {
               to="/contact"
               onClick={() => setShowMobileMenu(false)}
               className={({ isActive }) =>
-                `px-4 py-2 rounded-full ${
-                  isActive ? 'text-blue-500' : ''
-
+                `w-full text-center py-3 rounded-lg transition-colors duration-200 ${
+                  isActive ? 'bg-white/20' : 'hover:bg-white/10'
                 }`}
               >Contact
               </NavLink>
