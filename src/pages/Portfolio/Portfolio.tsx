@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 import {
   Tag,
   ArrowRightCircle,
- 
   Globe,
   Smartphone,
   Cpu,
   Cloud,
   Zap,
 } from "lucide-react";
+import images from "../../assets/images/images";
 
 /**
  * Portfolio / Projects Page (Polished)
@@ -68,7 +68,7 @@ const projectsSeed: Project[] = [
     excerpt: "Secure mobile banking with seamless onboarding and biometric authentication.",
     category: "Mobile Apps",
     tags: ["iOS", "Android", "Security"],
-    image: "/mnt/data/Screenshot 2025-11-24 102145.png",
+    image: images.mobile,
   },
   {
     id: "p3",
@@ -76,7 +76,7 @@ const projectsSeed: Project[] = [
     excerpt: "Scalable CRM to manage leads, automate tasks, and improve sales workflows.",
     category: "Cloud",
     tags: ["Cloud", "SaaS"],
-    image: "/mnt/data/Screenshot 2025-11-24 102145.png",
+    image: images.mobile,
   },
   {
     id: "p4",
@@ -84,7 +84,7 @@ const projectsSeed: Project[] = [
     excerpt: "Fast, accessible, conversion-optimized online stores that scale.",
     category: "Web Development",
     tags: ["React", "Payments"],
-    image: "/mnt/data/Screenshot 2025-11-24 102145.png",
+    image: images.mobile,
   },
   {
     id: "p5",
