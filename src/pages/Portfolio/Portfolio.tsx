@@ -2,6 +2,12 @@
 import React, { useMemo, useState, useEffect } from "react";
 import Reveal from "../../components/Reveal";
 import { Link } from "react-router-dom";
+import Inventory from "../../assets/portfolio/inventory.png";
+import Banking from "../../assets/portfolio/banking.png";
+import CRM from "../../assets/portfolio/crm.png";
+import Product from "../../assets/portfolio/product.png";
+import Retail from "../../assets/portfolio/retail.png";
+import Commerce from "../../assets/portfolio/commerce.png";
 import {
   Tag,
   ArrowRightCircle,
@@ -11,7 +17,7 @@ import {
   Cloud,
   Zap,
 } from "lucide-react";
-import images from "../../assets/images/images";
+
 
 /**
  * Portfolio / Projects Page (Polished)
@@ -60,7 +66,7 @@ const projectsSeed: Project[] = [
     excerpt: "Smart inventory predictions and automatic reorder suggestions for growing businesses.",
     category: "AI Solutions",
     tags: ["AI", "Inventory", "Analytics"],
-    image: "/mnt/data/Screenshot 2025-11-24 102145.png",
+    image: Inventory,
   },
   {
     id: "p2",
@@ -68,7 +74,7 @@ const projectsSeed: Project[] = [
     excerpt: "Secure mobile banking with seamless onboarding and biometric authentication.",
     category: "Mobile Apps",
     tags: ["iOS", "Android", "Security"],
-    image: images.mobile,
+    image: Banking,
   },
   {
     id: "p3",
@@ -76,7 +82,7 @@ const projectsSeed: Project[] = [
     excerpt: "Scalable CRM to manage leads, automate tasks, and improve sales workflows.",
     category: "Cloud",
     tags: ["Cloud", "SaaS"],
-    image: images.mobile,
+    image: CRM,
   },
   {
     id: "p4",
@@ -84,7 +90,7 @@ const projectsSeed: Project[] = [
     excerpt: "Fast, accessible, conversion-optimized online stores that scale.",
     category: "Web Development",
     tags: ["React", "Payments"],
-    image: images.mobile,
+    image: Commerce,
   },
   {
     id: "p5",
@@ -92,7 +98,7 @@ const projectsSeed: Project[] = [
     excerpt: "Analytics-first dashboard to track product performance and team KPIs.",
     category: "Web Development",
     tags: ["Dashboard", "Analytics"],
-    image: "/mnt/data/Screenshot 2025-11-24 102145.png",
+    image: Product,
     featured: true,
   },
   {
@@ -101,7 +107,7 @@ const projectsSeed: Project[] = [
     excerpt: "An intuitive retail app with offline-first capabilities for emerging markets.",
     category: "Mobile Apps",
     tags: ["Offline", "Sync"],
-    image: "/mnt/data/Screenshot 2025-11-24 102145.png",
+    image: Retail,
   },
 ];
 
@@ -140,7 +146,7 @@ const Portfolio: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F4F7FA] text-[#102A43]">
+    <div className="min-h-screen bg-[#F4F7FA] text-[#102A43] pt-24 md:pt-28">
       {/* HERO */}
       <Reveal delay={40}>
         <header className="bg-white shadow-sm">
@@ -212,7 +218,7 @@ const Portfolio: React.FC = () => {
               <Reveal key={p.id} delay={isVisible ? 80 : 0}>
                 <article
                   aria-live="polite"
-                  className={`bg-white rounded-xl overflow-hidden shadow-md transform transition-all duration-300 ${
+                  className={`bg-white rounded-xl overflow-hidden shadow-md transform transition-all duration-300 flex flex-col h-full ${
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
                   } hover:shadow-2xl hover:-translate-y-1`}
                   style={{ willChange: "transform, opacity" }}
@@ -230,7 +236,7 @@ const Portfolio: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="p-5 flex flex-col gap-3">
+                  <div className="p-5 flex flex-col gap-3 flex-1">
                     <div className="flex items-center justify-between">
                       <h3 className="font-semibold text-lg">{p.title}</h3>
                       <div className="text-xs text-[#607B8B]">{p.tags?.[0] ?? ""}</div>
