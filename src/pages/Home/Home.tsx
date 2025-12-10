@@ -148,9 +148,10 @@ function Hero({ isMobile }: { isMobile: boolean }) {
 
   return (
     <section
-      className={`relative w-full bg-cover bg-center bg-no-repeat flex items-center justify-center ${heroClass} md:bg-contain`}
+      className={`relative w-full bg-contain sm:bg-cover bg-center bg-no-repeat flex items-center justify-center ${heroClass}`}
       style={{
         backgroundImage: `url(${images.heroBg})`,
+        backgroundSize: 'contain',
       }}
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40" />
@@ -163,8 +164,8 @@ function Hero({ isMobile }: { isMobile: boolean }) {
               <h1 className="font-bold leading-tight">
                 <span className="uppercase block text-2xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl mb-2 sm:mb-3">Transforming Potentials</span>
                 
-                <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-3">
-                  <span className="uppercase text-xl sm:text-2xl lg:text-3xl xl:text-4xl">into</span>
+                <div className="flex flex-row items-baseline gap-2 sm:gap-3">
+                  <span className="uppercase text-xl sm:text-2xl lg:text-3xl xl:text-4xl whitespace-nowrap">into</span>
                   <div className="relative min-h-[2.5rem] sm:min-h-[2.5rem] lg:min-h-[3.5rem] flex-1">
                     <span
                       className={`transition-all duration-500 inline-block w-full ${isAnimating ? 'opacity-0 -translate-y-2' : 'opacity-100 translate-y-0'} bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] bg-clip-text text-transparent font-bold uppercase text-2xl sm:text-3xl lg:text-4xl xl:text-5xl`}
