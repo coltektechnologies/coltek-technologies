@@ -20,12 +20,12 @@ export default function Home() {
   return (
     <div className="bg-[#070C29] text-white">
       {/* Hero section - full viewport height */}
-      <div className="h-screen">
+      <div className="min-h-screen">
         <Hero isMobile={isMobile} />
       </div>
 
       {/* Why Choose COLTEK section - moved here */}
-      <section className="w-full py-16 lg:py-20 bg-[#070C29]">
+      <section className="w-full py-12 lg:py-20 bg-[#070C29]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             <div className="lg:col-span-5 xl:col-span-4">
@@ -144,31 +144,30 @@ function Hero({ isMobile }: { isMobile: boolean }) {
     return () => clearInterval(interval);
   }, [words.length]);
   
-  const heroClass = isMobile ? 'min-h-[70vh] pt-6' : 'min-h-screen flex items-center';
+  const heroClass = isMobile ? 'min-h-screen pt-20 pb-4' : 'min-h-screen flex items-center pt-24';
 
   return (
     <section
-      className={`relative w-full bg-contain sm:bg-cover bg-center bg-no-repeat flex items-center justify-center ${heroClass}`}
+      className={`relative w-full bg-cover bg-center bg-no-repeat flex items-center justify-center ${heroClass}`}
       style={{
         backgroundImage: `url(${images.heroBg})`,
-        backgroundSize: 'contain',
       }}
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40" />
 
       {/* Main hero content - centered */}
-      <div className="relative z-10 w-full px-6 sm:px-8 lg:px-12 py-4 mt-4 sm:mt-0">
+      <div className="relative z-10 w-full px-4 sm:px-8 lg:px-12 py-4">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div className="space-y-5 sm:space-y-6 max-w-2xl mx-auto lg:mx-0 px-2 sm:px-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center">
+            <div className="space-y-3 sm:space-y-6 max-w-2xl mx-auto lg:mx-0">
               <h1 className="font-bold leading-tight">
-                <span className="uppercase block text-2xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl mb-2 sm:mb-3">Transforming Potentials</span>
+                <span className="uppercase block text-lg sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl mb-1 sm:mb-3">Transforming Potentials</span>
                 
                 <div className="flex flex-row items-baseline gap-2 sm:gap-3">
-                  <span className="uppercase text-xl sm:text-2xl lg:text-3xl xl:text-4xl whitespace-nowrap">into</span>
-                  <div className="relative min-h-[2.5rem] sm:min-h-[2.5rem] lg:min-h-[3.5rem] flex-1">
+                  <span className="uppercase text-base sm:text-2xl lg:text-3xl xl:text-4xl">into</span>
+                  <div className="relative min-h-[1.5rem] sm:min-h-[2.5rem] lg:min-h-[3.5rem] flex-1">
                     <span
-                      className={`transition-all duration-500 inline-block w-full ${isAnimating ? 'opacity-0 -translate-y-2' : 'opacity-100 translate-y-0'} bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] bg-clip-text text-transparent font-bold uppercase text-2xl sm:text-3xl lg:text-4xl xl:text-5xl`}
+                      className={`transition-all duration-500 inline-block w-full ${isAnimating ? 'opacity-0 -translate-y-2' : 'opacity-100 translate-y-0'} bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] bg-clip-text text-transparent font-bold uppercase text-lg sm:text-3xl lg:text-4xl xl:text-5xl`}
                     >
                       {words[currentIndex]}
                     </span>
@@ -176,28 +175,40 @@ function Hero({ isMobile }: { isMobile: boolean }) {
                 </div>
               </h1>
 
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 leading-relaxed">
+              <p className="text-xs sm:text-base md:text-lg lg:text-xl text-gray-200 leading-relaxed">
                 At Coltek Technologies, we empower innovation, nurture growth, and deliver solutions that inspire excellence. We don't just build technology — we build possibilities driven by integrity, empathy, and purpose.
               </p>
 
-              <div className="flex flex-wrap gap-3 sm:gap-4 pt-2">
-                <button className="px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-transparent hover:border-cyan-400 active:scale-95 bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] text-white">
+              <div className="flex flex-wrap gap-2 sm:gap-4 pt-1">
+                <button className="px-4 sm:px-8 py-2 sm:py-4 text-xs sm:text-base font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-transparent hover:border-cyan-400 active:scale-95 bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] text-white">
                   Get Started
                 </button>
 
-                <button className="px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold rounded-lg transition-all duration-300 border-2 border-[#1c3D72] text-white hover:bg-[#1c3D72]/10 bg-transparent">
+                <button className="px-4 sm:px-8 py-2 sm:py-4 text-xs sm:text-base font-semibold rounded-lg transition-all duration-300 border-2 border-[#1c3D72] text-white hover:bg-[#1c3D72]/10 bg-transparent">
                   Learn More
                 </button>
               </div>
 
               {/* Mobile-only image and icons */}
-              <div className="lg:hidden w-full flex flex-col items-center pt-6">
-                <div className="relative w-full max-w-[280px] rounded-lg overflow-hidden">
+              <div className="lg:hidden w-full flex flex-col items-center pt-2">
+                <div className="relative w-full max-w-[220px] rounded-lg overflow-hidden">
                   <img src={images.coltek} alt="Coltek Technologies" className="w-full h-auto object-contain" loading="eager" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                 </div>
 
-                <div className="w-full mt-8">
+                {/* Email subscription - shown on tablet (sm to lg) */}
+                <div className="hidden sm:flex lg:hidden flex-col sm:flex-row gap-3 sm:gap-4 max-w-md pt-3 w-full sm:w-auto sm:self-start">
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    className="flex-1 px-4 sm:px-6 py-3 text-sm sm:text-base rounded-lg bg-white/10 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white/50 backdrop-blur-sm"
+                  />
+                  <button className="px-4 sm:px-6 py-3 text-sm sm:text-base font-semibold bg-[#1c3D72] text-gray-900 rounded-lg hover:bg-[#1c3D72]/90 transition-all duration-300 whitespace-nowrap">
+                    Subscribe
+                  </button>
+                </div>
+
+                <div className="w-full mt-3">
                   <div className="flex justify-around items-start">
                     {[
                       { img: images._24_7, label: '24/7\nSupport' },
@@ -206,18 +217,18 @@ function Hero({ isMobile }: { isMobile: boolean }) {
                       { img: images.client, label: 'Satisfied\nClients' },
                     ].map((it, idx) => (
                       <div key={idx} className="flex flex-col items-center w-1/4 text-center">
-                        <div className="bg-white/10 backdrop-blur-sm p-2 rounded-full mb-2">
-                          <img src={it.img} alt="icon" className="h-7 w-7" />
+                        <div className="bg-white/10 backdrop-blur-sm p-1.5 rounded-full mb-1.5">
+                          <img src={it.img} alt="icon" className="h-6 w-6" />
                         </div>
-                        <span className="text-xs text-white/90 leading-tight whitespace-pre-line font-medium">{it.label}</span>
+                        <span className="text-[10px] text-white/90 leading-tight whitespace-pre-line font-medium">{it.label}</span>
                       </div>
                     ))}
                   </div>
                 </div>
               </div>
 
-              {/* Email subscription - shown on sm+ */}
-              <div className="hidden sm:flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-md pt-4">
+              {/* Email subscription - shown on desktop (lg+) */}
+              <div className="hidden lg:flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-md pt-4">
                 <input
                   type="email"
                   placeholder="Enter your email"
