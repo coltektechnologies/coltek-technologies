@@ -17,7 +17,7 @@ import {
   Cloud,
   Zap,
 } from "lucide-react";
-import images from "../../assets/images/images";
+
 
 /**
  * Portfolio / Projects Page (Polished)
