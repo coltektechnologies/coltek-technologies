@@ -1,7 +1,7 @@
 // ========== IMPORTS START ==========
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import ServiceCard from "@/components/ServicesCard";
+import ServiceCard from "@/components/ServiceCard";
 import CTASection from "@/components/CTASection";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";

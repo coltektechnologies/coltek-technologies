@@ -61,9 +61,9 @@ const Footer = () => {
             
             {/* Address */}
             <p className="text-gray-300 text-sm leading-relaxed">
-              Sunyani - Ghana, Fiapre Notre Dame<br />
-              Abeka Donkor Ave,<br />
-              BS-00221155-08
+              Remote Operations<br />
+              Serving Clients Worldwide<br />
+              Registered in Ghana
             </p>
             
             {/* Contact Details */}
@@ -72,13 +72,13 @@ const Footer = () => {
                 href="mailto:info@coltek.com" 
                 className="text-gray-300 hover:text-white text-sm transition-colors"
               >
-                info@coltek.com
+                info@coltektechnologies.io
               </a>
               <a 
                 href="tel:+233244567890" 
                 className="text-gray-300 hover:text-white text-sm transition-colors"
               >
-                +233 244 567 890
+                +233 538 008 122
               </a>
             </div>
           </div>
