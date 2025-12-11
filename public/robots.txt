@@ -1,0 +1,32 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.coltektechnologies.io/sitemap.xml
+
+# Disallow admin and private directories
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+
+# Allow all user agent to access all content
+User-agent: *
+Disallow: 
+
+# Crawl-delay: 10
+
+# Allow all images
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.gif$
+Allow: /*.svg$
+
+# Allow all CSS and JS files
+Allow: /*.css$
+Allow: /*.js$
+
+# Disallow query strings for tracking and sessions
+Disallow: /*?*
+Disallow: /*&

@@ -232,7 +232,7 @@ const LegalPage: React.FC = () => {
         </div>
 
         {/* Compliance Badges */}
-        <div className="mt-12 text-center">
+        {/* <div className="mt-12 text-center">
           <div className="flex justify-center items-center gap-8 mb-6 bg-gray-100 p-8">
             <div className="bg-yellow-100 rounded-full p-4 w-20 h-20 flex items-center justify-center">
               <span className="text-2xl font-bold text-yellow-700">GDPR</span>
@@ -252,7 +252,7 @@ const LegalPage: React.FC = () => {
             designed to ensure compliance and protect<br />
             your data
           </p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

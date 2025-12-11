@@ -95,14 +95,14 @@ const Navbar = () => {
           }>
           Services
           </NavLink>
-          <NavLink to="/blog"
+          <NavLink to="/portfolio"
           className={({ isActive }) =>
             `relative cursor-pointer after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 hover:after:w-full ${
               isActive ? 'text-blue-500' : 'hover:text-blue-600'
             }`
           }
           >
-          For Business
+          Portfolio
           </NavLink>
           <NavLink to="/contact"
           className={({ isActive }) =>
@@ -184,13 +184,13 @@ const Navbar = () => {
               >Services
               </NavLink>
               <NavLink
-              to="/for-business"
+              to="/portfolio"
               onClick={() => setShowMobileMenu(false)}
               className={({ isActive }) =>
                 `w-full text-center py-3 rounded-lg transition-colors duration-200 ${
                   isActive ? 'bg-white/20' : 'hover:bg-white/10'
                 }`}
-              >For Business
+              >Portfolio
               </NavLink>
               <NavLink
               to="/contact"
