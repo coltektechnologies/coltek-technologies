@@ -192,7 +192,7 @@ function Hero({ isMobile }: { isMobile: boolean }) {
                 <button className="px-4 sm:px-8 py-2 sm:py-4 text-xs sm:text-base font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-transparent hover:border-cyan-400 active:scale-95 bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] text-white">
                   Get Started
                 </button></Link>
-<Link to="/service">
+<Link to="/about">
                 <button className="px-4 sm:px-8 py-2 sm:py-4 text-xs sm:text-base font-semibold rounded-lg transition-all duration-300 border-2 border-[#1c3D72] text-white hover:bg-[#1c3D72]/10 bg-transparent">
                   Learn More
                 </button></Link>
