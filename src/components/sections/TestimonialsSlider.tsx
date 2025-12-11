@@ -78,13 +78,13 @@ const TestimonialsSlider: React.FC = () => {
 
         <div
           ref={scrollRef}
-          className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8 w-full justify-center"
+          className="flex flex-col md:flex-row md:overflow-x-auto md:snap-x md:snap-mandatory scrollbar-hide pb-8 w-full max-w-4xl mx-auto gap-6 px-4"
           style={{ scrollBehavior: "smooth", scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {testimonials.map((t) => (
             <div
               key={t.id}
-              className="flex-shrink-0 w-10/12 sm:w-8/12 md:w-5/12 lg:w-3/12 px-4 snap-center transition-transform duration-300 hover:scale-105"
+              className="w-full md:w-10/12 lg:w-8/12 xl:w-6/12 mx-auto md:flex-shrink-0 md:px-4 transition-transform duration-300 hover:scale-[1.02]"
             >
               <div className="bg-[#D9D9D9] text-black p-6 rounded-xl shadow-xl h-full flex flex-col">
                 <div className="flex justify-center mb-4">
