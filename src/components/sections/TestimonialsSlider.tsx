@@ -13,36 +13,36 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: "Nancy Coltek",
-    role: "Content Creator and Developer",
-    text: "The app delivered is exactly what I've been looking for.",
-    image: images.testimonial1, 
+    name: "Ewura-Adwoa Edmond",
+    role: "Student University of Ghana",
+    text: "My IT class has been a great learning experience. I've gained valuable skills and insights, and I'm excited to continue exploring this field thanks to Coltek Technologies ",
+    image: images.Adwoa, 
     rating: 5,
   },
   {
     id: 2,
-    name: "Collins Fred",
-    role: "Product Quality Engineer",
-    text: "Lorem is exactly what I've been looking for.",
-    image: images.testimonial2,
+    name: "Dwaine Jeffrey Addey",
+    role: "Chartered Accountant",
+    text: "Joining Coltek Technologies has been a pivotal moment in my IT career, providing invaluable hands-on experience and strong technical skill development in a supportive, professional environment committed to excellence and innovation.",
+    image: images.jeffery,
     rating: 5,
   },
-  {
-    id: 3,
-    name: "Nancy Coltek",
-    role: "Content Creator and Developer",
-    text: "The app delivered is exactly what I've been looking for.",
-    image: images.testimonial1,
-    rating: 5,
-  },
-  {
-    id: 4,
-    name: "Collins Fred",
-    role: "Product Quality Engineer",
-    text: "Lorem is exactly what I've been looking for.",
-    image: images.testimonial2,
-    rating: 5,
-  },
+  // {
+  //   id: 3,
+  //   name: "Nancy Coltek",
+  //   role: "Content Creator and Developer",
+  //   text: "The app delivered is exactly what I've been looking for.",
+  //   image: images.testimonial1,
+  //   rating: 5,
+  // },
+  // {
+  //   id: 4,
+  //   name: "Collins Fred",
+  //   role: "Product Quality Engineer",
+  //   text: "Lorem is exactly what I've been looking for.",
+  //   image: images.testimonial2,
+  //   rating: 5,
+  // },
 ];
 
 const TestimonialsSlider: React.FC = () => {
@@ -74,11 +74,11 @@ const TestimonialsSlider: React.FC = () => {
   return (
     <div className="w-full bg-[#0B0F1F] py-8 md:py-16 text-white">
       <div className="w-full px-4">
-        <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-10 text-center">What Our Clients Say</h2>
+        <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-10 text-left">Testimonials</h2>
 
         <div
           ref={scrollRef}
-          className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8"
+          className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8 w-full justify-center"
           style={{ scrollBehavior: "smooth", scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {testimonials.map((t) => (
@@ -99,12 +99,17 @@ const TestimonialsSlider: React.FC = () => {
                 <h3 className="text-base md:text-lg font-semibold text-center mb-1">{t.name}</h3>
                 <p className="text-xs md:text-sm text-gray-600 text-center mb-3">{t.role}</p>
 
-                <div className="flex justify-center mb-4 text-yellow-400">
-                  {"★".repeat(t.rating)}
+                <div className="flex justify-center mb-4 space-x-1" style={{ color: '#3E66DF' }}>
+                  {Array(t.rating).fill(0).map((_, i) => (
+                    <span key={i} className="font-bold text-2xl">★</span>
+                  ))}
                 </div>
 
                 <p className="text-center text-gray-700 text-sm mb-4">{t.text}</p>
-                <p className="text-xs text-center text-gray-400 mt-auto">• Testimonial •</p>
+                <div className="flex items-center justify-center space-x-1 mt-auto">
+                  <img src={images.hand} alt="" className="h-4 w-4" />
+                  <span style={{ color: '#202020' }}>Testimonial</span>
+                </div>
               </div>
             </div>
           ))}

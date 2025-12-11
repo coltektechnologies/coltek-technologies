@@ -89,7 +89,7 @@ const Services = () => {
             </p>
 
             <Button
-              className="w-fit bg-[#00D9FD] hover:bg-[#00D9FD]/90 text-white px-6 h-10 rounded-lg shadow-lg transition"
+              className="w-fit bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] hover:opacity-90 text-white px-6 h-10 rounded-lg shadow-lg transition"
               onClick={() =>
                 document.getElementById("services-grid")?.scrollIntoView({
                   behavior: "smooth",
@@ -209,7 +209,7 @@ const Services = () => {
                 </ul>
 
                 <Button
-                  className="bg-transparent hover:bg-secondary/10 border-2 border-secondary text-primary font-semibold mt-2"
+                  className="bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] hover:opacity-90 text-white font-semibold mt-2 px-6 h-10"
                   onClick={(e) => e.stopPropagation()}
                 >
                   Read More
@@ -281,7 +281,7 @@ const Services = () => {
                 </ul>
 
                 <Button
-                  className="bg-transparent hover:bg-secondary/10 border-2 border-secondary text-primary font-semibold mt-2"
+                  className="bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] hover:opacity-90 text-white font-semibold mt-2 px-6 h-10"
                   onClick={(e) => e.stopPropagation()}
                 >
                   Read More
@@ -335,7 +335,7 @@ const Services = () => {
                 </ul>
 
                 <Button
-                  className="bg-transparent hover:bg-secondary/10 border-2 border-secondary text-primary font-semibold mt-2"
+                  className="bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] hover:opacity-90 text-white font-semibold mt-2 px-6 h-10"
                   onClick={(e) => e.stopPropagation()}
                 >
                   Read More
@@ -407,7 +407,7 @@ const Services = () => {
                 </ul>
 
                 <Button
-                  className="bg-transparent hover:bg-secondary/10 border-2 border-secondary text-primary font-semibold mt-2"
+                  className="bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] hover:opacity-90 text-white font-semibold mt-2 px-6 h-10"
                   onClick={(e) => e.stopPropagation()}
                 >
                   Read More
