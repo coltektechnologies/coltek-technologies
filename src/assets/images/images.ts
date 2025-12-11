@@ -21,7 +21,9 @@ import client from "./client.svg"
 import _24_7 from "./24-7.svg"
 import logohover from "./logohover.png"
 import mobile from './mobile.jpg'
-
+import Adwoa from './Adwoa.jpeg'
+import hand from './hand.svg'
+import jeffery from './Jeffery.jpeg'
 export const images = {
     logo,
     vector,
@@ -45,6 +47,9 @@ export const images = {
     client,
     _24_7,
     logohover,
-    mobile
+    mobile,
+    Adwoa,
+    hand,
+    jeffery
     }
 export default images;
