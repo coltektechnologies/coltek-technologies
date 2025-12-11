@@ -1,4 +1,8 @@
-import images from "../assets/images/images";
+// Import service card images
+import SoftwareSolutionsImg from "../assets/ServicesPageImages/SoftwareSolutionsImg.jpg";
+import CS_ServiceCard from "../assets/ServicesPageImages/CS ServiceCard.png";
+import MobileAppServiceCard from "../assets/ServicesPageImages/MobileAppServiceCard.jpg";
+import AIML_ServiceCard from "../assets/ServicesPageImages/AIML ServiceCard.png";
 
 export interface Service {
   id: number;
@@ -14,7 +18,7 @@ export const allServices: Service[] = [
     id: 1,
     title: "Web Development",
     description: "Provide and manage website services",
-    image: images.web,
+    image: SoftwareSolutionsImg,
     icon: '🌐',
     buttonColor: "bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] text-white hover:opacity-90"
   },
@@ -22,7 +26,7 @@ export const allServices: Service[] = [
     id: 2,
     title: "Cloud Solutions",
     description: "Provide Cloud hosting and service",
-    image: images.cloud,
+    image: CS_ServiceCard,
     icon: '☁️',
     buttonColor: "bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] text-white hover:opacity-90"
   },
@@ -30,16 +34,16 @@ export const allServices: Service[] = [
     id: 3,
     title: "Mobile App Development",
     description: "Create powerful cross-platform mobile applications",
-    image: images.app,
+    image: MobileAppServiceCard,
     icon: '📱',
     buttonColor: "bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] text-white hover:opacity-90"
   },
   {
     id: 4,
-    title: "IT Consulting",
-    description: "Expert IT solutions for your business",
-    image: images.team,
-    icon: '💼',
+    title: "AI/ML Solutions",
+    description: "Leverage the power of artificial intelligence and machine learning",
+    image: AIML_ServiceCard,
+    icon: '🤖',
     buttonColor: "bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] text-white hover:opacity-90"
   }
 ];

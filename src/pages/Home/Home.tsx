@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { images } from "../../assets/images/images";
 import { allServices, serviceGroups } from "../../data/services";
 import TestimonialsSlider from "../../components/sections/TestimonialsSlider";
@@ -35,9 +36,11 @@ export default function Home() {
               <p className="text-gray-300 text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed">
                 At COLTEK Technologies, we don't just build solutions — we engineer possibilities. Our team blends creativity, innovation, and technical excellence to deliver impactful digital experiences.
               </p>
-              <button className="px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold text-gray-900 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 active:scale-95 bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6]">
-                Read more
-              </button>
+              <a href="/services" className="inline-block">
+                <button className="px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold text-gray-900 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 active:scale-95 bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6]">
+                  Read more
+                </button>
+              </a>
             </div>
 
             <div className="lg:col-span-7 xl:col-span-8 relative">
@@ -180,13 +183,17 @@ function Hero({ isMobile }: { isMobile: boolean }) {
               </p>
 
               <div className="flex flex-wrap gap-2 sm:gap-4 pt-1">
-                <button className="px-4 sm:px-8 py-2 sm:py-4 text-xs sm:text-base font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-transparent hover:border-cyan-400 active:scale-95 bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] text-white">
-                  Get Started
-                </button>
+                <a href="/portfolio" className="inline-block">
+                  <button className="px-4 sm:px-8 py-2 sm:py-4 text-xs sm:text-base font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-transparent hover:border-cyan-400 active:scale-95 bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] text-white">
+                    Get Started
+                  </button>
+                </a>
 
-                <button className="px-4 sm:px-8 py-2 sm:py-4 text-xs sm:text-base font-semibold rounded-lg transition-all duration-300 border-2 border-[#1c3D72] text-white hover:bg-[#1c3D72]/10 bg-transparent">
-                  Learn More
-                </button>
+                <a href="/about" className="inline-block">
+                  <button className="px-4 sm:px-8 py-2 sm:py-4 text-xs sm:text-base font-semibold rounded-lg transition-all duration-300 border-2 border-[#1c3D72] text-white hover:bg-[#1c3D72]/10 bg-transparent">
+                    Learn More
+                  </button>
+                </a>
               </div>
 
               {/* Mobile-only image and icons */}
@@ -338,9 +345,17 @@ function ServicesSection({ isMobile }: { isMobile: boolean }) {
                           <div className="sm:ml-4 lg:ml-0 xl:ml-4 flex-1 flex flex-col mt-3 sm:mt-0 lg:mt-3 xl:mt-0">
                             <h3 className="text-lg font-bold text-gray-900">{service.title}</h3>
                             <p className="text-sm text-gray-700 mt-2 mb-4">{service.description}</p>
-                            <button className={`mt-auto w-fit px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 ${service.buttonColor}`}>
-                              Learn more
-                            </button>
+                            <Link 
+                              to={service.title.includes('Web') ? '/services/software-solution' : 
+                                   service.title.includes('Cloud') ? '/services/cloudsolutions' :
+                                   service.title.includes('Mobile') ? '/services/mobileapp' :
+                                   '/services/ai-ml'}
+                              className="w-fit"
+                            >
+                              <button className={`w-fit px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 ${service.buttonColor}`}>
+                                Learn more
+                              </button>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -364,9 +379,11 @@ function ServicesSection({ isMobile }: { isMobile: boolean }) {
         </div>
 
         <div className="flex justify-start mt-12">
-          <button className="px-6 sm:px-8 py-3 text-sm sm:text-base font-semibold text-white rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:scale-95 bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6]">
-            Explore Services
-          </button>
+          <Link to="/services" className="inline-block">
+            <button className="px-6 sm:px-8 py-3 text-sm sm:text-base font-semibold text-white rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:scale-95 bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6]">
+              Explore Services
+            </button>
+          </Link>
         </div>
       </div>
     </section>
