@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://coltektechnologies.io/sitemap.xml
+Sitemap: https://www.coltektechnologies.io/sitemap.xml
 
 # Disallow admin and private directories
 Disallow: /admin/
