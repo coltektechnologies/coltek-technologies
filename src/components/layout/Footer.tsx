@@ -136,7 +136,7 @@ const Footer = () => {
             <ul className="flex flex-col gap-2">
               <li>
                 <NavLink 
-                  to="/privacy" 
+                  to="/legal#privacy" 
                   className="text-gray-300 hover:text-white text-sm transition-colors block"
                 >
                   Privacy Policy
@@ -144,7 +144,7 @@ const Footer = () => {
               </li>
               <li>
                 <NavLink 
-                  to="/terms" 
+                  to="/legal#terms" 
                   className="text-gray-300 hover:text-white text-sm transition-colors block"
                 >
                   Terms & Conditions

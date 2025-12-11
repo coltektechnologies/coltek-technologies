@@ -141,7 +141,7 @@ const MobileAppDevelopment = () => {
               
               {/* Description */}
               <p className="hero-description text-lg text-gray-300 leading-relaxed">
-                Transform your ideas into high-performance, market-ready applications for **iOS**, **Android**, and cross-platform ecosystems.
+                Transform your ideas into high-performance, market-ready applications for iOS, Android, and cross-platform ecosystems.
               </p>
 
               {/* Key benefits grid - High Contrast Dark Cards */}
