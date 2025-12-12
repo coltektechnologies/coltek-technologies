@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import legalHeroPic from '../../assets/images/legaHeropic.png';
+import legalHeroPic from "../../assets/images/legaHeropic.webp";
 
 // Import PDFs
 import termsOfServicePDF from '../../assets/pdfs/terms-of-service.pdf';

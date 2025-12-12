@@ -6,20 +6,26 @@ import CTASection from "@/components/CTASection";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-// Images
-import SSServiceCard from "@/assets/ServicesPageImages/SS ServiceCard.png";
-import CSServiceCard from "@/assets/ServicesPageImages/CS ServiceCard.png";
-import AIMLServiceCard from "@/assets/ServicesPageImages/AIML ServiceCard.png";
-import MobileAppServiceCard from "@/assets/ServicesPageImages/MobileAppServiceCard.jpg";
+// Service card images - using available WebP versions
+import AIMLServiceCard from "@/assets/ServicesPageImages/AIML ServiceCard.webp";
+import MobileAppServiceCard from "@/assets/ServicesPageImages/MobileAppServiceCard.webp";
+import CSServiceCard from "@/assets/ServicesPageImages/CS ServiceCard.webp";
+
+// Other service images
+import SoftwareSolutionsImg from "@/assets/ServicesPageImages/SoftwareSolutionsImg.webp";
+import AIMLImg from "@/assets/ServicesPageImages/AIMLImg.webp";
+import CloudSolutionImg from "@/assets/ServicesPageImages/CloudSolutionImg.webp";
+import MobileAppImg from "@/assets/ServicesPageImages/MobileAppImg.webp";
+
+// Fallback to original formats for missing files
 import ServiceHeroImage from "@/assets/ServicesPageImages/ServiceHeroImage.jpg";
 import IconExpertise from "@/assets/ServicesPageImages/IconExpertise.png";
 import IconReliable from "@/assets/ServicesPageImages/IconReliable.png";
 import IconInnovation from "@/assets/ServicesPageImages/IconInnovation.png";
 import IconSupport from "@/assets/ServicesPageImages/IconSupport.png";
-import SoftwareSolutionsImg from "@/assets/ServicesPageImages/SoftwareSolutionsImg.jpg";
-import AIMLImg from "@/assets/ServicesPageImages/AIMLImg.jpg";
-import CloudSolutionImg from "@/assets/ServicesPageImages/CloudSolutionImg.jpg";
-import MobileAppImg from "@/assets/ServicesPageImages/MobileAppImg.png";
+
+// Fallback for SS ServiceCard - using SoftwareSolutionsImg as a replacement
+const SSServiceCard = SoftwareSolutionsImg;
 // ========== IMPORTS END ==========
 
 const Services = () => {
