@@ -1,8 +1,8 @@
-// Import service card images
-import SoftwareSolutionsImg from "../assets/ServicesPageImages/SoftwareSolutionsImg.jpg";
-import CS_ServiceCard from "../assets/ServicesPageImages/CS ServiceCard.png";
-import MobileAppServiceCard from "../assets/ServicesPageImages/MobileAppServiceCard.jpg";
-import AIML_ServiceCard from "../assets/ServicesPageImages/AIML ServiceCard.png";
+// Import service card images - using WebP versions
+import SoftwareSolutionsImg from "../assets/ServicesPageImages/SoftwareSolutionsImg.webp";
+import CS_ServiceCard from "../assets/ServicesPageImages/CS ServiceCard.webp";
+import MobileAppServiceCard from "../assets/ServicesPageImages/MobileAppServiceCard.webp";
+import AIML_ServiceCard from "../assets/ServicesPageImages/AIML ServiceCard.webp";
 
 export interface Service {
   id: number;

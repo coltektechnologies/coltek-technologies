@@ -6,18 +6,25 @@ import CTASection from "@/components/CTASection";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-// Images
-import SSServiceCard from "@/assets/ServicesPageImages/SS ServiceCard.png";
-import CSServiceCard from "@/assets/ServicesPageImages/CS ServiceCard.png";
-import AIMLServiceCard from "@/assets/ServicesPageImages/AIML ServiceCard.png";
-import MobileAppServiceCard from "@/assets/ServicesPageImages/MobileAppServiceCard.jpg";
-import ServiceHeroImage from "@/assets/ServicesPageImages/ServiceHeroImage.jpg";
-import IconExpertise from "@/assets/ServicesPageImages/IconExpertise.png";
-import IconReliable from "@/assets/ServicesPageImages/IconReliable.png";
-import IconInnovation from "@/assets/ServicesPageImages/IconInnovation.png";
-import IconSupport from "@/assets/ServicesPageImages/IconSupport.png";
-import SoftwareSolutionsImg from "@/assets/ServicesPageImages/SoftwareSolutionsImg.jpg";
-import AIMLImg from "@/assets/ServicesPageImages/AIMLImg.jpg";
+// Images - Using WebP format for better performance
+import SSServiceCard from "@/assets/ServicesPageImages/SS ServiceCard.webp";
+import CSServiceCard from "@/assets/ServicesPageImages/CS ServiceCard.webp";
+import AIMLServiceCard from "@/assets/ServicesPageImages/AIML ServiceCard.webp";
+import MobileAppServiceCard from "@/assets/ServicesPageImages/MobileAppServiceCard.webp";
+import ServiceHeroImage from "@/assets/ServicesPageImages/ServiceHeroImage.jpg"; // No WebP version found
+import IconExpertise from "@/assets/ServicesPageImages/IconExpertise.png"; // No WebP version found
+import IconReliable from "@/assets/ServicesPageImages/IconReliable.png"; // No WebP version found
+import IconInnovation from "@/assets/ServicesPageImages/IconInnovation.png"; // No WebP version found
+import IconSupport from "@/assets/ServicesPageImages/IconSupport.png"; // No WebP version found
+import SoftwareSolutionsImg from "@/assets/ServicesPageImages/SoftwareSolutionsImg.webp";
+import AIMLImg from "@/assets/ServicesPageImages/AIMLImg.webp";
+
+// Note: The following images still need WebP versions:
+// - ServiceHeroImage.jpg
+// - IconExpertise.png
+// - IconReliable.png
+// - IconInnovation.png
+// - IconSupport.png
 import CloudSolutionImg from "@/assets/ServicesPageImages/CloudSolutionImg.jpg";
 import MobileAppImg from "@/assets/ServicesPageImages/MobileAppImg.png";
 // ========== IMPORTS END ==========

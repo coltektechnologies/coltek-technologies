@@ -4,14 +4,20 @@ import { Link } from "react-router-dom";
 import Reveal from "../../components/Reveal";
 
 // TEAM IMAGES
+// Note: Please convert these images to WebP format for better performance
 import CEOImage from "../../assets/team/ceo.jpg";
 import FrederickImg from "../../assets/team/CTO.jpg";
-
 import WilliamsImg from "../../assets/team/william.jpg";
 import NancyImg from "../../assets/team/nancy.png";
 
-// NEW ABOUT HERO IMAGE
-import AboutHeroImg from "../../assets/images/about-hero.jpg";
+// Hero image - using WebP version
+import AboutHeroImg from "../../assets/images/about-hero.webp";
+
+// Images that need WebP conversion:
+// - /src/assets/team/ceo.jpg
+// - /src/assets/team/CTO.jpg
+// - /src/assets/team/william.jpg
+// - /src/assets/team/nancy.png
 
 // Icons
 import {

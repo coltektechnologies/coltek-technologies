@@ -16,8 +16,8 @@ import {
   X,
 } from "lucide-react";
 
-// Import your hero image
-import ContactHeroImg from "../../assets/images/contact-hero (1).jpg";
+// Import your hero image - using WebP for better performance
+import ContactHeroImg from "../../assets/images/contact-hero.webp";
 
 /**
  * CONTACT PAGE (Hero Image Polish)
