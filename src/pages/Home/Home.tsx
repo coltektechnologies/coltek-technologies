@@ -4,6 +4,8 @@ import { images } from "../../assets/images/images";
 import { allServices, serviceGroups } from "../../data/services";
 import TestimonialsSlider from "../../components/sections/TestimonialsSlider";
 
+
+
 // ------------------------
 // Home (componentized)
 // ------------------------
@@ -101,12 +103,12 @@ export default function Home() {
               </p>
 
               <div className="flex gap-4">
-                <Link 
-                  to="/portfolio"
-                  className="px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold text-gray-900 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 active:scale-95 bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] inline-block text-center"
-                >
-                  View All Projects
-                </Link>
+                <Link to="/portfolio">
+  <button className="px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold text-gray-900 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 active:scale-95 bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6]">
+    View All Projects
+  </button>
+</Link>
+
               </div>
             </div>
           </div>
@@ -186,17 +188,14 @@ function Hero({ isMobile }: { isMobile: boolean }) {
               </p>
 
               <div className="flex flex-wrap gap-2 sm:gap-4 pt-1">
-                <a href="/portfolio" className="inline-block">
-                  <button className="px-4 sm:px-8 py-2 sm:py-4 text-xs sm:text-base font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-transparent hover:border-cyan-400 active:scale-95 bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] text-white">
-                    Get Started
-                  </button>
-                </a>
-
-                <a href="/about" className="inline-block">
-                  <button className="px-4 sm:px-8 py-2 sm:py-4 text-xs sm:text-base font-semibold rounded-lg transition-all duration-300 border-2 border-[#1c3D72] text-white hover:bg-[#1c3D72]/10 bg-transparent">
-                    Learn More
-                  </button>
-                </a>
+                <Link to="/contact">
+                <button className="px-4 sm:px-8 py-2 sm:py-4 text-xs sm:text-base font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-transparent hover:border-cyan-400 active:scale-95 bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] text-white">
+                  Get Started
+                </button></Link>
+<Link to="/about">
+                <button className="px-4 sm:px-8 py-2 sm:py-4 text-xs sm:text-base font-semibold rounded-lg transition-all duration-300 border-2 border-[#1c3D72] text-white hover:bg-[#1c3D72]/10 bg-transparent">
+                  Learn More
+                </button></Link>
               </div>
 
               {/* Mobile-only image and icons */}

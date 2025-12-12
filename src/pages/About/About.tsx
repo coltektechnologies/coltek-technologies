@@ -26,7 +26,6 @@ import {
   HeartHandshake,
   Star,
   HandHelping,
-  
   Facebook,
   Instagram,
   ArrowRightCircle,
@@ -66,8 +65,6 @@ const milestones = [
     accent: "#8FB4FF",
   },
 ];
-
-
 
 const About: React.FC = () => {
   const [active, setActive] = useState<number | null>(null);
@@ -295,6 +292,7 @@ const About: React.FC = () => {
             {/* Larger CEO Photo */}
             <img
               src={CEOImage}
+              loading="lazy"
               alt="CEO"
               className="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover ring-4 ring-white shadow-lg"
             />
@@ -399,6 +397,7 @@ const About: React.FC = () => {
                   {/* BIGGER TEAM AVATAR */}
                   <img
                     src={m.image}
+                    loading="lazy"
                     alt={m.name}
                     className="
                 w-36 
