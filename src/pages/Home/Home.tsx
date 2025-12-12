@@ -103,12 +103,12 @@ export default function Home() {
               </p>
 
               <div className="flex gap-4">
-                <Link to="/portfolio">
-  <button className="px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold text-gray-900 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 active:scale-95 bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6]">
-    View All Projects
-  </button>
-</Link>
-
+                <Link 
+                  to="/portfolio"
+                  className="px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold text-gray-900 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 active:scale-95 bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] inline-block text-center"
+                >
+                  View All Projects
+                </Link>
               </div>
             </div>
           </div>
