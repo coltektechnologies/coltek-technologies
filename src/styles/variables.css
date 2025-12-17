@@ -5,38 +5,36 @@
   --legal-bg-color: #f2f9ff;
   --aboutus-bg-color: #ffffff;
   --footer-bg-color: #000000;
-
+  
   /* Button Colors */
   --button-bg1-gradient-color: linear-gradient(
     97.91deg,
     #00d9fd 2.91%,
     #0afe36 97.09%
   );
-
   --nav-button-bg: #0D1B2A;
   --nav-button-text-color: #B0BEC5;
-
   --button-bg2-color: #00d9fd;
   --button-bg3-color: #c8e4fe9e;
   --button-bg4-color: #034492;
   --button-bg5-color: #041979;
   --button-hover-color: #070c29;
-
+  
   /* Button Text and hover Colors */
   --button-text-color: #07121d;
   --button-bg3-text-color: #0b81ff;
   --button-bg4-text-color: #ffffff;
   --button-hover-text-color: #ffffff;
   --button-border-color: #00d9fd;
-
+  
   /* Slider Colors */
   --slider-track-color: #d9d9d9;
   --slider-active-color: #5d5dff;
-
+  
   /* Text Colors */
   --text-color: #000000;
   --nav-text-color: #3A3D3F;
-
+  
   /* Card Colors */
   --card1-bg-color: #c8e4fe3d;
   --card2-bg-color: #1c8dfb3d;
@@ -48,4 +46,8 @@
   --card-contact-bg-color: linear-gradient(180deg, #041979 0%, #0071c3 100%);
   --card-legal-bg-color: #5d5dff;
   --card-border-color: #007acb;
+  
+  /* Fonts */
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Montserrat', sans-serif;
 }
