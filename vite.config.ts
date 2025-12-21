@@ -1,28 +1,50 @@
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import path from "path";
+import { resolve } from 'path';
+import { createHtmlPlugin } from 'vite-plugin-html';
 
 // https://vite.dev/config/
 export default defineConfig({
   base: '/',
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react(), 
+    tailwindcss(),
+    createHtmlPlugin({
+      minify: true,
+      inject: {
+        data: {
+          title: 'COLTEK Technologies',
+          favicon: './favicon.ico',
+        },
+      },
+    }),
+  ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
-  server: {
-    headers: {
-      'Cache-Control': 'public, max-age=31536000',
+      "@": resolve(__dirname, "./src"),
     },
   },
   build: {
     assetsDir: 'assets',
     rollupOptions: {
-      output: {
-        assetFileNames: 'assets/[name]-[hash][extname]',
+      input: {
+        main: resolve(__dirname, 'index.html'),
       },
+      output: {
+        assetFileNames: (assetInfo) => {
+          // Keep favicon files in root
+          if (assetInfo.name && /^favicon\.(ico|png|svg)$/.test(assetInfo.name)) {
+            return '[name][extname]';
+          }
+          return 'assets/[name]-[hash][extname]';
+        },
+      },
+    },
+  },
+  server: {
+    headers: {
+      'Cache-Control': 'public, max-age=0',
     },
   },
 });
