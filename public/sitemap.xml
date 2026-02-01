@@ -2,80 +2,70 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Home -->
   <url>
-    <loc>https://www.coltektechnologies.io/</loc>
+    <loc>https://coltektechnologies.io/</loc>
     <lastmod>2025-12-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-  
   <!-- Main Pages -->
   <url>
-    <loc>https://www.coltektechnologies.io/about</loc>
+    <loc>https://coltektechnologies.io/about</loc>
     <lastmod>2025-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
   <url>
-    <loc>https://www.coltektechnologies.io/services</loc>
+    <loc>https://coltektechnologies.io/services</loc>
     <lastmod>2025-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  
   <!-- Service Pages -->
   <url>
-    <loc>https://www.coltektechnologies.io/services/software-solution</loc>
+    <loc>https://coltektechnologies.io/services/software-solution</loc>
     <lastmod>2025-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
   <url>
-    <loc>https://www.coltektechnologies.io/services/cloudsolutions</loc>
+    <loc>https://coltektechnologies.io/services/cloudsolutions</loc>
     <lastmod>2025-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
   <url>
-    <loc>https://www.coltektechnologies.io/services/mobileapp</loc>
+    <loc>https://coltektechnologies.io/services/mobileapp</loc>
     <lastmod>2025-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
   <url>
-    <loc>https://www.coltektechnologies.io/services/ai-ml</loc>
+    <loc>https://coltektechnologies.io/services/ai-ml</loc>
     <lastmod>2025-12-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
   <!-- Other Pages -->
   <url>
-    <loc>https://www.coltektechnologies.io/portfolio</loc>
+    <loc>https://coltektechnologies.io/portfolio</loc>
     <lastmod>2025-12-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
   <url>
-    <loc>https://www.coltektechnologies.io/privacy-policy</loc>
+    <loc>https://coltektechnologies.io/privacy-policy</loc>
     <lastmod>2025-12-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
   <url>
-    <loc>https://www.coltektechnologies.io/contact</loc>
+    <loc>https://coltektechnologies.io/contact</loc>
     <lastmod>2025-12-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
   <url>
-    <loc>https://www.coltektechnologies.io/blog</loc>
+    <loc>https://coltektechnologies.io/blog</loc>
     <lastmod>2025-12-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
