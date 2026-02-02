@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom"
-import images from "../../assets/images/images"
+// Using absolute paths from public directory for consistent behavior in production
+const logoPath = process.env.NODE_ENV === 'production' ? '/logo.png' : '/logo.png';
+const logoHoverPath = process.env.NODE_ENV === 'production' ? '/images/logohover.png' : '/images/logohover.png';
 import { useState, useEffect, useRef } from "react"
 
 const Navbar = () => {
@@ -58,12 +60,12 @@ const Navbar = () => {
           onMouseLeave={() => setIsLogoHovered(false)}
         >
           <img 
-            src={images.logo} 
+            src={logoPath}
             className={`w-25 transition-opacity duration-300 ${isLogoHovered ? 'opacity-0' : 'opacity-100'}`} 
             alt="Coltek Technologies Logo" 
           />
           <img 
-            src={images.logohover} 
+            src={logoHoverPath}
             className={`w-25 absolute top-0 left-0 transition-opacity duration-300 ${isLogoHovered ? 'opacity-100' : 'opacity-0'}`} 
             alt="Coltek Technologies Hover Logo" 
           />
