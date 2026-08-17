@@ -259,7 +259,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-sm font-semibold">Location</div>
-                    <div className="text-xs text-[#607B8B]">Sunyani, Ghana (Remote-friendly)</div>
+                    <div className="text-xs text-[#607B8B]">Accra, Ghana (Remote-friendly)</div>
                   </div>
                 </div>
 
@@ -403,15 +403,15 @@ const Contact: React.FC = () => {
                   ></textarea>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
                   <button
                     type="submit"
                     disabled={sending}
-                    className="mt-2 px-5 py-3 flex items-center justify-center gap-2 rounded-lg font-semibold text-white shadow-md transform hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="mt-2 w-full sm:w-auto px-5 py-3 flex items-center justify-center gap-2 rounded-lg font-semibold text-white shadow-md transform hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
                     style={{ background: "linear-gradient(90deg, #1C3D72 0%, #2EC4B6 100%)" }}
                   >
-                    {sending ? "Sending..." : "Send Message"}
-                    <Send className="w-4 h-4" />
+                    <span>{sending ? "Sending..." : "Send Message"}</span>
+                    <Send className="w-4 h-4 shrink-0" />
                   </button>
 
                   <div className="text-sm text-[#607B8B]">We reply within 48 hours</div>

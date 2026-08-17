@@ -73,12 +73,12 @@ const TestimonialsSlider: React.FC = () => {
 
   return (
     <div className="w-full bg-[#0B0F1F] py-8 md:py-16 text-white">
-      <div className="w-full px-4">
-        <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-10 text-left">Testimonials</h2>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-2xl md:text-3xl md:text-4xl font-bold mb-6 md:mb-10 text-center md:text-left">Testimonials</h2>
 
         <div
           ref={scrollRef}
-          className="flex flex-col md:flex-row md:overflow-x-auto md:snap-x md:snap-mandatory scrollbar-hide pb-8 w-full max-w-4xl mx-auto gap-6 px-4"
+          className="flex flex-col md:flex-row md:overflow-x-auto md:snap-x md:snap-mandatory scrollbar-hide pb-8 w-full max-w-4xl mx-auto md:mx-0 gap-6"
           style={{ scrollBehavior: "smooth", scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {testimonials.map((t) => (

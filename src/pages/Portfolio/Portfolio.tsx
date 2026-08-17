@@ -8,6 +8,7 @@ import CRM from "../../assets/portfolio/crm.png";
 import Product from "../../assets/portfolio/product.png";
 import Retail from "../../assets/portfolio/retail.png";
 import Commerce from "../../assets/portfolio/commerce.png";
+import opendoor from "../../assets/images/opendoor.png";
 import {
   Tag,
   ArrowRightCircle,
@@ -48,6 +49,7 @@ type Project = {
   tags?: string[];
   image?: string;
   featured?: boolean;
+  url?: string;
 };
 
 const ALL_CATEGORIES: { key: Category; icon: React.ReactNode }[] = [
@@ -60,6 +62,15 @@ const ALL_CATEGORIES: { key: Category; icon: React.ReactNode }[] = [
 
 // Hardcoded project seed (easy to migrate later)
 const projectsSeed: Project[] = [
+  {
+    id: "p7",
+    title: "Church Management System",
+    excerpt: "An intuitive church management system for managing church activities and members.",
+    category: "Web Development",
+    tags: ["SaaS", "Cloud"],
+    image: opendoor,
+    url: "https://open-door.site/",
+  },
   {
     id: "p1",
     title: "AI-Powered Inventory System",
@@ -254,23 +265,48 @@ const Portfolio: React.FC = () => {
                       </div>
 
                       <div className="flex items-center gap-2">
-                        {/* View button - simply shows "Coming soon" micro-feedback */}
-                        <button
-                          onClick={() => handleComingSoon(p.id)}
-                          className="text-sm px-3 py-1 rounded-md border border-[#E8EDF2] bg-white hover:bg-[#fbfdff] transition"
-                          aria-label={`View ${p.title}`}
-                        >
-                          View
-                        </button>
+                        {/* View button */}
+                        {p.url ? (
+                          <a
+                            href={p.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-sm px-3 py-1 rounded-md border border-[#E8EDF2] bg-white hover:bg-[#fbfdff] transition"
+                            aria-label={`View ${p.title}`}
+                          >
+                            View
+                          </a>
+                        ) : (
+                          <button
+                            onClick={() => handleComingSoon(p.id)}
+                            className="text-sm px-3 py-1 rounded-md border border-[#E8EDF2] bg-white hover:bg-[#fbfdff] transition"
+                            aria-label={`View ${p.title}`}
+                          >
+                            View
+                          </button>
+                        )}
 
-                        <button
-                          onClick={() => handleComingSoon(p.id)}
-                          className="text-sm px-3 py-1 rounded-md bg-gradient-to-r from-[#1C3D72] to-[#2EC4B6] text-white shadow-md flex items-center gap-2"
-                          aria-label={`Open ${p.title}`}
-                        >
-                          Link
-                          <ArrowRightCircle className="w-4 h-4" />
-                        </button>
+                        {p.url ? (
+                          <a
+                            href={p.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-sm px-3 py-1 rounded-md bg-gradient-to-r from-[#1C3D72] to-[#2EC4B6] text-white shadow-md flex items-center gap-2"
+                            aria-label={`Open ${p.title}`}
+                          >
+                            Link
+                            <ArrowRightCircle className="w-4 h-4" />
+                          </a>
+                        ) : (
+                          <button
+                            onClick={() => handleComingSoon(p.id)}
+                            className="text-sm px-3 py-1 rounded-md bg-gradient-to-r from-[#1C3D72] to-[#2EC4B6] text-white shadow-md flex items-center gap-2"
+                            aria-label={`Open ${p.title}`}
+                          >
+                            Link
+                            <ArrowRightCircle className="w-4 h-4" />
+                          </button>
+                        )}
                       </div>
                     </div>
 
