@@ -1,13 +1,13 @@
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { resolve } from 'path';
-import { createHtmlPlugin } from 'vite-plugin-html';
-import { VitePWA } from 'vite-plugin-pwa';
+import { resolve } from "path";
+import { createHtmlPlugin } from "vite-plugin-html";
+import { VitePWA } from "vite-plugin-pwa";
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/',
+  base: "/",
   plugins: [
     react(),
     tailwindcss(),
@@ -15,35 +15,36 @@ export default defineConfig({
       minify: true,
       inject: {
         data: {
-          title: 'COLTEK Technologies',
+          title: "COLTEK Technologies",
         },
       },
     }),
     VitePWA({
+      registerType: "autoUpdate",
       includeAssets: [
-        'favicon.ico',
-        'favicon-16x16.png',
-        'favicon-32x32.png',
-        'apple-touch-icon.png',
-        'android-chrome-192x192.png',
-        'android-chrome-512x512.png',
-        'site.webmanifest'
+        "favicon.ico",
+        "favicon-16x16.png",
+        "favicon-32x32.png",
+        "apple-touch-icon.png",
+        "android-chrome-192x192.png",
+        "android-chrome-512x512.png",
+        "site.webmanifest",
       ],
       manifest: {
-        name: 'COLTEK Technologies',
-        short_name: 'COLTEK',
-        description: 'Transforming Potentials into Excellence',
-        theme_color: '#ffffff',
+        name: "COLTEK Technologies",
+        short_name: "COLTEK",
+        description: "Transforming Potentials into Excellence",
+        theme_color: "#ffffff",
         icons: [
           {
-            src: 'android-chrome-192x192.png',
-            sizes: '192x192',
-            type: 'image/png',
+            src: "android-chrome-192x192.png",
+            sizes: "192x192",
+            type: "image/png",
           },
           {
-            src: 'android-chrome-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
+            src: "android-chrome-512x512.png",
+            sizes: "512x512",
+            type: "image/png",
           },
         ],
       },
@@ -55,27 +56,27 @@ export default defineConfig({
     },
   },
   build: {
-    assetsDir: 'assets',
+    assetsDir: "assets",
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
+        main: resolve(__dirname, "index.html"),
       },
       output: {
         assetFileNames: (assetInfo) => {
-          if (!assetInfo.name) return 'assets/[name]-[hash][extname]';
-          const info = assetInfo.name.split('.');
+          if (!assetInfo.name) return "assets/[name]-[hash][extname]";
+          const info = assetInfo.name.split(".");
           const ext = info[info.length - 1];
-          if (['ico', 'png', 'webmanifest'].includes(ext)) {
+          if (["ico", "png", "webmanifest"].includes(ext)) {
             return `[name][extname]`;
           }
-          return 'assets/[name]-[hash][extname]';
+          return "assets/[name]-[hash][extname]";
         },
       },
     },
   },
   server: {
     headers: {
-      'Cache-Control': 'public, max-age=0',
+      "Cache-Control": "public, max-age=0",
     },
   },
 });
