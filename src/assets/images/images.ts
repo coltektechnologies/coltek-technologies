@@ -25,6 +25,7 @@ import logohover from "./logohover.png"
 import Adwoa from './Adwoa.webp'
 import hand from './hand.svg'
 import jeffery from './Jeffery.webp'
+import opendoor from './opendoor.png'
 
 // Note: The following images need to be converted to WebP format:
 // - logo.png
@@ -57,6 +58,7 @@ export const images = {
     logohover,
     Adwoa,
     hand,
-    jeffery
+    jeffery,
+    opendoor
     }
 export default images;
