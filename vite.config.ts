@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
@@ -78,5 +79,10 @@ export default defineConfig({
     headers: {
       "Cache-Control": "public, max-age=0",
     },
+  },
+  // Component tests need a DOM. Build output is unaffected by this block.
+  test: {
+    environment: "jsdom",
+    globals: false,
   },
 });

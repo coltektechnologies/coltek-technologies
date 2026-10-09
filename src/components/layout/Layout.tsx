@@ -1,3 +1,9 @@
+// ========== LAYOUT ==========
+// The shared application shell for every route nested under "/".
+//
+// The Services routes sit outside this Layout and compose Navbar/Footer
+// themselves, so both paths must produce the same shell — see the Stage 3
+// report for the consequences that remain.
 import { Outlet, useLocation } from "react-router-dom";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
@@ -23,16 +29,29 @@ const Layout = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ overflowX: "hidden" }}>
+    <div className="flex min-h-screen flex-col overflow-x-hidden">
       {/* Show initial loading animation */}
       {initialLoading && <Loader />}
 
       {!initialLoading && (
         <>
+          {/* Lets keyboard users jump past the fixed navbar (CLAUDE.md §17).
+              Visible only while focused. */}
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-control focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+          >
+            Skip to main content
+          </a>
+
           <Navbar />
 
-          {/* This div fades in whenever route changes */}
-          <main key={routeKey} className="flex-1 animate-route-fade">
+          {/* Re-keyed on navigation so the route fade replays */}
+          <main
+            id="main-content"
+            key={routeKey}
+            className="animate-route-fade flex-1"
+          >
             <Outlet />
           </main>
 

@@ -1,5 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
+import { Star } from "lucide-react";
 import images from "../../assets/images/images";
+import { Card } from "@/components/ui/card";
+import { CarouselDots } from "@/components/ui/carousel-dots";
 
 interface Testimonial {
   id: number;
@@ -14,9 +17,9 @@ const testimonials: Testimonial[] = [
   {
     id: 1,
     name: "Ewura-Adwoa Edmond",
-    role: "Student University of Ghana",
-    text: "My IT class has been a great learning experience. I've gained valuable skills and insights, and I'm excited to continue exploring this field thanks to Coltek Technologies ",
-    image: images.Adwoa, 
+    role: "Student, University of Ghana",
+    text: "My IT class has been a great learning experience. I've gained valuable skills and insights, and I'm excited to continue exploring this field thanks to Coltek Technologies",
+    image: images.Adwoa,
     rating: 5,
   },
   {
@@ -27,107 +30,102 @@ const testimonials: Testimonial[] = [
     image: images.jeffery,
     rating: 5,
   },
-  // {
-  //   id: 3,
-  //   name: "Nancy Coltek",
-  //   role: "Content Creator and Developer",
-  //   text: "The app delivered is exactly what I've been looking for.",
-  //   image: images.testimonial1,
-  //   rating: 5,
-  // },
-  // {
-  //   id: 4,
-  //   name: "Collins Fred",
-  //   role: "Product Quality Engineer",
-  //   text: "Lorem is exactly what I've been looking for.",
-  //   image: images.testimonial2,
-  //   rating: 5,
-  // },
 ];
 
 const TestimonialsSlider: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Update active dot based on scroll position
+  // Keep the active dot in sync with the scroll position.
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
 
     const handleScroll = () => {
       const itemWidth = el.clientWidth;
-      const index = Math.round(el.scrollLeft / itemWidth);
-      setCurrentIndex(index);
+      if (!itemWidth) return;
+      setCurrentIndex(Math.round(el.scrollLeft / itemWidth));
     };
 
-    el.addEventListener("scroll", handleScroll);
+    el.addEventListener("scroll", handleScroll, { passive: true });
     return () => el.removeEventListener("scroll", handleScroll);
   }, []);
 
   const goToSlide = (index: number) => {
     const el = scrollRef.current;
     if (!el) return;
-    const itemWidth = el.clientWidth;
-    el.scrollTo({ left: itemWidth * index, behavior: "smooth" });
+    el.scrollTo({ left: el.clientWidth * index, behavior: "smooth" });
   };
 
   return (
-    <div className="w-full bg-[#0B0F1F] py-8 md:py-16 text-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-2xl md:text-3xl md:text-4xl font-bold mb-6 md:mb-10 text-center md:text-left">Testimonials</h2>
+    <div className="py-section md:py-section-lg">
+      <div className="container-page">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-2xl font-bold text-white sm:text-3xl md:text-4xl">
+            What people say
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-gray-300">
+            Students and professionals who have worked with the COLTEK team.
+          </p>
+        </div>
 
         <div
           ref={scrollRef}
-          className="flex flex-col md:flex-row md:overflow-x-auto md:snap-x md:snap-mandatory scrollbar-hide pb-8 w-full max-w-4xl mx-auto md:mx-0 gap-6"
-          style={{ scrollBehavior: "smooth", scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          className="scrollbar-hide mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4"
         >
           {testimonials.map((t) => (
             <div
               key={t.id}
-              className="w-full md:w-10/12 lg:w-8/12 xl:w-6/12 mx-auto md:flex-shrink-0 md:px-4 transition-transform duration-300 hover:scale-[1.02]"
+              className="w-full shrink-0 snap-start md:w-[calc(50%-0.75rem)]"
             >
-              <div className="bg-[#D9D9D9] text-black p-6 rounded-xl shadow-xl h-full flex flex-col">
-                <div className="flex justify-center mb-4">
+              <Card variant="plain" className="flex h-full flex-col p-6">
+                <div className="flex items-center gap-4">
                   <img
                     src={t.image}
-                    alt={t.name}
-                    className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover border-4 border-blue-100"
+                    alt=""
+                    className="h-16 w-16 rounded-pill object-cover"
                     loading="lazy"
+                    decoding="async"
                   />
+                  <div>
+                    <h3 className="font-semibold text-foreground">{t.name}</h3>
+                    <p className="text-sm text-muted-foreground">{t.role}</p>
+                  </div>
                 </div>
 
-                <h3 className="text-base md:text-lg font-semibold text-center mb-1">{t.name}</h3>
-                <p className="text-xs md:text-sm text-gray-600 text-center mb-3">{t.role}</p>
-
-                <div className="flex justify-center mb-4 space-x-1" style={{ color: '#3E66DF' }}>
-                  {Array(t.rating).fill(0).map((_, i) => (
-                    <span key={i} className="font-bold text-2xl">★</span>
+                <div
+                  className="mt-4 flex gap-0.5"
+                  role="img"
+                  aria-label={`${t.rating} out of 5 stars`}
+                >
+                  {Array.from({ length: t.rating }).map((_, i) => (
+                    <Star
+                      key={i}
+                      className="h-4 w-4 fill-[#3E66DF] text-[#3E66DF]"
+                      aria-hidden="true"
+                    />
                   ))}
                 </div>
 
-                <p className="text-center text-gray-700 text-sm mb-4">{t.text}</p>
-                <div className="flex items-center justify-center space-x-1 mt-auto">
-                  <img src={images.hand} alt="" className="h-4 w-4" />
-                  <span style={{ color: '#202020' }}>Testimonial</span>
-                </div>
-              </div>
+                <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
+                  {t.text}
+                </blockquote>
+              </Card>
             </div>
           ))}
         </div>
 
-        {/* Navigation Dots */}
-        <div className="flex justify-center mt-8 space-x-2">
-          {testimonials.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                index === currentIndex ? "bg-blue-500 w-6" : "bg-gray-600 w-2"
-              }`}
-              aria-label={`Go to testimonial ${index + 1}`}
-            />
-          ))}
-        </div>
+        {/* Only useful once the rail can actually scroll. */}
+        {testimonials.length > 1 && (
+          <CarouselDots
+            className="mt-8"
+            count={testimonials.length}
+            activeIndex={currentIndex}
+            onSelect={goToSlide}
+            itemLabel="testimonial"
+            variant="bar"
+          />
+        )}
       </div>
     </div>
   );

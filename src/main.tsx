@@ -1,7 +1,8 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+// index.css is the design-system entrypoint: it imports variables.css and
+// global.css itself, so it is the only stylesheet that needs importing here.
 import "./index.css";
-import "./styles/global.css";
 import App from "./App.tsx";
 
 // After a new deploy, a visitor's browser may still hold an old index.html

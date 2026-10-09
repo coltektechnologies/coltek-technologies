@@ -25,4 +25,6 @@ dist-ssr
 .env
 .env.example
 .env.local
+CLAUDE.md
+DESIGN_SYSTEM.md
 

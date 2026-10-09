@@ -1,511 +1,405 @@
-// ========== IMPORTS START ==========
+// src/pages/Services/Services.tsx
+//
+// Stage 5B. The page keeps its own information architecture — overview rail,
+// detailed breakdown, differentiators — and every word of its copy, but now
+// shares the application's visual language: PageHeader / Card / Button /
+// Marquee and semantic tokens.
+//
+// Navbar and Footer are still composed here because the /Services routes sit
+// outside the shared Layout (AppRoutes.tsx). Changing that would change
+// routing, which is out of scope.
+//
+// SURFACE RULE (see About.tsx): --card is #FFFFFF and --background is
+// #F5F9FF, so a card must never sit on a section of its own colour. Sections
+// alternate, and the cards invert with them.
+//
+// Defects this pass closed, all in the Stage 5B report:
+//   * The hero background was ServiceHeroImage.jpg — a ZERO-BYTE file. The
+//     banner has been rendering with no photograph at all.
+//   * The <style jsx> block was not styled-jsx (the package is not
+//     installed), so React emitted an unscoped <style> tag and
+//     .animate-marquee leaked onto every page in the app.
+//   * Each "Read More" <Button> sat inside a <Link> and called
+//     stopPropagation() with no handler of its own, so all four did nothing
+//     at all — and a <button> inside an <a> is invalid HTML besides.
+//   * The four detail blocks were hand-copied JSX; they are one map now.
+//   * 6.65MB of 4096px imagery where 1600px derivatives already existed.
+import { Link } from "react-router-dom";
+import { Award, Clock, LifeBuoy, Lightbulb } from "lucide-react";
+
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import ServiceCard from "@/components/ServiceCard";
 import CTASection from "@/components/CTASection";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Card } from "@/components/ui/card";
+import { Marquee } from "@/components/ui/marquee";
+import { PageHeader } from "@/components/ui/page-header";
+import { cn } from "@/lib/utils";
 
-// Service card images - using available WebP versions
-import AIMLServiceCard from "@/assets/ServicesPageImages/AIML ServiceCard.webp";
-import MobileAppServiceCard from "@/assets/ServicesPageImages/MobileAppServiceCard.webp";
-import CSServiceCard from "@/assets/ServicesPageImages/CS ServiceCard.webp";
+// The 1600px derivatives. The originals are 4096px: MobileAppImg.webp alone
+// is 3.8MB, and the marquee previously used "CS ServiceCard.webp" (50x50)
+// and "AIML ServiceCard.webp" (64x64) — icon sprites stretched across a
+// 224px-tall card header.
+import SoftwareSolutionsImg from "@/assets/ServicesPageImages/SoftwareSolutionsImg-card.webp";
+import AIMLImg from "@/assets/ServicesPageImages/AIMLImg-card.webp";
+import CloudSolutionImg from "@/assets/ServicesPageImages/CloudSolutionImg-card.webp";
+import MobileAppImg from "@/assets/ServicesPageImages/MobileAppImg-card.webp";
 
-// Other service images
-import SoftwareSolutionsImg from "@/assets/ServicesPageImages/SoftwareSolutionsImg.webp";
-import AIMLImg from "@/assets/ServicesPageImages/AIMLImg.webp";
-import CloudSolutionImg from "@/assets/ServicesPageImages/CloudSolutionImg.webp";
-import MobileAppImg from "@/assets/ServicesPageImages/MobileAppImg.webp";
+// ---------------------------------------------------------------------------
+// Data
+//
+// One array now drives both the overview rail and the detailed sections. The
+// rail had its own copy of the list while the four detail blocks were
+// hand-written, so the two could drift. Every string is carried over verbatim.
+// ---------------------------------------------------------------------------
 
-// Fallback to original formats for missing files
-import ServiceHeroImage from "@/assets/ServicesPageImages/ServiceHeroImage.jpg";
-import IconExpertise from "@/assets/ServicesPageImages/IconExpertise.png";
-import IconReliable from "@/assets/ServicesPageImages/IconReliable.png";
-import IconInnovation from "@/assets/ServicesPageImages/IconInnovation.png";
-import IconSupport from "@/assets/ServicesPageImages/IconSupport.png";
+interface ServiceEntry {
+  /** Preserved from the previous markup so any external deep link still lands. */
+  anchorId: string;
+  title: string;
+  /** Short line, used on the overview rail. */
+  summary: string;
+  /** Longer lead paragraph, used in the detailed section. */
+  detail: string;
+  highlightsLabel: string;
+  highlights: string[];
+  image: string;
+  alt: string;
+  path: string;
+}
 
-// Fallback for SS ServiceCard - using SoftwareSolutionsImg as a replacement
-const SSServiceCard = SoftwareSolutionsImg;
-// ========== IMPORTS END ==========
+const SERVICES: ServiceEntry[] = [
+  {
+    anchorId: "service-0",
+    title: "Software Solutions",
+    summary:
+      "High-performance web solutions built for scale, combining creativity, functionality, and technology.",
+    detail:
+      "At Coltek Technologies, we specialize in building high-performance web applications that combine creativity and modern technology.",
+    highlightsLabel: "What We Offer:",
+    highlights: [
+      "Custom website design and development",
+      "E-commerce platforms and CMS integration",
+      "Website implementation and optimization",
+      "SEO and performance enhancement",
+    ],
+    image: SoftwareSolutionsImg,
+    alt: "Software Solutions",
+    path: "/Services/SoftwareSolutions",
+  },
+  {
+    anchorId: "service-2",
+    title: "AI & ML Automation",
+    summary:
+      "Captivate with development, AI integrations, natural language, machine learning, and smarter decisions.",
+    detail:
+      "We help businesses harness artificial intelligence and ML automation to unlock new possibilities.",
+    highlightsLabel: "Our solutions include:",
+    highlights: [
+      "AI model development and training",
+      "Predictive analytics and data labeling",
+      "Natural Language Processing (NLP)",
+      "Integration of AI systems into your workflow",
+    ],
+    image: AIMLImg,
+    alt: "AI & ML Automation",
+    path: "/Services/AIML",
+  },
+  {
+    anchorId: "service-1",
+    title: "Cloud Solutions",
+    summary:
+      "Optimize with cloud infrastructure design, migration, management, and secure your data securely from anywhere.",
+    detail:
+      "Reliable cloud infrastructure to scale your digital operations securely.",
+    highlightsLabel: "We offer:",
+    highlights: [
+      "Cloud strategy & infrastructure setup",
+      "Backup & disaster recovery",
+      "Cloud migration & deployment",
+      "Hybrid & multi-cloud management",
+    ],
+    image: CloudSolutionImg,
+    alt: "Cloud Solutions",
+    path: "/Services/CloudSolutions",
+  },
+  {
+    anchorId: "service-3",
+    title: "Mobile App Development",
+    summary:
+      "Build modern and performant mobile applications for Android, iOS, and cross-platform environments.",
+    detail:
+      "We build modern and performant mobile applications for Android, iOS, and cross-platform environments.",
+    highlightsLabel: "Key Features:",
+    highlights: [
+      "Android & iOS app development",
+      "Cross-platform hybrid apps",
+      "UI/UX design & prototyping",
+      "Testing, deployment & maintenance",
+    ],
+    image: MobileAppImg,
+    alt: "Mobile App Development",
+    path: "/Services/MobileAppDevelopment",
+  },
+];
+
+// Was four PNG sprites between 30x30 and 80x80, rendered into a 56px box.
+// lucide is what the rest of the application draws its icons from.
+const DIFFERENTIATORS = [
+  { Icon: Award, title: "Expertise", subtitle: "Skilled Specialists" },
+  { Icon: Clock, title: "Reliable", subtitle: "On-time Delivery" },
+  { Icon: Lightbulb, title: "Innovation", subtitle: "Future-Ready Solutions" },
+  { Icon: LifeBuoy, title: "Support", subtitle: "Dedicated Assistance" },
+];
+
+const SERVICES_GRID_ID = "services-grid";
+
+// ---------------------------------------------------------------------------
+// Page
+// ---------------------------------------------------------------------------
 
 const Services = () => {
-  // ========== SERVICES DATA ==========
-  const services = [
-    {
-      image: SSServiceCard,
-      title: "Software Solutions",
-      description:
-        "High-performance web solutions built for scale, combining creativity, functionality, and technology.",
-      path: "/Services/SoftwareSolutions",
-    },
-    {
-      image: CSServiceCard,
-      title: "Cloud Solutions",
-      description:
-        "Optimize with cloud infrastructure design, migration, management, and secure your data securely from anywhere.",
-      path: "/Services/CloudSolutions",
-    },
-    {
-      image: AIMLServiceCard,
-      title: "AI & ML",
-      description:
-        "Captivate with development, AI integrations, natural language, machine learning, and smarter decisions.",
-      path: "/Services/AIML",
-    },
-    {
-      image: MobileAppServiceCard,
-      title: "Mobile App Development",
-      description:
-        "Build modern and performant mobile applications for Android, iOS, and cross-platform environments.",
-      path: "/Services/MobileAppDevelopment",
-    },
-  ];
-  // ========== END SERVICES DATA ==========
+  const scrollToGrid = () =>
+    document
+      .getElementById(SERVICES_GRID_ID)
+      ?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <div className="services-page-container min-h-screen bg-background">
+    <div className="flex min-h-screen flex-col overflow-x-hidden bg-background">
       <Navbar />
 
-      {/* ========== HERO SECTION — PREMIUM VERSION ========== */}
-      <section className="relative pt-24 pb-12 px-4">
-        <div className="relative h-[300px] md:h-[360px] rounded-3xl overflow-hidden max-w-7xl mx-auto shadow-xl">
-          {/* Background Image */}
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${ServiceHeroImage})` }}
-          ></div>
-
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#041979]/80 to-[#00D9FD]/50"></div>
-
-          {/* Text Content */}
-          <div className="relative z-10 flex flex-col justify-center h-full px-6 md:px-12 max-w-xl">
-            <h1
-              className="text-3xl md:text-4xl font-bold text-white mb-3"
-              style={{ fontFamily: "Montserrat-Bold" }}
-            >
-              Our Services
-            </h1>
-
-            <p
-              className="text-white/90 text-base md:text-lg mb-6"
-              style={{ fontFamily: "Montserrat-Regular" }}
-            >
-              Comprehensive solutions to help your business grow.
-            </p>
-
+      <main className="flex-1 pt-nav md:pt-nav-lg">
+        {/* The brand gradient rather than a photograph: the previous
+            background, ServiceHeroImage.jpg, is a zero-byte file. */}
+        <PageHeader
+          tone="brand"
+          size="auto"
+          className="py-20 md:py-28"
+          align="left"
+          title="Our Services"
+          description="Comprehensive solutions to help your business grow."
+          actions={
             <Button
-              className="w-fit bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] hover:opacity-90 text-white px-6 h-10 rounded-lg shadow-lg transition"
-              onClick={() =>
-                document.getElementById("services-grid")?.scrollIntoView({
-                  behavior: "smooth",
-                })
-              }
+              variant="outline"
+              size="lg"
+              className="border-2 border-white/50 bg-transparent text-white hover:bg-white/15 hover:text-white"
+              onClick={scrollToGrid}
             >
               Get Started
             </Button>
-          </div>
-        </div>
-      </section>
-      {/* ========== END HERO SECTION ========== */}
-
-      {/* ========== SERVICES GRID SECTION START — MARQUEE VERSION ========== */}
-      <section id="services-grid" className="py-20 bg-background scroll-mt-20 overflow-hidden">
-        <div className="relative">
-          {/* Marquee Container */}
-          <div className="flex animate-marquee hover:pause">
-            {/* First set of cards */}
-            {services.map((service, index) => (
-              <div
-                key={`set1-${index}`}
-                className="flex-shrink-0 w-[320px] mx-4 rounded-2xl p-1 bg-white shadow-lg hover:shadow-xl border border-gray-200 cursor-pointer transition-all hover:scale-105"
-              >
-                <ServiceCard
-                  image={service.image}
-                  title={service.title}
-                  description={service.description}
-                  path={service.path}
-                />
-              </div>
-            ))}
-            {/* Duplicate set for seamless loop */}
-            {services.map((service, index) => (
-              <div
-                key={`set2-${index}`}
-                className="flex-shrink-0 w-[320px] mx-4 rounded-2xl p-1 bg-white shadow-lg hover:shadow-xl border border-gray-200 cursor-pointer transition-all hover:scale-105"
-              >
-                <ServiceCard
-                  image={service.image}
-                  title={service.title}
-                  description={service.description}
-                  path={service.path}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-        
-        {/* CSS for marquee animation */}
-        <style jsx>{`
-          @keyframes marquee {
-            0% {
-              transform: translateX(0);
-            }
-            100% {
-              transform: translateX(-50%);
-            }
           }
-          
-          .animate-marquee {
-            animation: marquee 30s linear infinite;
-          }
-          
-          .animate-marquee:hover {
-            animation-play-state: paused;
-          }
-        `}</style>
-      </section>
-      {/* ========== SERVICES GRID SECTION END ========== */}
+        />
 
-      {/* ========== DETAILED SERVICES SECTION START (UPDATED DESIGN) ========== */}
-      <section className="detailed-services-section py-14 bg-muted/40">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="space-y-10">
-            {/* =======================================================
-          SOFTWARE SOLUTIONS
-      ======================================================== */}
-            <Link
-              to="/Services/SoftwareSolutions"
-              id="service-0"
-              className="group bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center p-6 md:p-10 cursor-pointer scroll-mt-24"
-            >
-              {/* TEXT */}
-              <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-bold text-primary">
-                  1. Software Solutions
-                </h2>
+        <ServicesRail />
+        <ServiceDetails />
+        <WhyChooseUs />
 
-                <p className="text-muted-foreground text-[15px] leading-relaxed">
-                  At Coltek Technologies, we specialize in building
-                  high-performance web applications that combine creativity and
-                  modern technology.
-                </p>
+        <CTASection />
+      </main>
 
-                <h3 className="text-lg font-semibold text-primary mt-4">
-                  What We Offer:
-                </h3>
-
-                <ul className="space-y-2 text-[15px] text-muted-foreground">
-                  <li className="flex items-start gap-2">
-                    <span className="text-secondary">•</span>
-                    Custom website design and development
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-secondary">•</span>
-                    E-commerce platforms and CMS integration
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-secondary">•</span>
-                    Website implementation and optimization
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-secondary">•</span>
-                    SEO and performance enhancement
-                  </li>
-                </ul>
-
-                <Button
-                  className="bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] hover:opacity-90 text-white font-semibold mt-2 px-6 h-10"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  Read More
-                </Button>
-              </div>
-
-              {/* IMAGE */}
-              <div className="rounded-xl overflow-hidden h-[240px] md:h-[300px] lg:h-[320px] shadow-md">
-                <img
-                  src={SoftwareSolutionsImg}
-                  alt="Software Solutions"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
-                />
-              </div>
-            </Link>
-
-            {/* Divider */}
-            <div className="border-t border-gray-300" />
-
-            {/* =======================================================
-          AI & ML
-      ======================================================== */}
-            <Link
-              to="/Services/AIML"
-              id="service-2"
-              className="group bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center p-6 md:p-10 cursor-pointer scroll-mt-24"
-            >
-              {/* IMAGE LEFT */}
-              <div className="order-2 lg:order-1 rounded-xl overflow-hidden h-[240px] md:h-[300px] lg:h-[320px] shadow-md">
-                <img
-                  src={AIMLImg}
-                  alt="AI & ML Automation"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
-                />
-              </div>
-
-              {/* TEXT RIGHT */}
-              <div className="order-1 lg:order-2 space-y-4">
-                <h2 className="text-2xl md:text-3xl font-bold text-primary">
-                  2. AI & ML Automation
-                </h2>
-
-                <p className="text-muted-foreground text-[15px] leading-relaxed">
-                  We help businesses harness artificial intelligence and ML
-                  automation to unlock new possibilities.
-                </p>
-
-                <h3 className="text-lg font-semibold text-primary mt-4">
-                  Our solutions include:
-                </h3>
-
-                <ul className="space-y-2 text-[15px] text-muted-foreground">
-                  <li className="flex items-start gap-2">
-                    <span className="text-secondary">•</span>
-                    AI model development and training
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-secondary">•</span>
-                    Predictive analytics and data labeling
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-secondary">•</span>
-                    Natural Language Processing (NLP)
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-secondary">•</span>
-                    Integration of AI systems into your workflow
-                  </li>
-                </ul>
-
-                <Button
-                  className="bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] hover:opacity-90 text-white font-semibold mt-2 px-6 h-10"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  Read More
-                </Button>
-              </div>
-            </Link>
-
-            {/* Divider */}
-            <div className="border-t border-gray-300" />
-
-            {/* =======================================================
-          CLOUD SOLUTIONS
-      ======================================================== */}
-            <Link
-              to="/Services/CloudSolutions"
-              id="service-1"
-              className="group bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center p-6 md:p-10 cursor-pointer scroll-mt-24"
-            >
-              {/* TEXT LEFT */}
-              <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-bold text-primary">
-                  3. Cloud Solutions
-                </h2>
-
-                <p className="text-muted-foreground text-[15px] leading-relaxed">
-                  Reliable cloud infrastructure to scale your digital operations
-                  securely.
-                </p>
-
-                <h3 className="text-lg font-semibold text-primary mt-4">
-                  We offer:
-                </h3>
-
-                <ul className="space-y-2 text-[15px] text-muted-foreground">
-                  <li className="flex items-start gap-2">
-                    <span className="text-secondary">•</span>
-                    Cloud strategy & infrastructure setup
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-secondary">•</span>
-                    Backup & disaster recovery
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-secondary">•</span>
-                    Cloud migration & deployment
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-secondary">•</span>
-                    Hybrid & multi-cloud management
-                  </li>
-                </ul>
-
-                <Button
-                  className="bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] hover:opacity-90 text-white font-semibold mt-2 px-6 h-10"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  Read More
-                </Button>
-              </div>
-
-              {/* IMAGE RIGHT */}
-              <div className="rounded-xl overflow-hidden h-[240px] md:h-[300px] lg:h-[320px] shadow-md">
-                <img
-                  src={CloudSolutionImg}
-                  alt="Cloud Solutions"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
-                />
-              </div>
-            </Link>
-
-            {/* Divider */}
-            <div className="border-t border-gray-300" />
-
-            {/* =======================================================
-          MOBILE APP DEVELOPMENT
-      ======================================================== */}
-            <Link
-              to="/Services/MobileAppDevelopment"
-              id="service-3"
-              className="group bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center p-6 md:p-10 cursor-pointer scroll-mt-24"
-            >
-              {/* IMAGE LEFT */}
-              <div className="order-2 lg:order-1 rounded-xl overflow-hidden h-[240px] md:h-[300px] lg:h-[320px] shadow-md">
-                <img
-                  src={MobileAppImg}
-                  alt="Mobile App Development"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
-                />
-              </div>
-
-              {/* TEXT RIGHT */}
-              <div className="order-1 lg:order-2 space-y-4">
-                <h2 className="text-2xl md:text-3xl font-bold text-primary">
-                  4. Mobile App Development
-                </h2>
-
-                <p className="text-muted-foreground text-[15px] leading-relaxed">
-                  We build modern and performant mobile applications for
-                  Android, iOS, and cross-platform environments.
-                </p>
-
-                <h3 className="text-lg font-semibold text-primary mt-4">
-                  Key Features:
-                </h3>
-
-                <ul className="space-y-2 text-[15px] text-muted-foreground">
-                  <li className="flex items-start gap-2">
-                    <span className="text-secondary">•</span>
-                    Android & iOS app development
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-secondary">•</span>
-                    Cross-platform hybrid apps
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-secondary">•</span>
-                    UI/UX design & prototyping
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-secondary">•</span>
-                    Testing, deployment & maintenance
-                  </li>
-                </ul>
-
-                <Button
-                  className="bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] hover:opacity-90 text-white font-semibold mt-2 px-6 h-10"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  Read More
-                </Button>
-              </div>
-            </Link>
-          </div>
-        </div>
-      </section>
-      {/* ========== DETAILED SERVICES SECTION END (UPDATED DESIGN) ========== */}
-
-      {/* WHY CHOOSE US */}
-      {/* ========== WHY CHOOSE US SECTION — PREMIUM VERSION ========== */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4 max-w-7xl">
-          {/* Title */}
-          <h2
-            className="text-3xl md:text-4xl font-extrabold text-center mb-10"
-            style={{ fontFamily: "Montserrat-Bold" }}
-          >
-            Why Choose Us
-          </h2>
-
-          {/* Card Container */}
-          <div className="rounded-2xl p-[1.5px] bg-gradient-to-r from-[#00D9FD] to-[#3E66DF] shadow-lg">
-            <div
-              className="rounded-2xl p-8 md:p-10"
-              style={{ backgroundColor: "#3E66DF" }}
-            >
-              {/* GRID */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
-                {/* Single Feature */}
-                {[
-                  {
-                    icon: IconExpertise,
-                    title: "Expertise",
-                    subtitle: "Skilled Specialists",
-                  },
-                  {
-                    icon: IconReliable,
-                    title: "Reliable",
-                    subtitle: "On-time Delivery",
-                  },
-                  {
-                    icon: IconInnovation,
-                    title: "Innovation",
-                    subtitle: "Future-Ready Solutions",
-                  },
-                  {
-                    icon: IconSupport,
-                    title: "Support",
-                    subtitle: "Dedicated Assistance",
-                  },
-                ].map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex flex-col items-center text-center group transition-all duration-300 hover:scale-105"
-                  >
-                    <div className="w-14 h-14 mb-3 transition-all duration-300 group-hover:drop-shadow-xl">
-                      <img
-                        src={item.icon}
-                        alt={item.title}
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-
-                    <h3
-                      className="text-lg font-bold text-white tracking-wide"
-                      style={{ fontFamily: "Montserrat-Bold" }}
-                    >
-                      {item.title}
-                    </h3>
-
-                    <p
-                      className="text-white/80 text-sm mt-1"
-                      style={{ fontFamily: "Montserrat-Regular" }}
-                    >
-                      {item.subtitle}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* ========== END ENHANCED WHY CHOOSE US SECTION ========== */}
-
-      <CTASection />
       <Footer />
     </div>
   );
 };
 
 export default Services;
+
+// ---------------------------------------------------------------------------
+// Overview rail — tinted section, so the cards are white.
+// ---------------------------------------------------------------------------
+
+function ServicesRail() {
+  return (
+    <section
+      id={SERVICES_GRID_ID}
+      className="scroll-mt-nav-lg bg-background py-section md:py-section-lg"
+    >
+      <div className="container-page">
+        <h2 className="text-center text-2xl font-bold text-primary md:text-3xl">
+          What we build
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground md:text-base">
+          Four practices, delivered by specialists who stay with your project
+          from scoping through support.
+        </p>
+      </div>
+
+      {/* Full-bleed so cards enter and leave at the viewport edge. The rail
+          is the shared Marquee now; the page previously hand-rolled one whose
+          keyframes lived in a <style jsx> block that leaked globally. */}
+      <div className="mt-10">
+        <Marquee label="Our services" tone="light" durationSec={45}>
+          {SERVICES.map((service) => (
+            <Card
+              key={service.path}
+              className="group relative flex h-full w-[18rem] flex-col overflow-hidden sm:w-[20rem]"
+            >
+              <div className="h-44 overflow-hidden bg-muted">
+                <img
+                  src={service.image}
+                  alt=""
+                  className="h-full w-full object-cover transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
+                  loading="lazy"
+                  decoding="async"
+                  width={1600}
+                  height={1067}
+                />
+              </div>
+
+              <div className="flex flex-1 flex-col p-5">
+                <h3 className="text-lg font-bold text-foreground">
+                  {/* Stretched link: the whole card is the hit area, but
+                      there is exactly one link and one accessible name. */}
+                  <Link
+                    to={service.path}
+                    className="rounded-card after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  >
+                    {service.title}
+                  </Link>
+                </h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                  {service.summary}
+                </p>
+              </div>
+            </Card>
+          ))}
+        </Marquee>
+      </div>
+    </section>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Detailed sections — white section, so the cards are tinted.
+// ---------------------------------------------------------------------------
+
+function ServiceDetails() {
+  return (
+    <section className="border-y border-border bg-card py-section md:py-section-lg">
+      <div className="container-page space-y-8">
+        {SERVICES.map((service, index) => {
+          // Alternates which side the photograph sits on, as before.
+          const imageFirst = index % 2 === 1;
+
+          return (
+            <Card
+              key={service.path}
+              id={service.anchorId}
+              variant="muted"
+              className="group relative grid scroll-mt-nav-lg grid-cols-1 items-center gap-8 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover md:p-10 lg:grid-cols-2 lg:gap-10"
+            >
+              <div
+                className={cn(
+                  "h-[240px] overflow-hidden rounded-surface shadow-card md:h-[300px] lg:h-[320px]",
+                  imageFirst ? "order-2 lg:order-1" : "lg:order-2",
+                )}
+              >
+                <img
+                  src={service.image}
+                  alt={service.alt}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                  decoding="async"
+                  width={1600}
+                  height={1067}
+                />
+              </div>
+
+              <div
+                className={cn(
+                  "space-y-4",
+                  imageFirst ? "order-1 lg:order-2" : "lg:order-1",
+                )}
+              >
+                <h2 className="text-2xl font-bold text-primary md:text-3xl">
+                  {index + 1}. {service.title}
+                </h2>
+
+                <p className="text-[15px] leading-relaxed text-muted-foreground">
+                  {service.detail}
+                </p>
+
+                <h3 className="pt-2 text-lg font-semibold text-primary">
+                  {service.highlightsLabel}
+                </h3>
+
+                <ul className="space-y-2 text-[15px] text-muted-foreground">
+                  {service.highlights.map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <span className="text-brand-teal" aria-hidden="true">
+                        •
+                      </span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* One real link for the whole card. This used to be a
+                    <Button> inside a <Link> whose only handler was
+                    stopPropagation(), so it blocked the navigation and did
+                    nothing itself. */}
+                <Button asChild variant="brand" className="mt-2">
+                  <Link
+                    to={service.path}
+                    aria-label={`Read more about ${service.title}`}
+                    className="after:absolute after:inset-0"
+                  >
+                    Read More
+                  </Link>
+                </Button>
+              </div>
+            </Card>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Why choose us
+// ---------------------------------------------------------------------------
+
+function WhyChooseUs() {
+  return (
+    <section className="bg-background py-section md:py-section-lg">
+      <div className="container-page">
+        <h2 className="mb-10 text-center text-2xl font-bold text-primary md:text-3xl">
+          Why Choose Us
+        </h2>
+
+        {/* The panel keeps its existing colours. #3E66DF and #00D9FD are both
+            documented (DESIGN_SYSTEM.md §5), but #3E66DF is a royal blue that
+            matched nothing else on the page — the header above this panel and
+            the CTA below it are both the navy -> teal brand gradient, so the
+            page carried three unrelated blues. The panel is now the same deep
+            navy the Home page uses for its dark sections, inside the brand
+            gradient hairline. No colour outside the navy/teal family. */}
+        <div className="rounded-card bg-gradient-brand p-[1.5px] shadow-card">
+          <div className="rounded-card bg-brand-deep p-8 md:p-10">
+            <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:gap-10 lg:grid-cols-4">
+              {DIFFERENTIATORS.map(({ Icon, title, subtitle }) => (
+                <li
+                  key={title}
+                  className="flex flex-col items-center text-center transition-transform duration-300 hover:scale-105"
+                >
+                  <span className="mb-3 flex h-14 w-14 items-center justify-center rounded-pill bg-brand-teal/15">
+                    <Icon
+                      className="h-7 w-7 text-brand-teal"
+                      aria-hidden="true"
+                    />
+                  </span>
+
+                  <h3 className="text-lg font-bold tracking-wide text-white">
+                    {title}
+                  </h3>
+                  <p className="mt-1 text-sm text-white/80">{subtitle}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

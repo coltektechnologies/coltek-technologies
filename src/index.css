@@ -2,7 +2,157 @@
 @import "./styles/variables.css";
 @import "./styles/global.css";
 
+/* ==========================================================================
+   DESIGN FOUNDATION
+   --------------------------------------------------------------------------
+   Tailwind v4 reads its theme from CSS, not from tailwind.config.*.
+   This file is the single source of truth for the design system.
 
+   Layout of this file:
+     1. @theme inline  — bridges the semantic CSS variables below into
+                         Tailwind utilities (bg-primary, text-muted-foreground…)
+     2. :root / .dark  — the actual token VALUES
+     3. @layer base    — element defaults (typography, borders, focus)
+     4. @utility       — gradient + semantic helpers ported from the old config
+
+   `@theme inline` is deliberate: utilities emit `hsl(var(--primary))` rather
+   than a copied literal, so the `.dark` overrides in section 2 keep working.
+
+   COLOR POLICY (see DESIGN_SYSTEM.md §2, §15): no new brand colors are
+   introduced here. Every value below already existed in index.css,
+   variables.css or tailwind.config.ts.
+   ========================================================================== */
+
+/* ==========================================================================
+   1. THEME BRIDGE — maps existing tokens onto Tailwind utilities
+   ========================================================================== */
+
+@theme inline {
+  /* ---- Semantic color roles (DESIGN_SYSTEM.md §14) ---- */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  /* ---- Brand colors (ported from tailwind.config.ts) ---- */
+  --color-navy: hsl(var(--navy));
+  --color-navy-dark: hsl(var(--navy-dark));
+  --color-purple: hsl(var(--purple));
+  --color-blue-bright: hsl(var(--blue-bright));
+
+  /* ---- Brand hexes, as tokens ----
+     These are the two colors that actually carry the identity:
+     #1C3D72 (59 uses) and #2EC4B6 (26 uses). Exposed as utilities so pages
+     can migrate off hardcoded hex in later phases. Values unchanged. */
+  --color-brand-navy: #1c3d72;
+  --color-brand-teal: #2ec4b6;
+  --color-brand-deep: #070c29;
+  --color-brand-ink: #102a43;
+
+  /* ---- Supporting text colors (DESIGN_SYSTEM.md §8) ---- */
+  --color-body-text: #42566a;
+  --color-meta-text: #607b8b;
+
+  /* ---- Specialized service-page cyan (DESIGN_SYSTEM.md §5) ----
+     Preserved as its own family. Explicitly NOT merged into brand-teal. */
+  --color-service-cyan: #00d9fd;
+
+  /* ---- Supporting accents (DESIGN_SYSTEM.md §5) ----
+     NOT new colors. Both are already in the codebase and documented as
+     existing secondary candidates: #3E66DF ("service accents, testimonial
+     stars, and indicators") and #14B3CC ("CTA background and legacy card
+     token"). Tokenised here so pages that need a small accent cycle draw
+     from the sanctioned palette instead of inventing pastels — which is
+     what the About page was doing with #5EC9F5 / #FFB766 / #7DE3C7 /
+     #8FB4FF / #9EE3FF, none of which appear in DESIGN_SYSTEM.md. */
+  --color-brand-blue: #3e66df;
+  --color-brand-aqua: #14b3cc;
+
+  /* ---- Sidebar (ported from tailwind.config.ts) ---- */
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  /* ---- Typography ----
+     Matches what the app renders today: Inter body, Poppins headings.
+     All three families are loaded in index.html. */
+  --font-sans: "Inter", sans-serif;
+  --font-heading: "Poppins", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+
+  /* ---- Semantic radius (DESIGN_SYSTEM.md §16) ----
+     ADDITIVE ONLY. Tailwind's built-in rounded-sm…3xl scale is deliberately
+     left at its default values so this phase changes no existing page.
+     Values below reflect the dominant current usage:
+       rounded-full 78x -> pill      rounded-2xl 39x -> card
+       rounded-lg   51x -> control   rounded-xl  31x -> surface */
+  --radius-control: 0.5rem;
+  --radius-card: 1rem;
+  --radius-surface: 0.75rem;
+  --radius-pill: 9999px;
+
+  /* ---- Semantic shadows ----
+     ADDITIVE ONLY, same reasoning as radius. Derived from the most common
+     existing pairings (shadow-md resting, shadow-xl on hover). */
+  --shadow-control: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-card:
+    0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-card-hover:
+    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* ---- Section rhythm (DESIGN_SYSTEM.md §17) ----
+     ADDITIVE. Replaces the ad-hoc py-10/12/14/16/20/24/32 spread in later
+     phases; nothing is re-spaced now. */
+  --spacing-section-sm: 3rem;
+  --spacing-section: 4rem;
+  --spacing-section-lg: 5rem;
+
+  /* ---- Page container ----
+     max-w-6xl is the most common page width (20 uses vs 17 for max-w-7xl). */
+  --container-page: 72rem;
+
+  /* ---- Application shell ----
+     The navbar is fixed, so page content has to be offset by its height.
+     That offset was previously guessed per page (pt-20, pt-24, pt-28,
+     top-16, or nothing at all). It is now one token, which drives both the
+     navbar's own height and every offset utility: h-nav, pt-nav, top-nav,
+     scroll-mt-nav — and the -nav-lg pair at md and above. */
+  --spacing-nav: 4rem;
+  --spacing-nav-lg: 5rem;
+}
+
+/* ==========================================================================
+   2. TOKEN VALUES
+   ========================================================================== */
 
 @layer base {
   :root {
@@ -35,13 +185,25 @@
     --ring: 263 70% 50%;
 
     --radius: 1rem;
-    
+
     --navy: 225 60% 20%;
     --navy-dark: 225 70% 12%;
     --purple: 263 70% 50%;
     --blue-bright: 210 100% 56%;
-    --gradient-hero: linear-gradient(135deg, hsl(263 70% 50%) 0%, hsl(225 60% 35%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(225 60% 25%) 0%, hsl(225 70% 15%) 100%);
+    --gradient-hero: linear-gradient(
+      135deg,
+      hsl(263 70% 50%) 0%,
+      hsl(225 60% 35%) 100%
+    );
+    --gradient-card: linear-gradient(
+      180deg,
+      hsl(225 60% 25%) 0%,
+      hsl(225 70% 15%) 100%
+    );
+
+    /* The signature navy -> teal brand gradient. Already used verbatim in
+       10+ places; centralized here so later phases can converge on it. */
+    --gradient-brand: linear-gradient(90deg, #1c3d72 0%, #2ec4b6 100%);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -81,6 +243,7 @@
     --border: 225 60% 25%;
     --input: 225 60% 25%;
     --ring: 263 70% 50%;
+
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -92,25 +255,147 @@
   }
 }
 
+/* ==========================================================================
+   3. ELEMENT DEFAULTS
+   ========================================================================== */
+
 @layer base {
-  * {
+  /* Tailwind v4 defaults border-color to currentColor; this restores the
+     token-driven default the project was written against. */
+  *,
+  ::after,
+  ::before {
     border-color: hsl(var(--border));
   }
 
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
+
+  /* Single source of truth for typography.
+     These rules previously lived in BOTH index.css (Montserrat, inside
+     @layer base) and global.css (Inter/Poppins, unlayered). Unlayered wins
+     over layered, so Inter/Poppins is what the app has always rendered.
+     That behaviour is preserved exactly; the conflict is removed. */
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-sans);
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
   }
 
   button {
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-heading);
+  }
+
+  /* ---- Focus foundation (CLAUDE.md §17, DESIGN_SYSTEM.md §19) ----
+     A visible, consistent keyboard focus indicator for every interactive
+     element. Scoped to :focus-visible so it never shows on mouse click.
+     Utility classes (focus-visible:ring-*) still win over this base rule,
+     so components that already style focus are unaffected. */
+  :where(
+    a,
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    [tabindex]
+  ):focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: var(--radius-control);
   }
 }
+
+/* ==========================================================================
+   4. UTILITIES
+   ========================================================================== */
+
+/* Gradient utilities ported from tailwind.config.ts backgroundImage. */
+@utility bg-gradient-hero {
+  background-image: var(--gradient-hero);
+}
+
+@utility bg-gradient-card {
+  background-image: var(--gradient-card);
+}
+
+@utility bg-gradient-brand {
+  background-image: var(--gradient-brand);
+}
+
+/* A faint grid of 1px rules, for laying OVER a dark or gradient surface so a
+   flat band has some structure behind its content. It owns `background-image`
+   itself, so it has to sit on its own absolutely-positioned element rather
+   than share one with bg-gradient-brand.
+
+   No new color: the rules are plain white at low alpha, the same technique as
+   the existing white/10 -> white/50 overlay family (DESIGN_SYSTEM.md §12).
+   The radial mask fades the grid out toward the edges so it never collides
+   with the section border. */
+@utility bg-grid-lines {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.1) 1px, transparent 1px);
+  background-size: 3.5rem 3.5rem;
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 90% at 50% 50%,
+    #000 35%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 80% 90% at 50% 50%,
+    #000 35%,
+    transparent 100%
+  );
+}
+
+/* Hides the scrollbar on horizontally-scrolling rails while keeping them
+   scrollable. Previously declared inside Home's <style jsx> block, which
+   meant TestimonialsSlider silently depended on Home being mounted. */
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Page container: centered, gutter-safe at every breakpoint (CLAUDE.md §16). */
+@utility container-page {
+  width: 100%;
+  max-width: var(--container-page);
+  margin-inline: auto;
+  padding-inline: 1rem;
+
+  @media (width >= 40rem) {
+    padding-inline: 1.5rem;
+  }
+
+  @media (width >= 64rem) {
+    padding-inline: 2rem;
+  }
+}
+
+/* ==========================================================================
+   5. MOTION
+   ========================================================================== */
+
 @keyframes route-fade {
   from {
     opacity: 0;
@@ -124,4 +409,229 @@
 
 .animate-route-fade {
   animation: route-fade 0.35s ease-out;
+}
+
+/* ---- Shared section animations ----
+   Moved out of the <style jsx> blocks in CTASection/ServicesCTA. Those were
+   not real styled-jsx (the package is not installed), so React emitted an
+   unscoped <style> tag and these class names leaked globally and collided
+   between the two components. Defined once here instead. */
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes float-delayed {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 8s ease-in-out infinite;
+}
+
+/* Entrance + ambient animations for the service detail pages.
+   These were previously injected at runtime from <style> blocks inside the
+   page components. React renders those into <head> AFTER this stylesheet, so
+   a page's copy of `float` silently overrode the one above for the rest of
+   the session — which changed CTASection's blobs on every other page. Five
+   more <style> blocks still do this (TechStack, DevelopmentProcess and three
+   service pages); they should move here too. */
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.8s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.8s ease-out;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+  opacity: 0;
+}
+
+/* ---- Marquee rails ----
+   Used by the Home page card rows. The track holds two identical copies of
+   the item set, so translating it by exactly one copy's width loops
+   seamlessly.
+
+   The offset is `-50% - gap/2`, not `-50%`: with N items per copy the track
+   has 2N items and 2N-1 gaps, so half the track width lands half a gap short
+   of the duplicate's start. */
+
+.marquee-viewport {
+  overflow: hidden;
+  /* Room for a hovered card to scale up without being clipped. */
+  padding-block: 1rem;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: var(--marquee-gap, 1.5rem);
+  animation-duration: var(--marquee-duration, 40s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.marquee-track-left {
+  animation-name: marquee-scroll-left;
+}
+
+.marquee-track-right {
+  animation-name: marquee-scroll-right;
+}
+
+@keyframes marquee-scroll-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - var(--marquee-gap, 1.5rem) / 2));
+  }
+}
+
+@keyframes marquee-scroll-right {
+  from {
+    transform: translateX(calc(-50% - var(--marquee-gap, 1.5rem) / 2));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Pause on pointer hover and on keyboard focus, so the rail stops for
+   anyone reaching a card by either route. */
+.marquee-viewport:hover .marquee-track,
+.marquee-viewport:focus-within .marquee-track,
+.marquee-track[data-paused="true"] {
+  animation-play-state: paused;
+}
+
+/* The hovered card rises out of the row and comes forward, then settles back
+   when the pointer leaves. The spring-ish curve on the way in makes it feel
+   like it is being picked up rather than just resized. */
+.marquee-item {
+  flex: 0 0 auto;
+  transform-origin: center bottom;
+  transition:
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.marquee-item:hover,
+.marquee-item:focus-within {
+  transform: translateY(-14px) scale(1.07);
+  z-index: 10;
+  filter: drop-shadow(0 26px 44px rgb(0 0 0 / 0.55));
+}
+
+/* Accessibility foundation: honour the OS "reduce motion" setting.
+   Applies to the many auto-advancing carousels and reveal animations. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* The blanket rule above would collapse a marquee to 0.01ms and snap it
+     straight to its end position. Turn the animation off instead and let the
+     rail become an ordinary horizontally-scrollable row, with the duplicated
+     copy hidden so nothing reads twice. */
+  .marquee-track {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .marquee-viewport {
+    overflow-x: auto;
+  }
+
+  .marquee-duplicate {
+    display: none !important;
+  }
+
+  .marquee-item:hover,
+  .marquee-item:focus-within {
+    transform: none;
+  }
 }

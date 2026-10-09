@@ -1,8 +1,16 @@
-// Import service card images - using WebP versions
-import SoftwareSolutionsImg from "../assets/ServicesPageImages/SoftwareSolutionsImg.webp";
-import CS_ServiceCard from "../assets/ServicesPageImages/CS ServiceCard.webp";
-import MobileAppServiceCard from "../assets/ServicesPageImages/MobileAppServiceCard.webp";
-import AIML_ServiceCard from "../assets/ServicesPageImages/AIML ServiceCard.webp";
+// Service card data for the Home page.
+//
+// Card images are the 4096px-wide assets. Cloud and AI/ML previously used
+// "CS ServiceCard.webp" (50x50) and "AIML ServiceCard.webp" (64x64) — icon
+// sprites that were being stretched across a 144px-tall card header.
+//
+// `path` was added so destinations live with the data instead of being
+// derived by matching substrings of the title at render time. That inline
+// mapping sent three of the four cards to routes that do not exist.
+import SoftwareSolutionsImg from "../assets/ServicesPageImages/SoftwareSolutionsImg-card.webp";
+import CloudSolutionImg from "../assets/ServicesPageImages/CloudSolutionImg-card.webp";
+import MobileAppImg from "../assets/ServicesPageImages/MobileAppImg-card.webp";
+import AIMLImg from "../assets/ServicesPageImages/AIMLImg-card.webp";
 
 export interface Service {
   id: number;
@@ -10,7 +18,8 @@ export interface Service {
   description: string;
   icon: string;
   image: string;
-  buttonColor?: string;
+  /** Route for this service's detail page, as declared in AppRoutes. */
+  path: string;
 }
 
 export const allServices: Service[] = [
@@ -19,43 +28,32 @@ export const allServices: Service[] = [
     title: "Web Development",
     description: "Provide and manage website services",
     image: SoftwareSolutionsImg,
-    icon: '🌐',
-    buttonColor: "bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] text-white hover:opacity-90"
+    icon: "🌐",
+    path: "/Services/SoftwareSolutions",
   },
   {
     id: 2,
     title: "Cloud Solutions",
     description: "Provide Cloud hosting and service",
-    image: CS_ServiceCard,
-    icon: '☁️',
-    buttonColor: "bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] text-white hover:opacity-90"
+    image: CloudSolutionImg,
+    icon: "☁️",
+    path: "/Services/CloudSolutions",
   },
   {
     id: 3,
     title: "Mobile App Development",
     description: "Create powerful cross-platform mobile applications",
-    image: MobileAppServiceCard,
-    icon: '📱',
-    buttonColor: "bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] text-white hover:opacity-90"
+    image: MobileAppImg,
+    icon: "📱",
+    path: "/Services/MobileAppDevelopment",
   },
   {
     id: 4,
     title: "AI/ML Solutions",
-    description: "Leverage the power of artificial intelligence and machine learning",
-    image: AIML_ServiceCard,
-    icon: '🤖',
-    buttonColor: "bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] text-white hover:opacity-90"
-  }
-];
-
-// Group services for desktop view (2 per group)
-export const serviceGroups = [
-  {
-    id: 1,
-    services: [allServices[0], allServices[1]]
+    description:
+      "Leverage the power of artificial intelligence and machine learning",
+    image: AIMLImg,
+    icon: "🤖",
+    path: "/Services/AIML",
   },
-  {
-    id: 2,
-    services: [allServices[2], allServices[3]]
-  }
 ];

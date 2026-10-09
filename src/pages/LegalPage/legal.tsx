@@ -1,19 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import legalHeroPic from "../../assets/images/legaHeropic.webp";
 
-// Import PDFs
-import termsOfServicePDF from '../../assets/pdfs/terms-of-service.pdf';
-import privacyPolicyPDF from '../../assets/pdfs/privacy-policy.pdf';
-import cookiesPDF from '../../assets/pdfs/cookies.pdf';
-import licensePDF from '../../assets/pdfs/license.pdf';
-import compliancePDF from '../../assets/pdfs/compliance.pdf';
+// PDF downloads removed.
+//
+// All five "policy" files were byte-identical (md5 5a54646a...) and none was
+// a legal document: each was the same personal graduate-school application
+// essay belonging to a named member of staff, including their private email
+// address. Vite deduplicated them, so every one of the five download buttons
+// served that single file to the public.
+//
+// Until real, lawyer-reviewed documents exist, each section states honestly
+// that it is being prepared and points to the contact page. Do NOT wire a
+// download button back up without a document behind it.
 
 interface PolicySection {
   id: string;
   title: string;
   description: string;
-  buttonText: string;
-  pdfUrl: string;
 }
 
 const LegalPage: React.FC = () => {
@@ -21,62 +24,47 @@ const LegalPage: React.FC = () => {
 
   const policySections: PolicySection[] = [
     {
-      id: 'terms',
-      title: 'Terms of Service',
-      description: 'Description of our terms and conditions governing the use of our website and services',
-      buttonText: 'Download PDF',
-      pdfUrl: termsOfServicePDF
+      id: "terms",
+      title: "Terms of Service",
+      description:
+        "The rules for using the COLTEK website and engaging us for work \u2014 what we commit to deliver, what we ask of you, and how disputes are handled.",
     },
     {
-      id: 'privacy',
-      title: 'Privacy Policy',
-      description: 'Description of our terms and conditions governing the use of our website and services',
-      buttonText: 'Download PDF',
-      pdfUrl: privacyPolicyPDF
+      id: "privacy",
+      title: "Privacy Policy",
+      description:
+        "What personal information we collect when you contact us, why we collect it, who processes it on our behalf, how long we keep it, and how you can ask us to delete it.",
     },
     {
-      id: 'cookies',
-      title: 'Cookies',
-      description: 'Description of our terms and conditions governing the use of our website and services',
-      buttonText: 'Download PDF',
-      pdfUrl: cookiesPDF
+      id: "cookies",
+      title: "Cookies",
+      description:
+        "Which cookies and similar technologies this site uses, what each one is for, and how to control them in your browser.",
     },
     {
-      id: 'license',
-      title: 'License',
-      description: 'Description of our terms and conditions governing the use of our website and services',
-      buttonText: 'Download PDF',
-      pdfUrl: licensePDF
+      id: "license",
+      title: "License",
+      description:
+        "Who owns the code, designs and documentation we produce, and the terms under which ownership or usage rights transfer to you on a project.",
     },
     {
-      id: 'compliance',
-      title: 'Compliance',
-      description: 'Description of our terms and conditions governing the use of our website and services',
-      buttonText: 'Download PDF',
-      pdfUrl: compliancePDF
-    }
+      id: "compliance",
+      title: "Compliance",
+      description:
+        "The data-protection and security obligations we work to, and how to raise a concern or make a formal data request.",
+    },
   ];
 
   const tableOfContents = [
-    'Terms of Service',
-    'Privacy Policy',
-    'Cookies',
-    'License',
-    'Compliance'
+    "Terms of Service",
+    "Privacy Policy",
+    "Cookies",
+    "License",
+    "Compliance",
   ];
 
   const toggleSection = (id: string) => {
     setExpandedSection(expandedSection === id ? null : id);
-  };
-
-  const handleDownload = (title: string, pdfUrl: string) => {
-    // Create a temporary anchor element to trigger download
-    const link = document.createElement('a');
-    link.href = pdfUrl;
-    link.download = `${title.toLowerCase().replace(/\s+/g, '-')}.pdf`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   };
 
   return (
@@ -84,7 +72,7 @@ const LegalPage: React.FC = () => {
       {/* Hero Section */}
       <section className="relative h-100 bg-gradient-to-r from-gray-700 to-gray-900 overflow-hidden">
         {/* Background Image */}
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: `url(${legalHeroPic})`,
@@ -99,8 +87,10 @@ const LegalPage: React.FC = () => {
             OUR LEGAL & POLICY INFORMATION
           </h1>
           <p className="text-sm md:text-base text-end max-w-2xl mb-6 text-gray-200">
-            We are committed to protecting<br />
-            your rights, data and privacy<br />
+            We are committed to protecting
+            <br />
+            your rights, data and privacy
+            <br />
             through transparency, integrity and compliance
           </p>
           <button className="bg-white text-blue-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors text-sm">
@@ -122,7 +112,7 @@ const LegalPage: React.FC = () => {
                 {tableOfContents.map((item, index) => (
                   <li key={index}>
                     <a
-                      href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
+                      href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
                       className="text-sm text-gray-600 hover:text-blue-600 transition-colors block"
                     >
                       {item}
@@ -139,7 +129,7 @@ const LegalPage: React.FC = () => {
               {policySections.map((section) => (
                 <div
                   key={section.id}
-                  id={section.title.toLowerCase().replace(/\s+/g, '-')}
+                  id={section.title.toLowerCase().replace(/\s+/g, "-")}
                   className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-100 hover:shadow-md transition-shadow"
                 >
                   <div className="flex items-center justify-between">
@@ -151,7 +141,7 @@ const LegalPage: React.FC = () => {
                         >
                           <svg
                             className={`w-6 h-6 transform transition-transform ${
-                              expandedSection === section.id ? 'rotate-90' : ''
+                              expandedSection === section.id ? "rotate-90" : ""
                             }`}
                             fill="none"
                             stroke="currentColor"
@@ -173,12 +163,11 @@ const LegalPage: React.FC = () => {
                         {section.description}
                       </p>
                     </div>
-                    <button
-                      onClick={() => handleDownload(section.title, section.pdfUrl)}
-                      className="bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-semibold hover:bg-blue-700 transition-colors whitespace-nowrap ml-4"
-                    >
-                      {section.buttonText}
-                    </button>
+                    {/* Deliberately not a download button. See the note at
+                        the top of this file. */}
+                    <span className="ml-4 whitespace-nowrap rounded-full border border-blue-200 bg-white px-4 py-2 text-xs font-semibold text-blue-700">
+                      Being prepared
+                    </span>
                   </div>
 
                   {/* Expanded Content */}
@@ -186,15 +175,22 @@ const LegalPage: React.FC = () => {
                     <div className="mt-4 ml-9 pt-4 border-t border-blue-200">
                       <div className="text-sm text-gray-700 space-y-3">
                         <p>
-                          This section contains detailed information about our{' '}
-                          {section.title.toLowerCase()}. We are committed to
-                          maintaining transparency and ensuring you understand how
-                          we handle your information.
+                          Our {section.title.toLowerCase()} document is being
+                          finalised and will be published here once it has been
+                          reviewed. We would rather say that plainly than
+                          publish something we have not checked.
                         </p>
                         <p>
-                          For complete details, please download the PDF document
-                          using the button above, or contact our legal team if you
-                          have any questions.
+                          If you need these terms before then \u2014 for a
+                          contract, a procurement review, or a data request
+                          \u2014 please{" "}
+                          <a
+                            href="/contact"
+                            className="font-semibold text-blue-700 underline underline-offset-2 hover:text-blue-800"
+                          >
+                            contact us
+                          </a>{" "}
+                          and we will send you the current position in writing.
                         </p>
                       </div>
                     </div>
@@ -207,7 +203,7 @@ const LegalPage: React.FC = () => {
             <div className="mt-8 rounded-lg overflow-hidden shadow-md">
               <div className="bg-gradient-to-br from-amber-100 to-orange-100 h-64 flex items-center justify-center">
                 <div className="text-8xl">
-                    <img src={legalHeroPic} alt="" />
+                  <img src={legalHeroPic} alt="" />
                 </div>
               </div>
             </div>
@@ -221,9 +217,7 @@ const LegalPage: React.FC = () => {
               <h2 className="text-2xl font-bold mb-2">
                 Need Clarification about our legal policies
               </h2>
-              <p className="text-blue-100">
-                Reach out to our legal team
-              </p>
+              <p className="text-blue-100">Reach out to our legal team</p>
             </div>
             <button className="mt-4 md:mt-0 bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">
               Contact Us

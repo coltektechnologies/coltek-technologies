@@ -1,142 +1,69 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight, Clock, Globe, Star, Users } from "lucide-react";
 import { images } from "../../assets/images/images";
-import { allServices, serviceGroups } from "../../data/services";
+// The four 4096px-wide assets in the repo — the only ones that stay sharp
+// when a card scales up on hover.
+import aimlImg from "../../assets/ServicesPageImages/AIMLImg-card.webp";
+import cloudImg from "../../assets/ServicesPageImages/CloudSolutionImg-card.webp";
+import softwareImg from "../../assets/ServicesPageImages/SoftwareSolutionsImg-card.webp";
+import collaborationImg from "../../assets/ServicesPageImages/MobileAppServiceCard-card.webp";
+import { allServices } from "../../data/services";
+import { projects } from "../../data/projects";
 import TestimonialsSlider from "../../components/sections/TestimonialsSlider";
+import CTASection from "../../components/CTASection";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
+import { Marquee } from "@/components/ui/marquee";
+import { cn } from "@/lib/utils";
 
-
-
-// ------------------------
-// Home (componentized)
-// ------------------------
+// ---------------------------------------------------------------------------
+// Home
+//
+// Section order runs hero → proof → services → why us → work → testimonials →
+// CTA, so a first-time visitor meets what COLTEK does before the supporting
+// detail. Services previously sat last, below the testimonials.
+// ---------------------------------------------------------------------------
 
 export default function Home() {
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-
-  useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth < 1024);
-    onResize();
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
-
   return (
-    <div className="bg-[#070C29] text-white">
-      {/* Hero section - full viewport height */}
-      <div className="min-h-screen">
-        <Hero isMobile={isMobile} />
-      </div>
+    <div className="bg-brand-deep text-white">
+      <Hero />
+      <TrustStrip />
+      <ServicesSection />
+      <WhyChooseSection />
+      <FeaturedWorkSection />
 
-      {/* Why Choose COLTEK section - moved here */}
-      <section className="w-full py-12 lg:py-20 bg-[#070C29]">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            <div className="lg:col-span-5 xl:col-span-4">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">
-                Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6]">COLTEK</span> Technologies
-              </h2>
-              <p className="text-gray-300 text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed">
-                At COLTEK Technologies, we don't just build solutions — we engineer possibilities. Our team blends creativity, innovation, and technical excellence to deliver impactful digital experiences.
-              </p>
-              <a href="/services" className="inline-block">
-                <button className="px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold text-gray-900 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 active:scale-95 bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6]">
-                  Read more
-                </button>
-              </a>
-            </div>
-
-            <div className="lg:col-span-7 xl:col-span-8 relative">
-              <div className="overflow-x-auto scrollbar-hide pb-4 -mx-3 sm:mx-0">
-                <div className="flex gap-3 sm:gap-6 px-3 sm:px-0 sm:min-w-max">
-                  {featureCards().map((card, i) => (
-                    <div key={i} className="min-w-[160px] w-[70vw] sm:min-w-[200px] sm:w-56 bg-[#D9D9D9] rounded-xl sm:rounded-2xl border border-white/20 overflow-hidden hover:border-cyan-400 transition-all duration-300 hover:shadow-lg flex-shrink-0">
-                      <div className="h-16 sm:h-20 md:h-24 flex items-center m-1.5 sm:m-3 rounded-lg sm:rounded-xl justify-center" style={{ background: 'linear-gradient(180deg, #041979 0%, #00D9FD 100%)', boxShadow: '-2px 4px 4px 0px #939090' }}>
-                        {React.cloneElement(card.img, { className: 'w-8 h-8 sm:w-10 sm:h-10' })}
-                      </div>
-                      <div className="p-2 sm:p-3 md:p-4">
-                        <h3 className="text-sm sm:text-base md:text-lg font-bold text-black mb-1 sm:mb-2">{card.title}</h3>
-                        <p className="text-[#000000] text-xs sm:text-sm md:text-base">{card.text}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="flex justify-center gap-2 mt-6">
-                <div className="text-gray-400 text-sm flex items-center gap-2">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
-                  </svg>
-                  Scroll to see more
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <section className="bg-brand-deep">
+        <TestimonialsSlider />
       </section>
 
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#070C29]">
-        <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src={images.chooseUs}
-                alt="Team working on robotics project"
-                className="w-full h-auto object-cover rounded-lg"
-                loading="lazy"
-              />
-              <div className="p-4 bg-[#070C29] text-center">
-                <h3 className="text-xl font-bold text-white mb-2">Robotics Project</h3>
-                <p className="text-gray-300 text-sm">Innovative automation solutions for modern industries</p>
-              </div>
-            </div>
-
-            <div className="text-white">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
-                Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6]">Projects</span>
-              </h2>
-              <p className="text-gray-300 text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed">
-                At COLTEK Technologies, we don't just build solutions — we engineer possibilities. Our team blends creativity, innovation, and technical excellence to deliver impactful digital experiences.
-              </p>
-
-              <div className="flex gap-4">
-                <Link 
-                  to="/portfolio"
-                  className="px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold text-gray-900 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 active:scale-95 bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] inline-block text-center"
-                >
-                  View All Projects
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="w-full bg-[#070C29] py-12 sm:py-16 lg:py-20">
-        <div className="w-full">
-          <TestimonialsSlider />
-        </div>
-      </section>
-
-      <ServicesSection isMobile={isMobile} />
-
-      <style jsx>{`
-        .scrollbar-hide::-webkit-scrollbar { display: none; }
-        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-      `}</style>
+      <CTASection
+        title="Let's build something that lasts"
+        description="Tell us what you're trying to achieve. We'll help you scope it, build it, and support it."
+        primaryButtonText="Start a project"
+        secondaryButtonText="Explore services"
+        secondaryHref="/services"
+      />
     </div>
   );
 }
 
-// ------------------------
-// Hero Component
-// ------------------------
+// ---------------------------------------------------------------------------
+// Hero
+// ---------------------------------------------------------------------------
 
-function Hero({ isMobile }: { isMobile: boolean }) {
-  const words = useMemo(() => ['Excellence', 'Innovation', 'Success', 'Impact', 'Growth'], []);
+const ROTATING_WORDS = [
+  "Excellence",
+  "Innovation",
+  "Success",
+  "Impact",
+  "Growth",
+];
+
+function Hero() {
+  const words = useMemo(() => ROTATING_WORDS, []);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -151,109 +78,76 @@ function Hero({ isMobile }: { isMobile: boolean }) {
 
     return () => clearInterval(interval);
   }, [words.length]);
-  
-  const heroClass = isMobile ? 'min-h-screen pt-20 pb-4' : 'min-h-screen flex items-center pt-24';
 
   return (
     <section
-      className={`relative w-full bg-cover bg-center bg-no-repeat flex items-center justify-center ${heroClass}`}
-      style={{
-        backgroundImage: `url(${images.heroBg})`,
-      }}
+      className="relative w-full bg-cover bg-center bg-no-repeat pt-nav md:pt-nav-lg"
+      style={{ backgroundImage: `url(${images.heroBg})` }}
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40" />
+      {/* Scrim keeps the headline readable over the photograph. */}
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-brand-deep"
+        aria-hidden="true"
+      />
 
-      {/* Main hero content - centered */}
-      <div className="relative z-10 w-full px-4 sm:px-8 lg:px-12 py-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center">
-            <div className="space-y-3 sm:space-y-6 max-w-2xl mx-auto lg:mx-0">
-              <h1 className="font-bold leading-tight">
-                <span className="uppercase block text-lg sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl mb-1 sm:mb-3">Transforming Potentials</span>
-                
-                <div className="flex flex-row items-baseline gap-2 sm:gap-3">
-                  <span className="uppercase text-base sm:text-2xl lg:text-3xl xl:text-4xl">into</span>
-                  <div className="relative min-h-[1.5rem] sm:min-h-[2.5rem] lg:min-h-[3.5rem] flex-1">
-                    <span
-                      className={`transition-all duration-500 inline-block w-full ${isAnimating ? 'opacity-0 -translate-y-2' : 'opacity-100 translate-y-0'} bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] bg-clip-text text-transparent font-bold uppercase text-lg sm:text-3xl lg:text-4xl xl:text-5xl`}
-                    >
-                      {words[currentIndex]}
-                    </span>
-                  </div>
-                </div>
-              </h1>
+      <div className="container-page relative z-10 py-section md:py-section-lg">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          {/* Copy */}
+          <div className="max-w-2xl">
+            <h1 className="text-3xl font-bold uppercase leading-tight sm:text-4xl lg:text-5xl">
+              <span className="block">Transforming Potentials</span>
+              <span className="mt-2 flex flex-wrap items-baseline gap-x-3">
+                <span>into</span>
+                <span
+                  aria-live="polite"
+                  className={cn(
+                    "bg-gradient-brand bg-clip-text text-transparent transition-all duration-500",
+                    isAnimating
+                      ? "-translate-y-2 opacity-0"
+                      : "translate-y-0 opacity-100",
+                  )}
+                >
+                  {words[currentIndex]}
+                </span>
+              </span>
+            </h1>
 
-              <p className="text-xs sm:text-base md:text-lg lg:text-xl text-gray-200 leading-relaxed">
-                At Coltek Technologies, we empower innovation, nurture growth, and deliver solutions that inspire excellence. We don't just build technology — we build possibilities driven by integrity, empathy, and purpose.
-              </p>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-gray-200 sm:text-lg">
+              At Coltek Technologies, we empower innovation, nurture growth, and
+              deliver solutions that inspire excellence. We don't just build
+              technology — we build possibilities driven by integrity, empathy,
+              and purpose.
+            </p>
 
-              <div className="flex flex-wrap gap-2 sm:gap-4 pt-1">
+            <div className="mt-8 flex flex-wrap gap-3 sm:gap-4">
+              <Button asChild variant="brand" size="lg">
                 <Link to="/contact">
-                <button className="px-4 sm:px-8 py-2 sm:py-4 text-xs sm:text-base font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-transparent hover:border-cyan-400 active:scale-95 bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] text-white">
                   Get Started
-                </button></Link>
-<Link to="/about">
-                <button className="px-4 sm:px-8 py-2 sm:py-4 text-xs sm:text-base font-semibold rounded-lg transition-all duration-300 border-2 border-[#1c3D72] text-white hover:bg-[#1c3D72]/10 bg-transparent">
-                  Learn More
-                </button></Link>
-              </div>
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </Button>
 
-              {/* Mobile-only image and icons */}
-              <div className="lg:hidden w-full flex flex-col items-center pt-2">
-                <div className="relative w-full max-w-[220px] rounded-lg overflow-hidden">
-                  <img src={images.coltek} alt="Coltek Technologies" className="w-full h-auto object-contain" loading="eager" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                </div>
-
-                {/* Email subscription - shown on tablet (sm to lg) */}
-                <div className="hidden sm:flex lg:hidden flex-col sm:flex-row gap-3 sm:gap-4 max-w-md pt-3 w-full sm:w-auto sm:self-start">
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="flex-1 px-4 sm:px-6 py-3 text-sm sm:text-base rounded-lg bg-white/10 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white/50 backdrop-blur-sm"
-                  />
-                  <button className="px-4 sm:px-6 py-3 text-sm sm:text-base font-semibold bg-[#1c3D72] text-gray-900 rounded-lg hover:bg-[#1c3D72]/90 transition-all duration-300 whitespace-nowrap">
-                    Subscribe
-                  </button>
-                </div>
-
-                <div className="w-full mt-3">
-                  <div className="flex justify-around items-start">
-                    {[
-                      { img: images._24_7, label: '24/7\nSupport' },
-                      { img: images.rating, label: 'Client\nRating' },
-                      { img: images.globe, label: 'Global\nReach' },
-                      { img: images.client, label: 'Satisfied\nClients' },
-                    ].map((it, idx) => (
-                      <div key={idx} className="flex flex-col items-center w-1/4 text-center">
-                        <div className="bg-white/10 backdrop-blur-sm p-1.5 rounded-full mb-1.5">
-                          <img src={it.img} alt="icon" className="h-6 w-6" />
-                        </div>
-                        <span className="text-[10px] text-white/90 leading-tight whitespace-pre-line font-medium">{it.label}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Email subscription - shown on desktop (lg+) */}
-              <div className="hidden lg:flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-md pt-4">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 sm:px-6 py-3 text-sm sm:text-base rounded-lg bg-white/10 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white/50 backdrop-blur-sm"
-                />
-                <button className="px-4 sm:px-6 py-3 text-sm sm:text-base font-semibold bg-[#1c3D72] text-gray-900 rounded-lg hover:bg-[#1c3D72]/90 transition-all duration-300 whitespace-nowrap">
-                  Subscribe
-                </button>
-              </div>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-2 border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white"
+              >
+                <Link to="/about">Learn More</Link>
+              </Button>
             </div>
+          </div>
 
-            {/* Desktop hero image */}
-            <div className="hidden lg:block relative w-full">
-              <div className="relative rounded-2xl overflow-hidden border-2 border-[#20CAE6] shadow-2xl max-w-lg mx-auto">
-                <img src={images.coltek} alt="Coltek Technologies" className="w-full h-auto object-cover" loading="eager" />
-              </div>
+          {/* Product image — decorative on small screens, so it loads after copy */}
+          <div className="relative mx-auto w-full max-w-sm lg:max-w-lg">
+            <div className="overflow-hidden rounded-card border-2 border-[#20CAE6] shadow-2xl">
+              <img
+                src={images.coltek}
+                alt="The COLTEK Technologies team at work"
+                className="h-auto w-full object-cover"
+                loading="eager"
+                decoding="async"
+              />
             </div>
           </div>
         </div>
@@ -262,132 +156,357 @@ function Hero({ isMobile }: { isMobile: boolean }) {
   );
 }
 
-// small helper to provide feature cards (keeps JSX tidy)
-function featureCards() {
-  return [
-    { title: 'Innovation Solutions', text: 'We blend creativity with cutting-edge technology to drive real results.', img: <img src={images.innovation} alt="innovation" /> },
-    { title: 'Client Centered', text: 'Your goals shape our solutions, every step of the way.', img: <img src={images.team} alt="team" /> },
-    { title: 'Expert Team', text: 'Skilled professionals delivering excellence with precision.', img: <img src={images.expert} alt="expert" /> },
-    { title: 'Reliable Solutions', text: 'Systems built to perform, built to last.', img: (
-        <svg className="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
-          <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
-        </svg>
-      )
-    }
-  ];
+// ---------------------------------------------------------------------------
+// Trust strip
+//
+// These four proof points previously rendered only on mobile, buried inside
+// the hero. They are shown at every breakpoint now.
+// ---------------------------------------------------------------------------
+
+const TRUST_POINTS = [
+  { Icon: Clock, label: "24/7 Support" },
+  { Icon: Star, label: "Client Rating" },
+  { Icon: Globe, label: "Global Reach" },
+  { Icon: Users, label: "Satisfied Clients" },
+];
+
+function TrustStrip() {
+  return (
+    <section className="border-y border-white/10 bg-brand-deep">
+      <div className="container-page py-8">
+        <ul className="grid grid-cols-2 gap-6 sm:grid-cols-4">
+          {TRUST_POINTS.map(({ Icon, label }) => (
+            <li
+              key={label}
+              className="flex flex-col items-center gap-2 text-center sm:flex-row sm:gap-3 sm:text-left"
+            >
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-pill bg-white/10">
+                <Icon className="h-5 w-5 text-brand-teal" aria-hidden="true" />
+              </span>
+              <span className="text-sm font-medium text-white/90">{label}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
 }
 
-// ------------------------
-// Services Section + Carousel
-// ------------------------
+// ---------------------------------------------------------------------------
+// Services
+//
+// Was an auto-advancing carousel that showed two of four services at a time
+// and rebuilt its slide count from a JS resize listener. With only four
+// services a responsive grid shows all of them at once, which removes the
+// listener, the auto-advance and the duplicated mobile/desktop markup.
+// ---------------------------------------------------------------------------
 
-function ServicesSection({ isMobile }: { isMobile: boolean }) {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [pause, setPause] = useState(false);
-  const slideRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    const total = isMobile ? allServices.length : serviceGroups.length;
-
-    const next = () => setCurrentSlide((p) => (p + 1) % total);
-
-    if (!pause) {
-      slideRef.current = window.setInterval(next, 3000);
-    }
-
-    return () => {
-      if (slideRef.current) window.clearInterval(slideRef.current);
-    };
-  }, [pause, isMobile]);
-
-  const dotsCount = isMobile ? allServices.length : serviceGroups.length;
-
+function ServicesSection() {
   return (
-    <section className="w-full py-12 relative bg-[#070C29]">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden py-4" onMouseEnter={() => setPause(true)} onMouseLeave={() => setPause(false)}>
-          {/* Mobile carousel - One card at a time on small screens */}
-          <div className="lg:hidden overflow-hidden w-full">
-            <div className="flex w-full transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-              {allServices.map((service) => (
-                <div key={service.id} className="w-full flex-shrink-0 px-4">
-                  <div className="bg-white rounded-2xl shadow-md p-6 border border-gray-100 hover:shadow-lg h-full overflow-hidden">
-                    <div className="flex flex-col sm:flex-row">
-                      <div className="w-full sm:w-32 h-32 flex-shrink-0 flex items-center justify-center rounded-sm p-3">
-                        <img src={service.image} alt={service.title} className="w-full h-full object-contain" />
-                      </div>
-                      <div className="sm:ml-4 flex-1 flex flex-col mt-3 sm:mt-0">
-                        <h3 className="text-lg sm:text-xl font-bold text-gray-900">{service.title}</h3>
-                        <p className="text-sm sm:text-base text-gray-700 mt-2 mb-4 flex-1">{service.description}</p>
-                        <div className="mt-4">
-                          <button className={`w-full sm:w-auto px-3 sm:px-4 py-2 rounded-lg text-sm sm:text-base font-semibold transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 ${service.buttonColor}`}>
-                            Learn more
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+    <section className="bg-brand-deep py-section md:py-section-lg">
+      <div className="container-page">
+        <SectionHeading
+          title={
+            <>
+              What we <GradientWord>do</GradientWord>
+            </>
+          }
+          description="Four practices, one team. Each one is delivered by specialists who stay with your project from scoping through support."
+        />
 
-          {/* Desktop carousel - Two cards at a time on large screens */}
-          <div className="hidden lg:block overflow-hidden">
-            <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentSlide * 50}%)`, width: `${serviceGroups.length * 100}%` }}>
-              {serviceGroups.map((group) => (
-                <div key={group.id} className="w-1/2 flex-shrink-0 px-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {group.services.map((service) => (
-                      <div key={service.id} className="bg-white rounded-2xl shadow-md p-6 border border-gray-100 hover:shadow-lg">
-                        <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row">
-                          <div className="w-full sm:w-32 h-32 flex-shrink-0 flex items-center justify-center rounded-sm p-3">
-                            <img src={service.image} alt={service.title} className="w-full h-full object-contain" />
-                          </div>
-                          <div className="sm:ml-4 lg:ml-0 xl:ml-4 flex-1 flex flex-col mt-3 sm:mt-0 lg:mt-3 xl:mt-0">
-                            <h3 className="text-lg font-bold text-gray-900">{service.title}</h3>
-                            <p className="text-sm text-gray-700 mt-2 mb-4">{service.description}</p>
-                            <Link 
-                              to={service.title.includes('Web') ? '/services/software-solution' : 
-                                   service.title.includes('Cloud') ? '/services/cloudsolutions' :
-                                   service.title.includes('Mobile') ? '/services/mobileapp' :
-                                   '/services/ai-ml'}
-                              className="w-fit"
-                            >
-                              <button className={`w-fit px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 ${service.buttonColor}`}>
-                                Learn more
-                              </button>
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+        {/* Rail travels leftwards; full-bleed so cards enter and leave at the
+            viewport edge rather than inside the page gutter. */}
+        <div className="mt-10 -mx-4 sm:-mx-6 lg:-mx-8">
+          <Marquee direction="left" durationSec={45} label="Our services">
+            {allServices.map((service) => (
+              <Card
+                key={service.id}
+                variant="plain"
+                className="group flex h-full w-[16rem] flex-col overflow-hidden sm:w-[18rem]"
+              >
+                {/* object-cover, not contain: these are photographs now, not
+                    the 50px icon sprites the cards used to hold. */}
+                <div className="h-40 overflow-hidden bg-muted">
+                  <img
+                    src={service.image}
+                    alt=""
+                    className="h-full w-full object-cover transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
+                    loading="lazy"
+                    decoding="async"
+                    width={1600}
+                    height={1067}
+                  />
                 </div>
-              ))}
-            </div>
-          </div>
+
+                <div className="flex flex-1 flex-col p-5">
+                  <h3 className="text-lg font-bold text-foreground">
+                    {service.title}
+                  </h3>
+                  <p className="mt-2 flex-1 text-sm text-muted-foreground">
+                    {service.description}
+                  </p>
+
+                  <Button
+                    asChild
+                    variant="brand"
+                    size="sm"
+                    className="mt-4 w-fit"
+                  >
+                    {/* Destination comes from the service data. The previous
+                        title-substring mapping 404'd on three of four cards.
+                        aria-label disambiguates this from the hero's "Learn
+                        More" and from the other three cards, which otherwise
+                        all share one accessible name. */}
+                    <Link
+                      to={service.path}
+                      aria-label={`Learn more about ${service.title}`}
+                    >
+                      Learn more
+                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    </Link>
+                  </Button>
+                </div>
+              </Card>
+            ))}
+          </Marquee>
         </div>
 
-        <div className="flex justify-center mt-6 gap-2">
-          {Array.from({ length: dotsCount }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 transform hover:scale-110 active:scale-90 ${currentSlide === index ? 'bg-[#1c3D72]' : 'bg-gray-300'}`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
-
-        <div className="flex justify-start mt-12">
-          <Link to="/services" className="inline-block">
-            <button className="px-6 sm:px-8 py-3 text-sm sm:text-base font-semibold text-white rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:scale-95 bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6]">
-              Explore Services
-            </button>
-          </Link>
+        <div className="mt-10 flex justify-center">
+          <Button
+            asChild
+            variant="outline"
+            size="lg"
+            className="border-2 border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white"
+          >
+            <Link to="/services">Explore all services</Link>
+          </Button>
         </div>
       </div>
     </section>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Why choose COLTEK
+// ---------------------------------------------------------------------------
+
+// Photography, not icons. These four are the only 4096px-wide assets in the
+// repo, so they are the ones that still look sharp when a card is hovered and
+// scaled up. The previous icons were 42-48px sources stretched into a tile.
+const FEATURE_CARDS = [
+  {
+    title: "Innovation Solutions",
+    text: "We blend creativity with cutting-edge technology to drive real results.",
+    image: aimlImg,
+    alt: "A brain rendered as a circuit board, representing applied AI",
+  },
+  {
+    title: "Client Centered",
+    text: "Your goals shape our solutions, every step of the way.",
+    image: collaborationImg,
+    alt: "Two colleagues reviewing work together at a screen",
+  },
+  {
+    title: "Expert Team",
+    text: "Skilled professionals delivering excellence with precision.",
+    image: softwareImg,
+    alt: "A developer working on a web application",
+  },
+  {
+    title: "Reliable Solutions",
+    text: "Systems built to perform, built to last.",
+    image: cloudImg,
+    alt: "An isometric illustration of cloud infrastructure",
+  },
+];
+
+function WhyChooseSection() {
+  return (
+    <section className="bg-brand-deep py-section md:py-section-lg">
+      <div className="container-page">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-4">
+            <SectionHeading
+              align="left"
+              title={
+                <>
+                  Why choose <GradientWord>COLTEK</GradientWord>
+                </>
+              }
+              description="We don't just build solutions — we engineer possibilities. Our team blends creativity, innovation, and technical excellence to deliver work that holds up."
+            />
+
+            <Button asChild variant="brand" size="lg" className="mt-8">
+              <Link to="/about">About our team</Link>
+            </Button>
+          </div>
+
+          {/* Rail travels rightwards, opposite the services row above, so the
+              two do not read as one continuous band. */}
+          <div className="lg:col-span-8">
+            <Marquee
+              direction="right"
+              durationSec={38}
+              gapRem={1}
+              label="Why choose COLTEK"
+            >
+              {FEATURE_CARDS.map((card) => (
+                <article
+                  key={card.title}
+                  className="group relative h-[22rem] w-[16rem] overflow-hidden rounded-card sm:w-[17rem]"
+                >
+                  <img
+                    src={card.image}
+                    alt={card.alt}
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
+                    loading="lazy"
+                    decoding="async"
+                    width={1600}
+                    height={1067}
+                  />
+
+                  {/* Scrim: strong at the base so the copy stays readable over
+                      any of the four photographs, near-clear at the top. */}
+                  <div
+                    className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/10 transition-opacity duration-500 group-hover:from-black/95"
+                    aria-hidden="true"
+                  />
+
+                  {/* Brand hairline that fills in on hover. */}
+                  <div
+                    className="absolute inset-x-0 bottom-0 h-1 bg-gradient-brand opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                    aria-hidden="true"
+                  />
+
+                  <div className="absolute inset-x-0 bottom-0 p-5">
+                    <h3 className="text-lg font-bold text-white">
+                      {card.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-white/80">
+                      {card.text}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </Marquee>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Featured work
+// ---------------------------------------------------------------------------
+
+function FeaturedWorkSection() {
+  return (
+    <section className="bg-brand-deep py-section md:py-section-lg">
+      <div className="container-page">
+        <SectionHeading
+          title={
+            <>
+              Featured <GradientWord>projects</GradientWord>
+            </>
+          }
+          description="From inventory systems that predict demand to offline-first retail apps, our work ships and stays shipped."
+        />
+
+        {/* Real product screenshots from the portfolio set (~1024px source),
+            which replaced a single 801x568 stock team photo that was being
+            upscaled into this column and looked soft on retina displays.
+            The rail travels rightwards, against the services row. */}
+        <div className="mt-10 -mx-4 sm:-mx-6 lg:-mx-8">
+          <Marquee direction="right" durationSec={60} label="Featured projects">
+            {projects.map((project) => (
+              <Card
+                key={project.id}
+                variant="plain"
+                className="group h-full w-[18rem] overflow-hidden sm:w-[20rem]"
+              >
+                <Link
+                  to="/portfolio"
+                  aria-label={`${project.title} — see this project in the portfolio`}
+                  className="block h-full rounded-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+                    <img
+                      src={project.image}
+                      alt={`${project.title} interface`}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                      decoding="async"
+                      width={1024}
+                      height={768}
+                    />
+                    <Badge
+                      variant="overlay"
+                      shape="rounded"
+                      className="absolute left-3 top-3"
+                    >
+                      {project.category}
+                    </Badge>
+                  </div>
+
+                  <div className="p-5">
+                    <h3 className="text-base font-bold text-foreground">
+                      {project.title}
+                    </h3>
+                    <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">
+                      {project.excerpt}
+                    </p>
+                  </div>
+                </Link>
+              </Card>
+            ))}
+          </Marquee>
+        </div>
+
+        <div className="mt-10 flex justify-center">
+          <Button asChild variant="brand" size="lg">
+            <Link to="/portfolio">
+              View all projects
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Shared section pieces
+// ---------------------------------------------------------------------------
+
+function GradientWord({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="bg-gradient-brand bg-clip-text text-transparent">
+      {children}
+    </span>
+  );
+}
+
+function SectionHeading({
+  title,
+  description,
+  align = "center",
+}: {
+  title: React.ReactNode;
+  description?: string;
+  align?: "left" | "center";
+}) {
+  return (
+    <div className={cn(align === "center" && "mx-auto max-w-2xl text-center")}>
+      <h2 className="text-2xl font-bold text-white sm:text-3xl md:text-4xl">
+        {title}
+      </h2>
+      {description && (
+        <p className="mt-4 text-base leading-relaxed text-gray-300">
+          {description}
+        </p>
+      )}
+    </div>
   );
 }

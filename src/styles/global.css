@@ -1,27 +1,22 @@
 /* -------------------------------------- */
-/* 🌍 Custom global styles start here */
+/* 🌍 Custom global styles                 */
 /* -------------------------------------- */
 
-:root {
-  --font-sans: 'Inter', sans-serif;
-  --font-heading: 'Poppins', sans-serif;
-  --font-montserrat: 'Montserrat', sans-serif;
-}
+/*
+  Typography and the html/body reset now live in index.css §3 so there is a
+  single source of truth.
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: var(--font-sans);
-  scroll-behavior: smooth;
-}
+  Previously this file declared `html, body { font-family: var(--font-sans) }`
+  and `h1-h6 { font-family: var(--font-heading) }` OUTSIDE any cascade layer,
+  while index.css declared Montserrat for the same elements INSIDE
+  @layer base. Unlayered rules beat layered ones, so these rules silently won
+  and the app has always rendered Inter body / Poppins headings.
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  font-weight: 600;
-}
+  That rendering is unchanged — the rules simply moved, and the font families
+  are now defined once, in the @theme block in index.css.
+*/
 
+/* Escape hatch for the handful of places that opt into Montserrat directly. */
 .font-montserrat {
   font-family: var(--font-montserrat);
 }

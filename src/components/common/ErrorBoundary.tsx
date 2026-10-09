@@ -1,4 +1,5 @@
 import { Component, type ErrorInfo, type ReactNode } from "react";
+import { Button } from "@/components/ui/button";
 
 interface Props {
   children: ReactNode;
@@ -29,19 +30,16 @@ class ErrorBoundary extends Component<Props, State> {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen flex items-center justify-center bg-[#070C29] text-white px-4">
+        <div className="min-h-screen flex items-center justify-center bg-brand-deep text-white px-4">
           <div className="text-center max-w-md">
             <h1 className="text-2xl font-bold mb-3">Something went wrong</h1>
             <p className="text-gray-300 mb-6">
               This page couldn&apos;t load properly. This usually happens after
               a new update — reloading will fetch the latest version.
             </p>
-            <button
-              onClick={this.handleReload}
-              className="px-6 py-3 font-semibold rounded-lg bg-gradient-to-r from-[#1c3D72] to-[#2EC4B6] text-white transition-all duration-300 hover:shadow-lg"
-            >
+            <Button variant="brand" size="lg" onClick={this.handleReload}>
               Reload page
-            </button>
+            </Button>
           </div>
         </div>
       );

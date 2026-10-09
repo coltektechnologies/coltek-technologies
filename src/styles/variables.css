@@ -1,53 +1,75 @@
+/* ==========================================================================
+   LEGACY TOKENS
+   --------------------------------------------------------------------------
+   These are the project's original hex-based variables. They are PRESERVED
+   (CLAUDE.md §19) — none are deleted in this phase.
+
+   Where a legacy token holds exactly the same color as a new semantic token,
+   it now points at that token so the color is defined in one place. Values
+   are byte-identical to before; nothing renders differently.
+
+   The `→` notes are the intended migration target for later phases. A token
+   marked "unused" has no `var()` reference anywhere in src/ today, but is
+   kept until a migration is explicitly approved.
+   ========================================================================== */
+
 :root {
-  --primary-bg-color: #070c29;
-  --contact-bg-color: #f2f9ff;
-  --services-bg-color: #f2f9ff;
-  --legal-bg-color: #f2f9ff;
-  --aboutus-bg-color: #ffffff;
-  --footer-bg-color: #000000;
-  
-  /* Button Colors */
+  /* ---- Page backgrounds (DESIGN_SYSTEM.md §6) ---- */
+  --primary-bg-color: var(
+    --color-brand-deep
+  ); /* #070c29  → bg-brand-deep (unused) */
+  --contact-bg-color: #f2f9ff; /* → surface token (unused) */
+  --services-bg-color: #f2f9ff; /* → surface token (unused) */
+  --legal-bg-color: #f2f9ff; /* → surface token (unused) */
+  --aboutus-bg-color: #ffffff; /* → bg-card (unused) */
+  --footer-bg-color: #000000; /* in use: layout/Footer.tsx */
+
+  /* ---- Button colors (DESIGN_SYSTEM.md §5, §13) ----
+     The gradient below is part of the service-page cyan/green identity and
+     is intentionally NOT folded into the brand navy→teal gradient. */
   --button-bg1-gradient-color: linear-gradient(
     97.91deg,
     #00d9fd 2.91%,
     #0afe36 97.09%
   );
-  --nav-button-bg: #0D1B2A;
-  --nav-button-text-color: #B0BEC5;
-  --button-bg2-color: #00d9fd;
-  --button-bg3-color: #c8e4fe9e;
-  --button-bg4-color: #034492;
-  --button-bg5-color: #041979;
-  --button-hover-color: #070c29;
-  
-  /* Button Text and hover Colors */
-  --button-text-color: #07121d;
-  --button-bg3-text-color: #0b81ff;
-  --button-bg4-text-color: #ffffff;
-  --button-hover-text-color: #ffffff;
-  --button-border-color: #00d9fd;
-  
-  /* Slider Colors */
-  --slider-track-color: #d9d9d9;
-  --slider-active-color: #5d5dff;
-  
-  /* Text Colors */
-  --text-color: #000000;
-  --nav-text-color: #3A3D3F;
-  
-  /* Card Colors */
-  --card1-bg-color: #c8e4fe3d;
-  --card2-bg-color: #1c8dfb3d;
-  --card3-bg-color: #ffffff;
-  --card4-bg-color: #0071c3;
-  --card5-bg-color: #14b3cc;
-  --card5-bg2-color: #17b9d2;
+  --nav-button-bg: #0d1b2a; /* in use: layout/Navbar.tsx (mobile CTA) */
+  --nav-button-text-color: #b0bec5; /* in use: layout/Navbar.tsx (mobile CTA) */
+  --button-bg2-color: var(--color-service-cyan); /* #00d9fd (unused) */
+  --button-bg3-color: #c8e4fe9e; /* (unused) */
+  --button-bg4-color: #034492; /* (unused) */
+  --button-bg5-color: #041979; /* (unused) */
+  --button-hover-color: var(--color-brand-deep); /* #070c29 (unused) */
+
+  /* ---- Button text and hover colors ---- */
+  --button-text-color: #07121d; /* (unused) */
+  --button-bg3-text-color: #0b81ff; /* (unused) */
+  --button-bg4-text-color: #ffffff; /* (unused) */
+  --button-hover-text-color: #ffffff; /* (unused) */
+  --button-border-color: var(--color-service-cyan); /* #00d9fd (unused) */
+
+  /* ---- Slider colors ---- */
+  --slider-track-color: #d9d9d9; /* (unused) */
+  --slider-active-color: #5d5dff; /* (unused) */
+
+  /* ---- Text colors (DESIGN_SYSTEM.md §8) ---- */
+  --text-color: #000000; /* → text-foreground (unused) */
+  --nav-text-color: #3a3d3f; /* → text-muted-foreground (unused) */
+
+  /* ---- Card colors (DESIGN_SYSTEM.md §7) ---- */
+  --card1-bg-color: #c8e4fe3d; /* (unused) */
+  --card2-bg-color: #1c8dfb3d; /* (unused) */
+  --card3-bg-color: #ffffff; /* → bg-card (unused) */
+  --card4-bg-color: #0071c3; /* (unused) */
+  --card5-bg-color: #14b3cc; /* (unused) */
+  --card5-bg2-color: #17b9d2; /* (unused) */
   --card6-bg-color: linear-gradient(265.57deg, #87d8f2 1.39%, #3093ee 100%);
   --card-contact-bg-color: linear-gradient(180deg, #041979 0%, #0071c3 100%);
-  --card-legal-bg-color: #5d5dff;
-  --card-border-color: #007acb;
-  
-  /* Fonts */
-  --font-sans: 'Inter', sans-serif;
-  --font-display: 'Montserrat', sans-serif;
+  --card-legal-bg-color: #5d5dff; /* (unused) */
+  --card-border-color: #007acb; /* (unused) */
+
+  /* ---- Fonts ----
+     Superseded by the @theme block in index.css, which is now the single
+     source of truth for font families. Kept as aliases so any stray
+     var(--font-*) reference keeps resolving. */
+  --font-display: var(--font-montserrat);
 }

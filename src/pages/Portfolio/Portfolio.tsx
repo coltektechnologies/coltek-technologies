@@ -1,386 +1,419 @@
 // src/pages/Portfolio/Portfolio.tsx
-import React, { useMemo, useState, useEffect } from "react";
-import Reveal from "../../components/Reveal";
+//
+// Stage 5C. The page keeps its own information architecture — filterable
+// grid, featured case study, closing CTA — and its copy, but now shares the
+// application's visual language: PageHeader / Card / Badge / Button /
+// EmptyState and semantic tokens.
+//
+// SURFACE RULE (see About.tsx): --card is #FFFFFF and --background is
+// #F5F9FF, so a card must never sit on a section of its own colour.
+//
+// Defects this pass closed, all in the Stage 5C report:
+//   * The page rendered its own <main> INSIDE the <main> that Layout already
+//     renders. Only one <main> per document; the nesting broke the skip link
+//     and landmark navigation.
+//   * Every project <article> carried aria-live="polite" — seven live
+//     regions, so any state change re-announced whole cards. There is now one
+//     status region, for the filter result count and the "coming soon" notice.
+//   * Cards were wrapped in <Reveal> AND ran a second opacity/translate
+//     animation off a setTimeout stagger, so two systems fought over the same
+//     property. `delay={isVisible ? 80 : 0}` also only changed after the
+//     reveal had already happened.
+//   * "View" and "Link" were two controls pointing at the same URL with two
+//     different accessible names, each written twice through a ternary.
+//   * The featured blurb hardcoded "— a comprehensive dashboard for tracking
+//     product performance and analytics", which is only true of one project.
+import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import Inventory from "../../assets/portfolio/inventory.png";
-import Banking from "../../assets/portfolio/banking.png";
-import CRM from "../../assets/portfolio/crm.png";
-import Product from "../../assets/portfolio/product.png";
-import Retail from "../../assets/portfolio/retail.png";
-import Commerce from "../../assets/portfolio/commerce.png";
-import opendoor from "../../assets/images/opendoor.png";
 import {
-  Tag,
-  ArrowRightCircle,
-  Globe,
-  Smartphone,
-  Cpu,
+  ArrowRight,
   Cloud,
+  Cpu,
+  ExternalLink,
+  Globe,
+  SearchX,
+  Smartphone,
+  Tag,
   Zap,
 } from "lucide-react";
 
+import Reveal from "../../components/Reveal";
+import CTASection from "../../components/CTASection";
+import { projects, type Category, type Project } from "../../data/projects";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { EmptyState } from "@/components/ui/empty-state";
+import { PageHeader } from "@/components/ui/page-header";
+import { cn } from "@/lib/utils";
 
-/**
- * Portfolio / Projects Page (Polished)
- *
- * Features implemented:
- *  - Sticky filter bar with icons + active underline
- *  - Real client-side filtering
- *  - Smooth enter animations (staggered) + graceful exit
- *  - Enhanced hover animation (lift + image zoom + shadow)
- *  - Featured project block with badge + gradient
- *  - Scroll reveal integration via Reveal component
- *  - CTA with subtle pulse
- *  - "Coming soon" behavior for project action button (no modal / routes)
- *
- * Placeholder images use local uploaded file:
- *   /mnt/data/Screenshot 2025-11-24 102145.png
- *
- * Paste into: src/pages/Portfolio/Portfolio.tsx
- */
-
-type Category = "All" | "Web Development" | "Mobile Apps" | "Cloud" | "AI Solutions";
-
-type Project = {
-  id: string;
-  title: string;
-  excerpt: string;
-  category: Category;
-  tags?: string[];
-  image?: string;
-  featured?: boolean;
-  url?: string;
-};
-
-const ALL_CATEGORIES: { key: Category; icon: React.ReactNode }[] = [
-  { key: "All", icon: <Tag className="w-4 h-4" /> },
-  { key: "Web Development", icon: <Globe className="w-4 h-4" /> },
-  { key: "Mobile Apps", icon: <Smartphone className="w-4 h-4" /> },
-  { key: "Cloud", icon: <Cloud className="w-4 h-4" /> },
-  { key: "AI Solutions", icon: <Cpu className="w-4 h-4" /> },
+const CATEGORIES: {
+  key: Category;
+  Icon: React.ComponentType<{ className?: string }>;
+}[] = [
+  { key: "All", Icon: Tag },
+  { key: "Web Development", Icon: Globe },
+  { key: "Mobile Apps", Icon: Smartphone },
+  { key: "Cloud", Icon: Cloud },
+  { key: "AI Solutions", Icon: Cpu },
 ];
 
-// Hardcoded project seed (easy to migrate later)
-const projectsSeed: Project[] = [
-  {
-    id: "p7",
-    title: "Church Management System",
-    excerpt: "An intuitive church management system for managing church activities and members.",
-    category: "Web Development",
-    tags: ["SaaS", "Cloud"],
-    image: opendoor,
-    url: "https://open-door.site/",
-  },
-  {
-    id: "p1",
-    title: "AI-Powered Inventory System",
-    excerpt: "Smart inventory predictions and automatic reorder suggestions for growing businesses.",
-    category: "AI Solutions",
-    tags: ["AI", "Inventory", "Analytics"],
-    image: Inventory,
-  },
-  {
-    id: "p2",
-    title: "Mobile Banking App",
-    excerpt: "Secure mobile banking with seamless onboarding and biometric authentication.",
-    category: "Mobile Apps",
-    tags: ["iOS", "Android", "Security"],
-    image: Banking,
-  },
-  {
-    id: "p3",
-    title: "Cloud-Based CRM",
-    excerpt: "Scalable CRM to manage leads, automate tasks, and improve sales workflows.",
-    category: "Cloud",
-    tags: ["Cloud", "SaaS"],
-    image: CRM,
-  },
-  {
-    id: "p4",
-    title: "E-Commerce Platform (Web)",
-    excerpt: "Fast, accessible, conversion-optimized online stores that scale.",
-    category: "Web Development",
-    tags: ["React", "Payments"],
-    image: Commerce,
-  },
-  {
-    id: "p5",
-    title: "Product Management Dashboard",
-    excerpt: "Analytics-first dashboard to track product performance and team KPIs.",
-    category: "Web Development",
-    tags: ["Dashboard", "Analytics"],
-    image: Product,
-    featured: true,
-  },
-  {
-    id: "p6",
-    title: "Retail Mobile App (Offline-first)",
-    excerpt: "An intuitive retail app with offline-first capabilities for emerging markets.",
-    category: "Mobile Apps",
-    tags: ["Offline", "Sync"],
-    image: Retail,
-  },
-];
+// ---------------------------------------------------------------------------
+// Page
+// ---------------------------------------------------------------------------
 
 const Portfolio: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<Category>("All");
-  const [visibleIds, setVisibleIds] = useState<string[]>([]);
   const [comingSoonId, setComingSoonId] = useState<string | null>(null);
 
-  // filtered list
-  const filtered = useMemo(() => {
-    if (activeCategory === "All") return projectsSeed;
-    return projectsSeed.filter((p) => p.category === activeCategory);
-  }, [activeCategory]);
+  const filtered = useMemo(
+    () =>
+      activeCategory === "All"
+        ? projects
+        : projects.filter((p) => p.category === activeCategory),
+    [activeCategory],
+  );
 
-  // reveal stagger when filter changes
-  useEffect(() => {
-    setVisibleIds([]); // reset
-    const timers: number[] = [];
-    filtered.forEach((p, idx) => {
-      const t = window.setTimeout(() => {
-        setVisibleIds((s) => [...s, p.id]);
-      }, idx * 80); // 80ms stagger for polished feel
-      timers.push(t);
-    });
+  const featured = useMemo(
+    () => projects.find((p) => p.featured) ?? projects[0],
+    [],
+  );
 
-    return () => timers.forEach(window.clearTimeout);
-  }, [filtered]);
-
-  // featured project
-  const featured = useMemo(() => projectsSeed.find((p) => p.featured) ?? projectsSeed[0], []);
-
-  // small in-page "coming soon" flash for the action button
-  const handleComingSoon = (id: string) => {
+  const announceComingSoon = (id: string) => {
     setComingSoonId(id);
-    setTimeout(() => setComingSoonId(null), 1800);
+    window.setTimeout(() => setComingSoonId(null), 1800);
   };
 
+  const comingSoonProject = projects.find((p) => p.id === comingSoonId);
+
   return (
-    <div className="min-h-screen bg-[#F4F7FA] text-[#102A43] pt-24 md:pt-28">
-      {/* HERO */}
-      <Reveal delay={40}>
-        <header className="bg-white shadow-sm">
-          <div className="max-w-6xl mx-auto px-6 py-6 flex flex-col lg:flex-row items-start lg:items-center gap-4">
-            <div className="flex-1">
-              <h1 className="text-3xl md:text-4xl font-extrabold">Our Projects & Case Studies</h1>
-              <p className="text-sm text-[#607B8B] mt-2 max-w-xl">
-                Discover how COLTEK Technologies helps businesses innovate and grow through tailored agile solutions.
-              </p>
-            </div>
+    // No <main> here: Layout already renders one, and this page used to nest
+    // a second inside it.
+    <div className="min-h-screen bg-background pt-nav text-foreground md:pt-nav-lg">
+      <PageHeader
+        tone="brand"
+        size="auto"
+        className="py-20 md:py-28"
+        align="left"
+        title="Our Projects & Case Studies"
+        description="Discover how COLTEK Technologies helps businesses innovate and grow through tailored agile solutions."
+        actions={
+          <Button
+            asChild
+            variant="outline"
+            size="lg"
+            className="border-2 border-white/50 bg-transparent text-white hover:bg-white/15 hover:text-white"
+          >
+            <Link to="/contact">Start Your Project</Link>
+          </Button>
+        }
+      />
 
-            <div className="w-full lg:w-auto flex items-center gap-3">
-              <Link
-                to="/contact"
-                className="hidden md:inline-flex items-center gap-3 bg-gradient-to-r from-[#1C3D72] to-[#2EC4B6] text-white px-4 py-2 rounded-md font-semibold shadow hover:opacity-95 transition"
-              >
-                Start Your Project
-              </Link>
+      <FilterBar active={activeCategory} onChange={setActiveCategory} />
 
-              <button
-                onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" })}
-                className="inline-flex md:hidden items-center gap-2 bg-gradient-to-r from-[#1C3D72] to-[#2EC4B6] text-white px-3 py-2 rounded-md font-semibold shadow hover:opacity-95 transition"
-              >
-                Work with us
-              </button>
-            </div>
-          </div>
+      {/* One status region for the whole page. Seven cards each carrying
+          aria-live="polite" meant any change re-announced entire cards. */}
+      <p aria-live="polite" className="sr-only">
+        {comingSoonProject
+          ? `${comingSoonProject.title}: full case study coming soon.`
+          : `Showing ${filtered.length} ${
+              filtered.length === 1 ? "project" : "projects"
+            }${activeCategory === "All" ? "" : ` in ${activeCategory}`}.`}
+      </p>
 
-          {/* STICKY FILTER BAR */}
-          <div className="sticky top-16 z-30 bg-white/90 backdrop-blur-sm border-t border-b border-[#E8EDF2]">
-            <div className="max-w-6xl mx-auto px-6 py-3 flex items-center gap-3 overflow-x-auto">
-              {ALL_CATEGORIES.map((c) => {
-                const isActive = c.key === activeCategory;
-                return (
-                  <button
-                    key={c.key}
-                    onClick={() => setActiveCategory(c.key)}
-                    aria-pressed={isActive}
-                    className={`flex items-center gap-2 px-3 py-2 rounded-full text-sm font-medium transition ${
-                      isActive
-                        ? "bg-[#102A43] text-white shadow-lg ring-2 ring-[#2EC4B6]/30"
-                        : "bg-white text-[#102A43] border border-[#E8EDF2] hover:shadow-sm"
-                    }`}
-                    title={c.key}
-                  >
-                    <span className={`inline-flex items-center justify-center ${isActive ? "text-white" : "text-[#1C3D72]"}`}>
-                      {c.icon}
-                    </span>
-                    <span>{c.key}</span>
-                    {/* active underline small accent */}
-                    {isActive && <span className="ml-2 w-2 h-2 rounded-full bg-[#2EC4B6]" />}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </header>
-      </Reveal>
-
-      {/* MAIN GRID */}
-      <main className="max-w-6xl mx-auto px-6 py-10">
-        {/* Grid of cards */}
-        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((p) => {
-            const isVisible = visibleIds.includes(p.id);
-            const isComing = comingSoonId === p.id;
-
-            return (
-              <Reveal key={p.id} delay={isVisible ? 80 : 0}>
-                <article
-                  aria-live="polite"
-                  className={`bg-white rounded-xl overflow-hidden shadow-md transform transition-all duration-300 flex flex-col h-full ${
-                    isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                  } hover:shadow-2xl hover:-translate-y-1`}
-                  style={{ willChange: "transform, opacity" }}
+      <section className="bg-background py-section md:py-section-lg">
+        <div className="container-page">
+          {filtered.length === 0 ? (
+            <EmptyState
+              icon={<SearchX className="h-8 w-8 text-muted-foreground" />}
+              title="No projects in this category yet"
+              description="We're still writing these up. Try another category, or tell us what you're building."
+              action={
+                <Button
+                  variant="brand"
+                  onClick={() => setActiveCategory("All")}
                 >
-                  <div className="relative h-48 overflow-hidden bg-gray-100 group">
-                    <img
-                      src={p.image}
-                      alt={p.title}
-                      className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
-                    />
+                  Show all projects
+                </Button>
+              }
+            />
+          ) : (
+            <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {filtered.map((project) => (
+                <li key={project.id}>
+                  <ProjectCard
+                    project={project}
+                    comingSoon={comingSoonId === project.id}
+                    onComingSoon={announceComingSoon}
+                  />
+                </li>
+              ))}
+            </ul>
+          )}
 
-                    {/* category badge top-left */}
-                    <div className="absolute left-3 top-3 bg-white/90 text-xs text-[#102A43] px-2 py-1 rounded-md shadow-sm">
-                      {p.category}
-                    </div>
-                  </div>
-
-                  <div className="p-5 flex flex-col gap-3 flex-1">
-                    <div className="flex items-center justify-between">
-                      <h3 className="font-semibold text-lg">{p.title}</h3>
-                      <div className="text-xs text-[#607B8B]">{p.tags?.[0] ?? ""}</div>
-                    </div>
-
-                    <p className="text-sm text-[#42566A]">{p.excerpt}</p>
-
-                    <div className="flex items-center justify-between mt-3">
-                      <div className="flex gap-2 items-center">
-                        {p.tags?.slice(0, 2).map((t) => (
-                          <span key={t} className="text-xs bg-[#F1F7F9] text-[#102A43] px-2 py-1 rounded-full shadow-sm">
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="flex items-center gap-2">
-                        {/* View button */}
-                        {p.url ? (
-                          <a
-                            href={p.url}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="text-sm px-3 py-1 rounded-md border border-[#E8EDF2] bg-white hover:bg-[#fbfdff] transition"
-                            aria-label={`View ${p.title}`}
-                          >
-                            View
-                          </a>
-                        ) : (
-                          <button
-                            onClick={() => handleComingSoon(p.id)}
-                            className="text-sm px-3 py-1 rounded-md border border-[#E8EDF2] bg-white hover:bg-[#fbfdff] transition"
-                            aria-label={`View ${p.title}`}
-                          >
-                            View
-                          </button>
-                        )}
-
-                        {p.url ? (
-                          <a
-                            href={p.url}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="text-sm px-3 py-1 rounded-md bg-gradient-to-r from-[#1C3D72] to-[#2EC4B6] text-white shadow-md flex items-center gap-2"
-                            aria-label={`Open ${p.title}`}
-                          >
-                            Link
-                            <ArrowRightCircle className="w-4 h-4" />
-                          </a>
-                        ) : (
-                          <button
-                            onClick={() => handleComingSoon(p.id)}
-                            className="text-sm px-3 py-1 rounded-md bg-gradient-to-r from-[#1C3D72] to-[#2EC4B6] text-white shadow-md flex items-center gap-2"
-                            aria-label={`Open ${p.title}`}
-                          >
-                            Link
-                            <ArrowRightCircle className="w-4 h-4" />
-                          </button>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* coming soon toast / micro */}
-                    {isComing && (
-                      <div className="mt-3 text-xs bg-[#FFFBEB] border border-[#FDE68A] px-3 py-2 rounded-md inline-flex items-center gap-2 text-[#92400E]">
-                        <Zap className="w-4 h-4" />
-                        Coming soon — full case study
-                      </div>
-                    )}
-                  </div>
-                </article>
-              </Reveal>
-            );
-          })}
-        </section>
-
-        {/* FEATURED */}
-        <aside className="mt-12">
-          <Reveal delay={120}>
-            <div className="bg-gradient-to-r from-[#E6F6FF] to-white rounded-2xl shadow-lg p-6 md:p-8 flex flex-col md:flex-row items-center gap-6">
-              <div className="w-full md:w-1/3 h-56 rounded overflow-hidden shadow-inner">
-                <img src={featured.image} alt={featured.title} className="w-full h-full object-cover" />
-              </div>
-
-              <div className="flex-1">
-                <div className="flex items-center gap-3">
-                  <div className="bg-[#1C3D72] text-white px-3 py-1 rounded-full text-xs font-semibold">Featured</div>
-                  <div className="text-sm text-[#607B8B] ml-auto">{featured.category}</div>
-                </div>
-
-                <h2 className="text-2xl font-bold mt-3">{featured.title}</h2>
-                <p className="text-sm text-[#42566A] mt-3 max-w-3xl">
-                  {featured.excerpt} — a comprehensive dashboard for tracking product performance and analytics.
-                </p>
-
-                <div className="mt-4 flex gap-3">
-                  <button
-                    onClick={() => handleComingSoon(featured.id)}
-                    className="px-4 py-2 rounded-md bg-white text-[#1C3D72] font-semibold border border-[#E8EDF2]"
-                  >
-                    Explore Full Case Study
-                  </button>
-
-                  <Link
-                    to="/contact"
-                    className="px-4 py-2 rounded-md bg-gradient-to-r from-[#1C3D72] to-[#2EC4B6] text-white font-semibold flex items-center gap-2 animate-[pulse_2.5s_infinite]"
-                  >
-                    Let US Create Your Project Today <ArrowRightCircle className="w-4 h-4" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        </aside>
-      </main>
-
-      {/* FOOTER CTA */}
-      <div className="max-w-6xl mx-auto px-6 py-12">
-        <div className="rounded-lg p-8 bg-gradient-to-r from-[#1C3D72] to-[#2EC4B6] text-white text-center shadow-lg">
-          <h3 className="text-2xl font-bold">Let US Create Your Project Today</h3>
-          <p className="text-sm mt-2">Ready to build? Talk to our team and we'll scope your project.</p>
-          <div className="mt-6">
-            <Link
-              to="/contact"
-              className="inline-block px-8 py-3 rounded-md bg-white text-[#1C3D72] font-semibold shadow hover:scale-[1.02] transition"
-            >
-              Start Your Project
-            </Link>
-          </div>
+          <FeaturedProject
+            project={featured}
+            comingSoon={comingSoonId === featured.id}
+            onComingSoon={announceComingSoon}
+          />
         </div>
-      </div>
+      </section>
+
+      {/* Was a hand-rolled gradient panel duplicating the featured block's
+          CTA, with the same heading twice on one page. */}
+      <CTASection
+        title="Let us create your project today"
+        description="Ready to build? Talk to our team and we'll scope your project."
+        primaryButtonText="Start Your Project"
+        secondaryButtonText="See our services"
+        secondaryHref="/services"
+      />
     </div>
   );
 };
 
 export default Portfolio;
+
+// ---------------------------------------------------------------------------
+// Filter bar
+// ---------------------------------------------------------------------------
+
+function FilterBar({
+  active,
+  onChange,
+}: {
+  active: Category;
+  onChange: (c: Category) => void;
+}) {
+  return (
+    <div className="sticky top-nav z-30 border-y border-border bg-card/90 backdrop-blur-sm md:top-nav-lg">
+      <div className="container-page">
+        <ul
+          className="scrollbar-hide flex items-center gap-3 overflow-x-auto py-3"
+          aria-label="Filter projects by category"
+        >
+          {CATEGORIES.map(({ key, Icon }) => {
+            const isActive = key === active;
+
+            return (
+              <li key={key}>
+                <button
+                  type="button"
+                  onClick={() => onChange(key)}
+                  aria-pressed={isActive}
+                  className={cn(
+                    "flex items-center gap-2 whitespace-nowrap rounded-pill px-3 py-2 text-sm font-medium transition-all duration-300",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                    isActive
+                      ? "bg-primary text-primary-foreground shadow-card ring-2 ring-brand-teal/30"
+                      : "border border-border bg-card text-foreground hover:bg-muted",
+                  )}
+                >
+                  <Icon
+                    className={cn(
+                      "h-4 w-4",
+                      isActive ? "text-primary-foreground" : "text-primary",
+                    )}
+                  />
+                  {key}
+                  {isActive && (
+                    <span
+                      className="h-2 w-2 rounded-pill bg-brand-teal"
+                      aria-hidden="true"
+                    />
+                  )}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Project card
+// ---------------------------------------------------------------------------
+
+function ProjectCard({
+  project,
+  comingSoon,
+  onComingSoon,
+}: {
+  project: Project;
+  comingSoon: boolean;
+  onComingSoon: (id: string) => void;
+}) {
+  return (
+    <Reveal>
+      <Card className="group flex h-full flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover">
+        <div className="relative h-48 overflow-hidden bg-muted">
+          <img
+            src={project.image}
+            alt={`${project.title} interface`}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+            decoding="async"
+            width={800}
+            height={740}
+          />
+
+          <Badge
+            variant="overlay"
+            shape="rounded"
+            className="absolute left-3 top-3"
+          >
+            {project.category}
+          </Badge>
+        </div>
+
+        <div className="flex flex-1 flex-col gap-3 p-5">
+          <h3 className="text-lg font-bold text-foreground">{project.title}</h3>
+
+          <p className="flex-1 text-sm leading-relaxed text-muted-foreground">
+            {project.excerpt}
+          </p>
+
+          {/* The first tag used to be printed beside the title as well as
+              here, so every card showed it twice. */}
+          {project.tags && project.tags.length > 0 && (
+            <ul className="flex flex-wrap gap-2">
+              {project.tags.slice(0, 2).map((tag) => (
+                <li key={tag}>
+                  <Badge>{tag}</Badge>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          <div className="mt-1">
+            {/* One control, not two. "View" and "Link" were separate buttons
+                pointing at the same destination with different names. */}
+            {project.url ? (
+              <Button asChild variant="brand" size="sm">
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Open ${project.title} in a new tab`}
+                >
+                  Visit site
+                  <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                </a>
+              </Button>
+            ) : (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onComingSoon(project.id)}
+                aria-label={`${project.title} case study — coming soon`}
+              >
+                Case study
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Button>
+            )}
+          </div>
+
+          {comingSoon && (
+            <p className="inline-flex items-center gap-2 rounded-control border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-800">
+              <Zap className="h-4 w-4 shrink-0" aria-hidden="true" />
+              Coming soon — full case study
+            </p>
+          )}
+        </div>
+      </Card>
+    </Reveal>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Featured project
+// ---------------------------------------------------------------------------
+
+function FeaturedProject({
+  project,
+  comingSoon,
+  onComingSoon,
+}: {
+  project: Project;
+  comingSoon: boolean;
+  onComingSoon: (id: string) => void;
+}) {
+  return (
+    <Reveal>
+      <Card className="mt-12 flex flex-col items-center gap-6 overflow-hidden p-6 md:flex-row md:p-8">
+        <div className="h-56 w-full shrink-0 overflow-hidden rounded-surface bg-muted md:w-1/3">
+          <img
+            src={project.image}
+            alt={`${project.title} interface`}
+            className="h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
+            width={800}
+            height={740}
+          />
+        </div>
+
+        <div className="flex-1">
+          <div className="flex items-center gap-3">
+            <Badge variant="brand">Featured</Badge>
+            <span className="ml-auto text-sm text-muted-foreground">
+              {project.category}
+            </span>
+          </div>
+
+          <h2 className="mt-3 text-2xl font-bold text-primary">
+            {project.title}
+          </h2>
+
+          {/* The trailing sentence here used to be hardcoded prose about a
+              product dashboard, which stops being true the moment the
+              `featured` flag moves to another project. */}
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+            {project.excerpt}
+          </p>
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            {project.url ? (
+              <Button asChild variant="brand">
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Open ${project.title} in a new tab`}
+                >
+                  Visit site
+                  <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                </a>
+              </Button>
+            ) : (
+              <Button
+                variant="outline"
+                onClick={() => onComingSoon(project.id)}
+              >
+                Explore Full Case Study
+              </Button>
+            )}
+
+            {/* The duplicate of this CTA used to pulse forever via
+                animate-[pulse_2.5s_infinite]. */}
+            <Button asChild variant="brand">
+              <Link to="/contact">
+                Start a project
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </Button>
+          </div>
+
+          {comingSoon && (
+            <p className="mt-4 inline-flex items-center gap-2 rounded-control border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-800">
+              <Zap className="h-4 w-4 shrink-0" aria-hidden="true" />
+              Coming soon — full case study
+            </p>
+          )}
+        </div>
+      </Card>
+    </Reveal>
+  );
+}
