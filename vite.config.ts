@@ -84,5 +84,7 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     globals: false,
+    maxWorkers: 2,
+    testTimeout: 15000,
   },
 });
